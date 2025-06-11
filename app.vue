@@ -1,0 +1,9 @@
+<template>
+  <div>
+    <n-message-provider>
+      <NuxtLayout>
+        <NuxtPage/>
+      </NuxtLayout>
+    </n-message-provider>
+  </div>
+</template>

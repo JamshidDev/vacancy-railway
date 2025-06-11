@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import "./override.scss";
+@import "tailwindcss";
+@theme {
+    --color-primary:#1967D2;
+    --color-success:#2DB346;
+
+
+    --color-surface-ground:#F9FCFF;
+    --color-surface-section:#FFFFFF;
+    --color-surface-line:#dfe6f4;
+
+    --color-black-primary:#17161D;
+    --color-black-secondary:#3D3D3D;
+    --color-black-tertiary:#999999;
+
+
+    --shadow-navbar:0px 0px 25px rgba(61, 161, 238, 0.2);
+
+    --animate-spin: spin 12s linear infinite;
+    --animate-reverse-spin: reverse-spin 12s linear infinite;
+    --animate-slide-down: slide-down 0.4s ease-in-out forwards;
+    --animate-scale-xs: scale-xs 20s ease-in-out infinite;
+
+
+}
+
+
+
+*{
+    font-family: "Rubik", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+}
+
+
+
+
+
+
+
+
+
+/*keyframes*/
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes reverse-spin {
+    to {
+        transform: rotate(-360deg);
+    }
+}
+@keyframes slide-down {
+    from {
+        top: -60px;
+    }
+    to {
+        top: 0;
+    }
+}
+
+@keyframes scale-xs {
+    0% {
+        transform:scale(1)
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform:scale(1)
+    }
+}
