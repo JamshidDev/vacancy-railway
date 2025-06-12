@@ -22,8 +22,10 @@ definePageMeta({
 <template>
 <div>
   <SectionHero/>
+  <SectionProcess/>
   <SectionOrganization/>
   <SectionVacancy/>
+  <SectionFooter/>
 </div>
 </template>
 

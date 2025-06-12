@@ -1,7 +1,7 @@
 <script setup>
 import {Search32Regular} from "@vicons/fluent"
 
-
+const router = useRouter()
 </script>
 
 <template>
@@ -22,7 +22,10 @@ import {Search32Regular} from "@vicons/fluent"
         </n-icon>
         <n-input class="input-override" placeholder="Izlash..."/>
       </div>
-      <button class="bg-primary text-white py-4 px-3 text-sm rounded-md cursor-pointer ">Vakansiya izlash</button>
+      <button
+          @click="router.push('/vacancy-list')"
+          class="bg-primary text-white py-4 px-3 text-sm rounded-md cursor-pointer ">
+        Vakansiya izlash</button>
     </div>
 
   </div>

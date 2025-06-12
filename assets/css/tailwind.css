@@ -1,18 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import "./override.scss";
 @import "tailwindcss";
+:root{
+    --primary:#1967D2;
+    --success:#2DB346;
+    --brown:#B3692D;
+    --indigo:#8883EC;
+    --error:#E7000A;
+    --warning:#FDC700;
+    --dark:#0f1114;
+    --white:#ffffff;
+    --secondary:#74788d;
+
+    --surface-section:#FFFFFF;
+    --surface-ground:#F9FCFF;
+    --surface-line:#dfe6f4;
+
+    --black-primary:#17161D;
+    --black-secondary:#3D3D3D;
+    --black-tertiary:#999999;
+}
+
 @theme {
     --color-primary:#1967D2;
     --color-success:#2DB346;
+    --color-brown:#B3692D;
+    --color-indigo:#8883EC;
+    --color-error:#E7000A;
+    --color-warning:#FDC700;
+    --color-dark:#0f1114;
+    --color-white:#ffffff;
+    --color-secondary:#74788d;
 
 
-    --color-surface-ground:#F9FCFF;
-    --color-surface-section:#FFFFFF;
-    --color-surface-line:#dfe6f4;
+    --color-surface-ground:var(--surface-ground);
+    --color-surface-section:var(--surface-section);
+    --color-surface-line:var(--surface-line);
 
-    --color-black-primary:#17161D;
-    --color-black-secondary:#3D3D3D;
-    --color-black-tertiary:#999999;
+    --color-black-primary:var(--black-primary);
+    --color-black-secondary:var(--black-secondary);
+    --color-black-tertiary:var(--black-tertiary);
 
 
     --shadow-navbar:0px 0px 25px rgba(61, 161, 238, 0.2);
