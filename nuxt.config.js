@@ -2,9 +2,11 @@ import tailwindcss from "@tailwindcss/vite";
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import i18nConfig from './i18n/index.js'
+
+
 export default {
   ssr: false,
-  compatibilityDate: '2024-11-01',
+  compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   runtimeConfig:{
     secretKey:'Key_secret',
@@ -12,11 +14,14 @@ export default {
       apiBase:process.env.API_URL,
     }
   },
-
   modules:
        [
            '@nuxtjs/i18n',
            '@pinia/nuxt',
+  ],
+  plugins: [
+    '~/plugins/mask.client.js',
+    '~/plugins/translate.js',
   ],
   tailwindcss: {
     exposeConfig: true,
@@ -33,3 +38,5 @@ export default {
   },
   css:['/assets/css/tailwind.css'],
 }
+
+// pages/**/ui/*.vue

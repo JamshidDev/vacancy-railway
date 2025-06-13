@@ -2,7 +2,6 @@
 <script setup >
 import {customTheme} from "~/utils/index.js"
 import { uzUZ, dateUzUZ, ruRU, dateRuRU, enUS, dateEnUS, }  from 'naive-ui'
-import i18n from "./i18n/index.js"
 const { $i18n } = useNuxtApp()
 
 

@@ -14,6 +14,14 @@
 .n-checkbox .n-checkbox-box .n-checkbox-box__border{
   border-radius: 4px !important;
 }
+.ui__modal-element{
+  .n-card-header{
+    display: none !important;
+  }
+  .n-card__content{
+    padding: 0 !important;
+  }
+}
 
 
 

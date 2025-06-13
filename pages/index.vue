@@ -1,20 +1,18 @@
 <script setup>
-import {useCounterStore} from "~/store/index.js"
 import { useMessage } from 'naive-ui'
-import Hero from "~/components/section/Hero.vue"
 const message = useMessage()
-const runtimeConfig = useRuntimeConfig()
-const appConfig = useAppConfig()
+import {useAuthStore} from "~/store/index.js"
+const store = useAuthStore()
 
 const msgEvent = ()=>{
   message.error("Once upon a time you dressed so fine");
 }
 
-const store = useCounterStore()
 
 
 definePageMeta({
-  layout:"admin-layout"
+  layout:"admin-layout",
+  breadcrumb:"Asosiy"
 })
 
 </script>
@@ -26,9 +24,22 @@ definePageMeta({
   <SectionOrganization/>
   <SectionVacancy/>
   <SectionFooter/>
+  <UiModal
+      :width="500"
+      v-model:visible="store.authVisible"
+  >
+    <template #header-title>
+      <span class="uppercase font-black text-lg text-black-primary">{{$t('content.loginSystem')}}</span>
+    </template>
+    <UiAuthBox>
+      <template #login-tab>
+        <UiAuthForm/>
+      </template>
+      <template #register-tab>
+        <UiAuthForm/>
+      </template>
+    </UiAuthBox>
+
+  </UiModal>
 </div>
 </template>
-
-<style scoped>
-
-</style>

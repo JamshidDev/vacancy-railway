@@ -2,10 +2,14 @@
 import {Wallet24Regular, Location24Regular,Clock32Regular,
   DocumentBriefcase20Regular, CalendarLtr32Regular, Clock28Regular,
   ArrowForward24Filled,Eye16Filled,Person12Filled, } from "@vicons/fluent"
+
+const router = useRouter()
 </script>
 
 <template>
-<div class="px-5 py-4 bg-surface-ground border border-surface-line rounded-xl
+<div
+    @click="router.push({path:'/vacancy-list/detail', query:{id:'123'}})"
+    class="px-5 py-4 bg-surface-ground border border-surface-line rounded-xl
  mb-4 hover:bg-surface-section cursor-pointer hover:shadow-navbar transition-all duration-300">
   <h2 class="text-xl text-black-primary font-medium">Samarqand shaxri hokimligi</h2>
   <h2 class="text-xs text-black-tertiary mt-2 border-b border-surface-line pb-4">• Samarqand shahar hokimining mahalladagi hokim yordamchilari</h2>

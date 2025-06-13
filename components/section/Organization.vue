@@ -29,7 +29,7 @@ const store = useHeroStore()
 ">
                 <IconBuild class="fill-primary/40"/>
                 <div class="flex flex-col border-l border-surface-line pl-4">
-                  <h2 class="text-black-primary font-medium text-lg">Markaziy muassasalar</h2>
+                  <h2 class="text-black-primary font-semibold text-lg">Markaziy muassasalar</h2>
                   <h6 class="text-black-tertiary text-sm mt-6">E'londagi tanlovlar soni: 245 ta</h6>
                 </div>
               </div>

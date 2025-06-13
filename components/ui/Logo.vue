@@ -4,7 +4,7 @@ const router = useRouter()
 
 <template>
 <div
-    class="flex items-center w-[200px]"
+    class="flex items-center w-[200px] cursor-pointer"
     @click="router.push('/')"
 >
   <img class="w-[50px]" src="/logo-2.png" alt="App logo">

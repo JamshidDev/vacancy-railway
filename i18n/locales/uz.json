@@ -1,7 +1,17 @@
 {
   "content": {
-    "loginSystem": "Tizimga kirish",
-    "welcome": "Xush kelibsiz!"
+    "loginSystem": "Kabinetga kirish",
+    "welcome": "Xush kelibsiz!",
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "send": "Yuborish"
   },
-  "hello": "Salom"
+  "auth": {
+    "login": "Tizimga kirish",
+    "register": "Ro'yhatdan o'tish",
+    "form": {
+      "phone": "Telefon raqam",
+      "password": "Parol"
+    }
+  }
 }
