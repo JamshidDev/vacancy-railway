@@ -6,6 +6,20 @@
     "cancel": "Bekor qilish",
     "send": "Yuborish"
   },
+  "rules": {
+    "login": "Email kiritilishi shart!",
+    "phone": "Telefon raqam kiritilishi shart!",
+    "password": "Parol kiritilishi shart!",
+    "requiredField": "Maydon to'ldirilishi shart!",
+    "requiredWorker": "Xodim tanlash shart!",
+    "requiredImageField": "Rasm yuklanishi shart!",
+    "requiredFileField": "Fayl yuklanishi shart!",
+    "requiredMinLength": "{n} ta belgidan kam bo'lmasligi kerak",
+    "requiredMaxLength": "{n} ta belgidan ko'p bo'lmasligi kerak",
+    "unExpectedFormat": "Noto'g'ri turdagi ma'lumot!",
+    "requiredJSHSHIR": "Pasport JSHSHIR kiritilishi shart!",
+    "enterOverNumber": "{n}dan katta son kiriting"
+  },
   "auth": {
     "login": "Tizimga kirish",
     "register": "Ro'yhatdan o'tish",
@@ -13,5 +27,6 @@
       "phone": "Telefon raqam",
       "password": "Parol"
     }
-  }
+  },
+
 }

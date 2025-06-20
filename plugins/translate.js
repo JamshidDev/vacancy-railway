@@ -1,3 +1,4 @@
 export default defineNuxtPlugin((nuxtApp) => {
-    nuxtApp.vueApp.config.globalProperties.$t = nuxtApp.$i18n.t
+    const { t } = nuxtApp.$i18n
+    nuxtApp.provide('t', t)
 })

@@ -36,7 +36,7 @@ definePageMeta({
         <UiAuthForm/>
       </template>
       <template #register-tab>
-        <UiAuthForm/>
+        <UiRegisterForm/>
       </template>
     </UiAuthBox>
 

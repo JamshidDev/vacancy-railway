@@ -1,7 +1,7 @@
 <script setup>
 import {useAuthStore} from "~/store/index.js"
 import {rules} from "~/utils/index.js"
-
+import {EyeOff20Filled, Eye24Regular} from "@vicons/fluent"
 const store = useAuthStore()
 const formRef = ref(null)
 
@@ -36,7 +36,7 @@ const onSubmit = ()=>{
     >
       <n-input
           type="text"
-          :v-mask="'####'"
+          v-mask="'+#####-###-##-##'"
           v-model:value="store.payload.phone"
       />
     </n-form-item>
@@ -47,9 +47,18 @@ const onSubmit = ()=>{
         :rule-path="rules.names.requiredStringField"
     >
       <n-input
-          type="text"
+          type="password"
+          show-password-on="click"
+          :maxlength="16"
           v-model:value="store.payload.password"
-      />
+      >
+        <template #password-visible-icon>
+          <n-icon :size="20" :component="EyeOff20Filled" />
+        </template>
+        <template #password-invisible-icon>
+          <n-icon :size="20" :component="Eye24Regular" />
+        </template>
+      </n-input>
     </n-form-item>
     <n-button
         class="col-span-12 !mt-6 uppercase !mb-4"
@@ -59,7 +68,3 @@ const onSubmit = ()=>{
     </n-button>
   </n-form>
 </template>
-
-<style scoped>
-
-</style>

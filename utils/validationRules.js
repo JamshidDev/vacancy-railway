@@ -1,47 +1,56 @@
 
-const triggerEvents =  ['input', 'blur-sm']
+const triggerEvents =  ['input', 'blur-sm', 'change']
 
-import { getCurrentInstance } from 'vue'
 
-const t = () => {
-    const instance = getCurrentInstance()
-    return instance?.appContext.config.globalProperties.$t
-}
 
 export  const rules ={
-    common: {
+    common:(t)=>({
         requiredStringField: {
             required: true,
             message: t(`rules.requiredField`),
-            trigger: [...triggerEvents, 'change']
+            trigger:triggerEvents
         },
         requiredDateTimeField: {
             type: 'number',
             required: true,
-            trigger: [...triggerEvents, 'change'],
+            trigger: triggerEvents,
             message: t(`rules.requiredField`)
         },
         requiredNumberField: {
             type: 'number',
             required: true,
-            trigger: [...triggerEvents, 'change'],
+            trigger:triggerEvents,
             message: t(`rules.requiredField`)
         },
         requiredMultiSelectField: {
             type: 'array',
             required: true,
-            trigger: [...triggerEvents, 'change'],
+            trigger:triggerEvents,
             message: t(`rules.requiredField`)
         },
-        requiredPhonesField:[
+        requiredPhoneField:[
             {
                 validator: (rule, value) => {
-                    if (!value || value[0].phone.length <16) {
-                        return new Error( t(`rules.requiredField`));
+                    if (value &&  value?.length === 16) {
+                        return true
                     }
-                    return true;
+                    return new Error( t(`rules.phone`))
+
                 },
-                trigger: [...triggerEvents, 'change'],
+                trigger:triggerEvents,
+            },
+
+        ],
+        requiredPasswordField:[
+            {
+                validator: (rule, value) => {
+                    if (value && value?.length <16 && value?.length>7) {
+                        return true
+                    }
+                    return new Error( t(`rules.password`));
+
+                },
+                trigger:triggerEvents,
             },
         ],
         requiredPinField:[
@@ -56,13 +65,14 @@ export  const rules ={
                 trigger: [...triggerEvents, 'change'],
             },
         ],
-    },
+    }),
     names:{
         requiredStringField:'requiredStringField',
         requiredDateTimeField:'requiredDateTimeField',
         requiredNumberField:'requiredNumberField',
         requiredMultiSelectField:'requiredMultiSelectField',
-        requiredPhonesField:'requiredPhonesField',
-        requiredPinField:'requiredPinField'
+        requiredPhoneField:'requiredPhoneField',
+        requiredPinField:'requiredPinField',
+        requiredPasswordField:'requiredPasswordField'
     },
 }
