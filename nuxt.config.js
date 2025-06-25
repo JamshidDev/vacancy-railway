@@ -1,7 +1,7 @@
 import tailwindcss from "@tailwindcss/vite";
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
-import i18nConfig from './i18n/index.js'
+import i18nConfig from './i18n/locales/index.js'
 
 
 export default {
