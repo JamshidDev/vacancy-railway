@@ -65,6 +65,19 @@ export  const rules ={
                 trigger: [...triggerEvents, 'change'],
             },
         ],
+        requiredOtpField:[
+            {
+                validator: (rule, value) => {
+                    const isValida = value?.every((v)=>v)
+                    if (value && value?.length === 6 && isValida) {
+                        return true
+                    }
+                    return new Error( t(`rules.otp`));
+
+                },
+                trigger:triggerEvents,
+            },
+        ],
     }),
     names:{
         requiredStringField:'requiredStringField',
@@ -73,6 +86,7 @@ export  const rules ={
         requiredMultiSelectField:'requiredMultiSelectField',
         requiredPhoneField:'requiredPhoneField',
         requiredPinField:'requiredPinField',
-        requiredPasswordField:'requiredPasswordField'
+        requiredPasswordField:'requiredPasswordField',
+        requiredOtpField:'requiredOtpField',
     },
 }

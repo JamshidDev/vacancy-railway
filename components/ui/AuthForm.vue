@@ -9,13 +9,7 @@ const formRef = ref(null)
 const onSubmit = ()=>{
   formRef.value?.validate((error)=>{
     if(!error){
-      // store.saveLoading = true
-      // if(store.visibleType){
-      //   store._create()
-      // }else{
-      //   store._update()
-      // }
-
+      store.onLogin()
     }
   })
 }
@@ -25,16 +19,18 @@ const onSubmit = ()=>{
   <n-form
       class="w-full grid grid-cols-12"
       ref="formRef"
-      :rules="rules.common"
+      :rules="rules.common($t)"
       :model="store.payload"
   >
     <n-form-item
         class="col-span-12"
         :label="$t(`auth.form.phone`)"
         path="phone"
-        :rule-path="rules.names.requiredStringField"
+        :rule-path="rules.names.requiredPhoneField"
     >
       <n-input
+          size="large"
+          class="!font-bold"
           type="text"
           v-mask="'+#####-###-##-##'"
           v-model:value="store.payload.phone"
@@ -44,9 +40,11 @@ const onSubmit = ()=>{
         class="col-span-12"
         :label="$t(`auth.form.password`)"
         path="password"
-        :rule-path="rules.names.requiredStringField"
+        :rule-path="rules.names.requiredPasswordField"
     >
       <n-input
+          size="large"
+          class="!font-bold"
           type="password"
           show-password-on="click"
           :maxlength="16"
@@ -61,6 +59,7 @@ const onSubmit = ()=>{
       </n-input>
     </n-form-item>
     <n-button
+        :loading="store.loading"
         class="col-span-12 !mt-6 uppercase !mb-4"
         @click="onSubmit"
         type="primary">

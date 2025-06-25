@@ -1,10 +1,21 @@
 <script setup>
 import {Box, Sidebar, Content} from "~/pages/vacancy-list/detail/ui/index.js"
-import {ChevronRight12Regular} from "@vicons/fluent"
-
+import {useVacancyStore} from "~/store/index.js"
 definePageMeta({
   layout:"admin-layout"
 })
+
+const route = useRoute()
+const router = useRouter()
+const store = useVacancyStore()
+
+onMounted(()=>{
+  const id = route.query.id
+  if(!id) router.go(-1)
+  store.onShow(id)
+})
+
+
 </script>
 
 <template>

@@ -1,5 +1,7 @@
 
 <script setup >
+import Message from "~/components/providers/Message.vue"
+import LoadingApp from "~/components/ui/LoadingApp.vue"
 import {customTheme} from "~/utils/index.js"
 import { uzUZ, dateUzUZ, ruRU, dateRuRU, enUS, dateEnUS, }  from 'naive-ui'
 const { $i18n } = useNuxtApp()
@@ -23,6 +25,8 @@ const localProvider = computed(()=>{
     }
   }
 })
+
+
 </script>
 
 <template>
@@ -32,12 +36,13 @@ const localProvider = computed(()=>{
         :locale="localProvider.lang"
         :date-locale="localProvider.date"
     >
-      <n-message-provider>
+      <n-message-provider placement="top-right">
         <NuxtLayout>
           <NuxtPage/>
+          <Message/>
+          <LoadingApp/>
         </NuxtLayout>
       </n-message-provider>
     </n-config-provider>
-
   </div>
 </template>

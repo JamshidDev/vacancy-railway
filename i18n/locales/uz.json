@@ -4,11 +4,20 @@
     "welcome": "Xush kelibsiz!",
     "save": "Saqlash",
     "cancel": "Bekor qilish",
-    "send": "Yuborish"
+    "send": "Yuborish",
+    "login": "Tizimga kirish",
+    "register": "Ro'yhatdan o'tish",
+    "no-data": "Ma'lumot yo'q",
+    "sum": "so'm",
+    "year": "yil",
+    "ta": "ta",
+    "person": "nafar",
+    "search": "Izlash..."
   },
   "rules": {
     "login": "Email kiritilishi shart!",
     "phone": "Telefon raqam kiritilishi shart!",
+    "otp": "SMS kod kiritilishi shart!",
     "password": "Parol kiritilishi shart!",
     "requiredField": "Maydon to'ldirilishi shart!",
     "requiredWorker": "Xodim tanlash shart!",
@@ -25,8 +34,49 @@
     "register": "Ro'yhatdan o'tish",
     "form": {
       "phone": "Telefon raqam",
+      "otp": "Telefon raqamingizga yuborilgan sms kodni kiriting",
+      "last_name": "Familiya",
+      "first_name": "Ism",
+      "middle_name": "Sharif",
       "password": "Parol"
     }
   },
+  "profile": {
+    "menu": {
+      "myApplications": "Arizalarim",
+      "profile": "Profilim",
+      "logout": "Chiqish"
+    }
+  },
+  "mainSection": {
+    "subtitle":"Bizda {n} ta bosh ish o'rni",
+    "title":"Hayot tarzindgizga mos keladigan {word} toping!",
+    "job":"kasbni",
+    "searchVacancy":"Izlash",
+    "vacancy":"Ish o'rinlari",
+    "registerAccount":"Hisobingizni yarating",
+    "guideAccount": "Eng yaxshi va afzal ko‘rilgan ish o‘rinlarini topish uchun siz hisob yaratishingiz zarur.",
+    "guideJob": "Ish o'rinlarini izlashingiz va mos kasbni tanlashingiz kerak.",
+    "applyJob":"Ish o‘rnini izlang va tanlang",
+    "createResume":"Ariza yuboring va holatini kuzating",
+    "guideResume": "Ma'lumotlringizni to'ldiring va arizani shaklida topshiring.",
+    "thirdTitle":"Kasb, lavozim nomini kiriting",
+    "organizations":"Tashkilotlar",
+    "byArea":"Hudud bo‘yicha",
+    "availableVacancy":"E'londagi tanlovlar soni:{n} ta",
+    "availableOrganization":"100+ tashkilotlar aynan sizni kutmoqda",
+    "newVacancy":"Yangi vakansiyalar",
+    "subVacancyText":"Imkoniyatni qo‘ldan boy bermang",
+    "viewMore":"Ko'rib chiqish"
+  },
+  "vacancy": {
+    "area": "Hudud",
+    "city": "Tuman/shahar",
+    "salary": "Ish haqi",
+    "minExperience": "Minimal mehnat staji",
+    "noExperience": "Mehnat staji talab etilmaydi",
+    "vacancyCount": "Vakansiyalar soni: {n}",
+    "minWorkExperience": "Kamida {n} yillik staj"
+  }
 
 }

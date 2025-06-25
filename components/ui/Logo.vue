@@ -11,7 +11,7 @@ const router = useRouter()
   <div class="flex flex-col text-[10px] text-[#b4a003] uppercase font-semibold">
     <span class="text-nowrap text-center leading-1">O'zbekiston temir yo'llari</span>
     <span class="text-nowrap text-left ">Aksiyadorlik jamiyati</span>
-    <span class="text-nowrap text-left leading-1">Vakant lavozimlari</span>
+    <span class="text-nowrap text-left leading-1">Bo'sh ish o'rinlari</span>
   </div>
 </div>
 </template>

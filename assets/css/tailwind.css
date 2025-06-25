@@ -50,6 +50,7 @@
     --animate-reverse-spin: reverse-spin 12s linear infinite;
     --animate-slide-down: slide-down 0.4s ease-in-out forwards;
     --animate-scale-xs: scale-xs 20s ease-in-out infinite;
+    --animate-shimmer: shimmer 1s infinite linear;
 
 
 }
@@ -101,4 +102,17 @@
     100% {
         transform:scale(1)
     }
+}
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
 }

@@ -21,7 +21,7 @@ export default {
   ],
   plugins: [
     '~/plugins/mask.client.js',
-    '~/plugins/translate.js',
+    '~/plugins/moment.client.js',
   ],
   tailwindcss: {
     exposeConfig: true,

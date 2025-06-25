@@ -1,57 +1,62 @@
 <script setup>
-import {useHeroStore} from "~/store";
-import {BuildingMultiple24Regular} from "@vicons/fluent"
-
-const store = useHeroStore()
+import {useVacancyStore} from "~/store"
+const store = useVacancyStore()
 </script>
 
 <template>
-<div class="w-full h-screen">
+<div class="w-full">
     <UiPageContent>
-      <h3 class="text-center text-black-primary text-4xl font-medium pt-[100px]">Tashkilotlar</h3>
-      <small class="text-black-tertiary text-center mt-4 text-[14px]">400+ tashkilotlar aynan sizni kutmoqda</small>
+      <h3 class="text-center text-black-primary text-4xl font-medium pt-[100px]">{{$t('mainSection.organizations')}}</h3>
+      <small class="text-black-tertiary text-center mt-4 text-[14px]">{{$t('mainSection.availableOrganization')}}</small>
 
-      <div class="w-full flex gap-4 bg-primary/10 border-surface-line p-1 rounded-md mt-6">
+      <div class="w-full flex gap-4 bg-primary/10 border-surface-line p-1 rounded-xl mt-6">
         <template v-for="(item,index) in store.tabList" :key="index">
           <div
               @click="store.onChangeTab(item.id)"
               :class="[item.id === store.activeTab && 'shadow bg-surface-section']"
-              class="px-8 py-1  rounded  uppercase transition-all duration-300 cursor-pointer">{{item.name}}</div>
+              class="px-8 py-1  rounded-lg font-medium  uppercase transition-all duration-300 cursor-pointer">{{$t(item.name)}}</div>
         </template>
       </div>
 
-      <n-tabs animated v-model:value="store.activeTab" class="hidden-tab-header" type="segment">
+      <n-tabs animated v-model:value="store.activeTab" class="hidden-tab-header mb-[60px]" type="segment">
         <n-tab-pane :name="store.tabList[0].id">
-          <div class="grid grid-cols-12 gap-x-6 gap-y-4 ">
-            <template v-for="item in 10" :key="item">
-              <div class="col-span-4 p-2 bg-surface-ground border border-surface-line
+          <n-spin class="min-h-[200px]" :show="store.loading">
+            <div class="grid grid-cols-12 gap-x-6 gap-y-4 ">
+              <template v-for="item in store.organizations" :key="item">
+                <div class="col-span-4 p-2 bg-surface-ground border border-surface-line
                rounded-lg flex items-center cursor-pointer gap-2
 ">
-                <IconBuild class="fill-primary/40"/>
-                <div class="flex flex-col border-l border-surface-line pl-4">
-                  <h2 class="text-black-primary font-semibold text-lg">Markaziy muassasalar</h2>
-                  <h6 class="text-black-tertiary text-sm mt-6">E'londagi tanlovlar soni: 245 ta</h6>
+                  <IconBuild2/>
+                  <div class="flex flex-col border-l border-surface-line pl-4">
+                    <h2 class="text-black-primary font-semibold text-lg">{{item.organization_full_name}}</h2>
+                    <h6 class="text-black-tertiary text-sm mt-6">{{$t('mainSection.availableVacancy',{n:item.vacancies_count})}}</h6>
+                  </div>
                 </div>
-              </div>
-            </template>
+              </template>
+              <UiNoResult class="col-span-12" v-if="store.organizations?.length===0 && !store.loading" />
 
-          </div>
+            </div>
+          </n-spin>
+
         </n-tab-pane>
         <n-tab-pane :name="store.tabList[1].id">
-          <div class="grid grid-cols-12 gap-x-6 gap-y-4 ">
-            <template v-for="item in 12" :key="item">
-              <div class="col-span-4 p-2 bg-surface-ground border border-surface-line
+          <n-spin class="min-h-[200px]" :show="store.loading">
+            <div class="grid grid-cols-12 gap-x-6 gap-y-4 ">
+              <template v-for="item in store.regions" :key="item">
+                <div class="col-span-4 p-2 bg-surface-ground border border-surface-line
                rounded-lg flex items-center cursor-pointer gap-2
 ">
-                <IconBuild class="fill-primary/40"/>
-                <div class="flex flex-col border-l border-surface-line pl-4">
-                  <h2 class="text-black-primary font-medium text-lg">Xorazm viloyati</h2>
-                  <h6 class="text-black-tertiary text-sm mt-6">E'londagi tanlovlar soni: 245 ta</h6>
+                  <IconBuild />
+                  <div class="flex flex-col border-l border-surface-line pl-4">
+                    <h2 class="text-black-primary font-medium text-lg">{{item.region_name}}</h2>
+                    <h6 class="text-black-tertiary text-sm mt-6">{{$t('mainSection.availableVacancy',{n:item.vacancies_count})}}</h6>
+                  </div>
                 </div>
-              </div>
-            </template>
+              </template>
+              <UiNoResult class="col-span-12" v-if="store.regions?.length===0 && !store.loading" />
+            </div>
+          </n-spin>
 
-          </div>
         </n-tab-pane>
       </n-tabs>
     </UiPageContent>

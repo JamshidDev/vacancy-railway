@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 
 </script>
 
@@ -12,13 +12,13 @@
           01
         </div>
         <div class="relative leading-[1.2] bg-[#3898E2] p-4 rounded-2xl text-lg text-white pl-[100px]">
-          Register your account
+          {{$t('mainSection.registerAccount')}}
           <div class="bg-white shadow-navbar absolute top-[20px] left-[-20px] rounded-lg p-4">
             <img src="/note.png" alt=".." />
           </div>
         </div>
         <div class="mt-14 text-black-secondary">
-          You need to create an account to find the best and preferred job.
+          {{$t('mainSection.guideAccount')}}
         </div>
       </div>
       <div class="w-[360px] relative pt-[60px] pl-[80px] mx-4">
@@ -26,14 +26,13 @@
           02
         </div>
         <div class="relative leading-[1.2] bg-[#BC84CA] p-4 rounded-2xl text-lg text-white pl-[100px]">
-          Apply
-          For Dream Job
+          {{$t('mainSection.applyJob')}}
           <div class="bg-white shadow-navbar absolute top-[20px] left-[-20px] rounded-lg p-4">
             <img src="/apply.png" alt=".." />
           </div>
         </div>
         <div class="mt-14 text-black-secondary">
-          You need to create an account to find the best and preferred job.
+          {{$t('mainSection.guideJob')}}
         </div>
       </div>
       <div class="w-[360px] relative pt-[60px] pl-[80px]">
@@ -41,14 +40,13 @@
           03
         </div>
         <div class="relative leading-[1.2] bg-[#56D8B1] p-4 rounded-2xl text-lg text-white pl-[100px]">
-          Upload
-          Your Resume
+          {{$t('mainSection.createResume')}}
           <div class="bg-white shadow-navbar absolute top-[20px] left-[-20px] rounded-lg p-4">
             <img src="/resume.png" alt=".." />
           </div>
         </div>
         <div class="mt-14 text-black-secondary">
-          You need to create an account to find the best and preferred job.
+          {{$t('mainSection.guideResume')}}
         </div>
       </div>
     </div>
