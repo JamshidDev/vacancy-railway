@@ -1,13 +1,16 @@
 <script setup>
 import {Wallet24Regular, Location24Regular, Clock16Regular, Briefcase16Regular,
-  Certificate20Regular, BoxToolbox20Regular, PersonAccounts24Regular,
+  Certificate20Regular, BoxToolbox20Regular, PersonAccounts24Regular,FlowchartCircle24Regular,
   ClipboardTaskListLtr20Regular,Briefcase24Regular, RibbonStar20Regular} from "@vicons/fluent"
+import {useVacancyStore} from "~/store/index.js"
+
+const store = useVacancyStore()
 </script>
 
 <template>
 <div class="grid grid-cols-12">
     <div class="col-span-12 mb-8">
-    <h2 class="text-xl text-black-primary font-bold">Axborot xizmati rahbari - agentlik direktorining matbuot kotibi</h2>
+    <h2 class="text-xl text-black-primary font-bold">{{store.detail?.position}}</h2>
     </div>
 
 
@@ -83,17 +86,9 @@ import {Wallet24Regular, Location24Regular, Clock16Regular, Briefcase16Regular,
       </n-icon>
       Malakaviy talablar
     </h2>
-    <p class="font-medium text-black-secondary border-b border-surface-line pb-2 leading-[2.4] indent-[20px]">
-      1.
-      Oliy ma’lumotli (Jurnalistika, xalqaro jurnalistika va jamoatchilik bilan aloqalar, bosma OAV va noshirlik ishi, iqtisodiyot, filologiya mutaxassisligi bo‘yicha oliy ma’lumot mavjudligi); 2.
-      Davlat tashkilotlarida jurnalistika va Axborot xizmati sohasi bo‘yicha kamida 5 yil ish tajribasi mavjudligi; 3.
-      Tashkilot ijobiy imijini ilgari surish, PR kampaniyalarini uyushtira olish, mamlakatimizda amalga oshirilayotgan islohotlar to‘g‘risida targ‘ibot qilish va jamoatchilikni keng xabardor qilishga qaratilgan axborot kampaniyalarini o‘tkazish ko‘nikmalariga ega bo‘lishi; 4.
-      O‘zbek tilida mukammal ish yurita olishi (rus, ingliz va qo‘shimcha tarzda xorijiy tillarni bilishlik afzallik beradi); 5.
-      Davlat aktivlarini boshqarish agentligi, xususan bo‘lim faoliyatiga ta’luqli normativ-huquqiy hujjatlarni bilishi.
-      6.
-      Axborot-kommunikatsiya texnologiyalaridan, internet, elektron pochta, tarmoq texnologiyasidan va zarur dasturiy ta’minotlardan mustaqil foydalana olishi; 7.
-      Yuklatilgan vazifalarni mustaqil, mas’uliyatni his qilgan holda bajarishi, qat’iyatlik, tashkilotchilik va tashabbuskorlik, jamoa bilan ishlay olish xislatlariga, davlat xizmatchisi nomiga loyiq odob-axloqqa ega bo‘lishi; 8.
-      O‘z fikr-mulohazalarini hamda takliflarini taqdim qila olish, ma’muriy ish yuritish madaniyatiga ega bo‘lish;
+    <p class="font-medium text-black-secondary border-b border-surface-line pb-2 leading-[2.4] indent-[20px]"
+    v-html="store.detail?.qualification_requirements"
+    >
     </p>
 
     <h2 class="text-primary text-lg font-semibold flex items-center mb-1 mt-4">
@@ -102,18 +97,10 @@ import {Wallet24Regular, Location24Regular, Clock16Regular, Briefcase16Regular,
       </n-icon>
       Lavozimiy majburiyatlari
     </h2>
-    <p class="font-medium text-black-secondary border-b border-surface-line pb-2 leading-[2.4] indent-[20px]">
-      1.
-      Davlat aktivlari agentligi faoliyati haqida ommaviy axborot vositalari, ijtimoiy tarmoqlar, davlat organlari va tashkilotlarining rasmiy veb-saytlari, shuningdek, boshqa axborot resurslari orqali, shu jumladan matbuot anjumanlari, brifinglar, mediaturlar tashkil etish yo‘li bilan aholiga muntazam, to‘liq va tezkor ravishda axborot taqdim etib borish; 2.
-      Davlat aktivlari agentligida mamlakatimizning ijtimoiy-siyosiy va sotsial-iqtisodiy taraqqiyoti jarayoni haqida axborot berish va yoritish bo‘yicha chora-tadbirlar ishlab chiqish va amalga oshirish; 3.
-      Davlat aktivlari agentligi ijobiy imijini shakllantirish va ilgari surish, ijtimoiy so‘rovlar o‘tkazish va boshqa shakllarda jamoatchilik fikrini o‘rganish; 4.
-      Axborot siyosati sohasida zimmasiga yuklangan vazifalarni amalga oshirishda O‘zbekiston Respublikasi Prezidenti Administratsiyasi huzuridagi Axborot va ommaviy kommunikatsiyalar agentligi bilan samarali amaliy hamkorlikni yo‘lga qo‘yish; 5.
-      Ommaviy axborot vositalari bilan samarali hamkorlik qilish, axborot xizmatlari bilan doimiy ishlovchi jurnalistlar va blogerlar doirasida tezkor ma’lumotlarni tarqatish, shuningdek, normativ-huquqiy hujjatlar loyihalarini muhokama qilishda keng aholi qatlamlarining ishtirokini ta’minlash choralarni ko‘rish; 6.
-      Axborot makoni monitoringini olib borish va tahlil qilish, tanqidiy va keng muhokama qilinayotgan axborot xurujlariga Ish beruvchi manfaatlaridan kelib chiqib tezkor munosabat bildirish, ommaviy axborot vositalari va Internet tarmog‘ida tegishli davlat organlari va tashkilotlari faoliyatiga aloqador axborotni tarqatish bo‘yicha ishlarni tashkil qilish; 7.
-      Mahalliy va xorijiy ommaviy axborot vositalari orqali tarqatish uchun xabar, ma’lumot, sharh va boshqa axborot-tahliliy materiallar tayyorlash; 8.
-      Davlat aktivlari agentligi tizimi faoliyati to‘g‘risida jamoatchilik fikrini, milliy va xorijiy ommaviy axborot vositalarining pozitsiyasini o‘rganish, dolzarb takliflar ishlab chiqish va ular to‘g‘risida rahbariyatga axborot berib borish; 9.
-      Davlat aktivlari agentligining faoliyatiga aloqador matnli, foto, audio va videomateriallardan iborat ma’lumotlar bazasini shakllantirish va yangilab borish; 10.
-      Lavozim yo‘riqnomasida ko‘zda tutilgan boshqa funksiyalarni mas’uliyat bilan yondashgan holda sifatli bajarish.
+    <p class="editor-content-view font-medium text-black-secondary border-b border-surface-line pb-2 leading-[2.4] indent-[20px]"
+       v-html="store.detail?.position_obligations"
+    >
+
     </p>
     <h2 class="text-primary text-lg font-semibold flex items-center mb-1 mt-4">
       <n-icon size="20" class="mr-1">
@@ -121,12 +108,76 @@ import {Wallet24Regular, Location24Regular, Clock16Regular, Briefcase16Regular,
       </n-icon>
       Ish sharoitlari
     </h2>
-    <p class="font-medium text-black-secondary border-b border-surface-line pb-2 leading-[2.4] indent-[20px]">
-      dushanba, seshanba, chorshanba, payshanba, juma.
-      Dam olish kunlari: shanba, yakshanba.
-      Ish vaqti: 09: 00 dan 18: 00 gacha
+    <p class="font-medium text-black-secondary border-b border-surface-line pb-2 leading-[2.4] indent-[20px]"
+       v-html="store.detail?.working_conditions"
+      >
+
+    </p>
+    <h2 class="text-primary text-lg font-semibold flex items-center mb-1 mt-4">
+      <n-icon size="20" class="mr-1">
+        <FlowchartCircle24Regular/>
+      </n-icon>
+      Mutaxassisligi
+    </h2>
+    <p class="font-medium text-black-secondary border-b border-surface-line pb-2 leading-[2.4] indent-[20px]"
+       v-html="store.detail?.specialties"
+    >
+
     </p>
   </div>
 
 </div>
 </template>
+
+<style >
+
+.editor-content-view{
+  p,
+  li {
+    white-space: pre-wrap;
+  }
+
+  blockquote {
+    border-left: 8px solid #d0e5f2;
+    padding: 10px 10px;
+    margin: 10px 0;
+    background-color: #f1f1f1;
+  }
+
+  code {
+    font-family: monospace;
+    background-color: #eee;
+    padding: 3px;
+    border-radius: 3px;
+  }
+  pre>code {
+    display: block;
+    padding: 10px;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+  td,
+  th {
+    border: 1px solid #ccc;
+    min-width: 50px;
+    height: 20px;
+  }
+  th {
+    background-color: #f1f1f1;
+  }
+
+  ul,
+  ol {
+    padding-left: 20px;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  img{
+    display: inline;
+  }
+}
+</style>

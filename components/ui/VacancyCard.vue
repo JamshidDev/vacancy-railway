@@ -14,7 +14,7 @@ const props = defineProps({
 
 <template>
 <div
-    @click="router.push({path:'/vacancy-list/detail', query:{id:'123'}})"
+    @click="router.push({path:'/vacancy-list/detail', query:{id:data.id}})"
     class="px-5 py-4 bg-surface-ground border border-surface-line rounded-xl
  mb-4 hover:bg-surface-section cursor-pointer hover:shadow-navbar transition-all duration-300">
   <h2 class="text-xl text-black-primary font-medium">{{data?.position}}</h2>

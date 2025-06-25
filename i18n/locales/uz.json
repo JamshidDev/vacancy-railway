@@ -12,7 +12,8 @@
     "year": "yil",
     "ta": "ta",
     "person": "nafar",
-    "search": "Izlash..."
+    "search": "Izlash...",
+    "emptyData": "Ma'lumot kiritilmagan"
   },
   "rules": {
     "login": "Email kiritilishi shart!",
@@ -50,7 +51,7 @@
   },
   "mainSection": {
     "subtitle":"Bizda {n} ta bosh ish o'rni",
-    "title":"Hayot tarzindgizga mos keladigan {word} toping!",
+    "title":"Hayot tarzingizga mos keladigan {word} toping!",
     "job":"kasbni",
     "searchVacancy":"Izlash",
     "vacancy":"Ish o'rinlari",
@@ -65,7 +66,7 @@
     "byArea":"Hudud bo‘yicha",
     "availableVacancy":"E'londagi tanlovlar soni:{n} ta",
     "availableOrganization":"100+ tashkilotlar aynan sizni kutmoqda",
-    "newVacancy":"Yangi vakansiyalar",
+    "newVacancy":"Yangi ish o'rinlari",
     "subVacancyText":"Imkoniyatni qo‘ldan boy bermang",
     "viewMore":"Ko'rib chiqish"
   },
@@ -75,8 +76,11 @@
     "salary": "Ish haqi",
     "minExperience": "Minimal mehnat staji",
     "noExperience": "Mehnat staji talab etilmaydi",
-    "vacancyCount": "Vakansiyalar soni: {n}",
+    "vacancyCount": "Bo'sh ish o'rinlar soni: {n}",
     "minWorkExperience": "Kamida {n} yillik staj"
+  },
+  "detail": {
+    "sendApply": "Ariza yuborish"
   }
 
 }
