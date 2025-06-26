@@ -14,6 +14,10 @@
     "day": "kun",
     "person": "nafar",
     "search": "Izlash...",
+    "betaMode": "Sayt test rejimida ishlamoqda",
+    "uz": "uz",
+    "ru": "ru",
+    "en": "en",
     "emptyData": "Ma'lumot kiritilmagan"
   },
   "rules": {
@@ -51,6 +55,7 @@
     }
   },
   "mainSection": {
+    "name": "Asosiy",
     "subtitle":"Bizda {n} ta bosh ish o'rni",
     "title":"Hayot tarzingizga mos keladigan {word} toping!",
     "job":"kasbni",
@@ -72,6 +77,7 @@
     "viewMore":"Ko'rib chiqish"
   },
   "vacancy": {
+    "name": "Ish o'rinlari",
     "area": "Hudud",
     "city": "Tuman/shahar",
     "salary": "Ish haqi",

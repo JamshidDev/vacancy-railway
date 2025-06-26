@@ -12,12 +12,12 @@ const props = defineProps({
 
 const navigations = [
   {
-    name:"Vakansiyalar",
+    name:"vacancy.name",
     path:'/vacancy-list',
     indicator:'vacancy-list',
   },
   {
-    name:"Details",
+    name:" ",
     path:'/vacancy-list/detail',
     indicator:'detail',
   },
@@ -30,8 +30,7 @@ const findRoute = (path)=>{
 }
 
 const breadCrumbs = computed(()=>{
-  console.log(route)
-  const paths = route.path.split('/').filter(Boolean)
+  const paths = route.path.split('/').filter(Boolean).filter((v=>!['ru', 'en'].includes(v)))
   return paths.map((v)=>{
     return findRoute(v)
   })
@@ -50,7 +49,7 @@ const goPush = (path)=>{
     <n-icon class="text-primary" size="20">
       <Home16Regular/>
     </n-icon>
-   <span @click="goPush('/')" class="hover:text-primary hover:underline cursor-pointer"> Asosiy</span>
+   <span @click="goPush('/')" class="hover:text-primary hover:underline cursor-pointer">{{$t('mainSection.name')}}</span>
     <template v-for="(item, idx) in breadCrumbs" :key="idx">
       <div
           class="flex items-center gap-2 text-black-tertiary hover:text-primary cursor-pointer"
@@ -60,7 +59,8 @@ const goPush = (path)=>{
           <ChevronDoubleRight20Filled/>
         </n-icon>
         <span class="hover:underline">
-          {{(breadCrumbs.length-1) === idx? customTitle || item.name : item.name}}
+
+          {{(breadCrumbs?.length-1) === idx? customTitle || $t(item?.name) : $t(item?.name)}}
         </span>
       </div>
 

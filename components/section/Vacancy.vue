@@ -16,7 +16,7 @@ const store = useVacancyStore()
            :key="item.id"
            class="w-full flex relative max-w-[800px] mx-auto bg-surface-section border border-surface-line rounded-lg px-4 py-2 mb-8">
         <div class="absolute top-[26px] left-[-20px] p-6 bg-surface-section border border-surface-line rounded-2xl shadow-navbar">
-          <IconBuild class="fill-success"/>
+          <IconBuild/>
         </div>
         <div class="flex flex-col ml-[80px] pl-2 w-[calc(100%-170px)]">
           <h2 class="text-black-primary font-semibold">{{item.position}} </h2>

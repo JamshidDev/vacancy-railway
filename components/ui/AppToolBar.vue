@@ -36,6 +36,7 @@ onMounted(()=>{
    <div class="flex justify-end w-[calc(100%-240px)]">
 <!--     <UiNavbar/>-->
      <div class="flex items-center gap-2">
+       <UiLanguageSelect/>
        <template v-if="!isLogin">
          <button
              @click="loginSystem(2)"

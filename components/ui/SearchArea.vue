@@ -2,13 +2,13 @@
 import {Search32Regular} from "@vicons/fluent"
 import {useVacancyStore} from "~/store/index.js"
 const store = useVacancyStore()
-
-const router = useRouter()
+const localePath = useLocalePath()
 
 const totalVacancy = computed(()=> {
   if (store.loading) return `<span class="w-[40px] h-[20px] inline-block animate-shimmer shimmer rounded mb-[-4px]"></span>`
   return `<span class="text-primary">${store.activeVacancy}</span>`
 })
+
 </script>
 
 <template>
@@ -28,7 +28,7 @@ const totalVacancy = computed(()=> {
         <n-input class="input-override" :placeholder="$t('content.search')"/>
       </div>
       <button
-          @click="router.push('/vacancy-list')"
+          @click="navigateTo(localePath('/vacancy-list'))"
           class="bg-primary text-white w-[140px] py-4 px-3 text-sm rounded-2xl cursor-pointer ">
         {{$t('mainSection.searchVacancy')}}</button>
     </div>

@@ -2,29 +2,14 @@
 <script setup >
 import Message from "~/components/providers/Message.vue"
 import LoadingApp from "~/components/ui/LoadingApp.vue"
-import {customTheme} from "~/utils/index.js"
-import { uzUZ, dateUzUZ, ruRU, dateRuRU, enUS, dateEnUS, }  from 'naive-ui'
-const { $i18n } = useNuxtApp()
+import {customTheme, appSetting} from "~/utils/index.js"
+const { locale } = useI18n()
+const localProvider = ref(null)
 
+watch(locale, (v)=>{
+  localProvider.value = appSetting.naiveLang[v]
+}, {immediate: true})
 
-const localProvider = computed(()=>{
-  if($i18n.locale._value==='uz'){
-    return {
-      lang: uzUZ,
-      date: dateUzUZ,
-    }
-  }else if($i18n.locale._value==='en'){
-    return {
-      lang: enUS,
-      date: dateEnUS,
-    }
-  }else if($i18n.locale._value==='ru'){
-    return {
-      lang: ruRU,
-      date: dateRuRU,
-    }
-  }
-})
 
 
 </script>

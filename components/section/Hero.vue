@@ -11,7 +11,7 @@
         </div>
         <div class="col-span-6 relative">
           <UiCircle/>
-          <img class="absolute z-[2] bottom-0 right-[50px] h-[800px] animate-scale-xs" src="/woman.jpg" alt="hero-man not found" />
+          <img class="absolute z-[2] bottom-0 right-[50px] h-[800px] animate-scale-xs" src="/hero-man.png" alt="hero-man not found" />
         </div>
       </div>
     </UiPageContent>

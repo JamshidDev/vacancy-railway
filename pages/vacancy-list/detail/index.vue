@@ -20,7 +20,7 @@ onMounted(()=>{
 
 <template>
   <div class="w-full bg-surface-section min-h-screen">
-    <UiBreadCrump class="mt-[160px] mb-[50px]" :custom-title="`Axborot xizmati rahbari - agentlik direktorining matbuot kotibi`" />
+    <UiBreadCrump class="mt-[160px] mb-[50px]" :custom-title="store.detail?.position || ''" />
     <UiPageContent class="mb-6">
       <Box>
         <template #sidebar>
