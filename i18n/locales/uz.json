@@ -11,6 +11,7 @@
     "sum": "so'm",
     "year": "yil",
     "ta": "ta",
+    "day": "kun",
     "person": "nafar",
     "search": "Izlash...",
     "emptyData": "Ma'lumot kiritilmagan"
@@ -80,7 +81,14 @@
     "minWorkExperience": "Kamida {n} yillik staj"
   },
   "detail": {
-    "sendApply": "Ariza yuborish"
+    "sendApply": "Ariza yuborish",
+    "educationDegree": "Ta'lim darajasi",
+    "candidate": "Nomzodlar soni",
+    "deadline": "Qabul yopilishiga qolgan vaqt",
+    "specialties": "Mutaxassisligi",
+    "working_conditions": "Ish sharoitlari",
+    "position_obligations": "Lavozimiy majburiyatlari",
+    "qualification_requirements": " Malakaviy talablar"
   }
 
 }

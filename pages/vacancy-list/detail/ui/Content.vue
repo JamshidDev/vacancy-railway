@@ -5,6 +5,11 @@ import {Wallet24Regular, Location24Regular, Clock16Regular, Briefcase16Regular,
 import {useVacancyStore} from "~/store/index.js"
 
 const store = useVacancyStore()
+
+const day = computed(()=>{
+  if(!store.detail?.to) return
+  return utils.getDaysBetweenDates(store.detail?.created_at, store.detail?.to)
+})
 </script>
 
 <template>
@@ -20,31 +25,31 @@ const store = useVacancyStore()
         <n-icon size="20" class="text-primary">
           <Wallet24Regular/>
         </n-icon>
-        <span class="text-[16px] text-black-secondary">4 603 599,00 UZS</span>
+        <span class="text-[16px] text-black-secondary">{{utils.formattedMoney(store.detail?.salary)}} {{$t('content.sum')}}</span>
       </div>
       <div class="col-span-8 flex items-center gap-x-2">
         <n-icon size="20" class="text-primary">
           <Location24Regular/>
         </n-icon>
-        <span class="text-[16px] text-black-secondary">Toshkent shahri , Mirobod tumani</span>
+        <span class="text-[16px] text-black-secondary">{{store.detail?.address}}</span>
       </div>
       <div class="col-span-4 flex items-center gap-x-2">
         <n-icon size="20" class="text-primary">
           <Clock16Regular/>
         </n-icon>
-        <span class="text-[16px] text-black-secondary">To‘liq</span>
+        <span class="text-[16px] text-black-secondary">{{store.detail?.work_type?.name}}</span>
       </div>
       <div class="col-span-8 flex items-center gap-x-2">
         <n-icon size="20" class="text-primary">
           <Briefcase16Regular/>
         </n-icon>
-        <span class="text-[16px] text-black-secondary">Kamida 5 yillik staj</span>
+        <span class="text-[16px] text-black-secondary">{{(store.detail?.experience? $t('vacancy.minWorkExperience', {n:store.detail?.experience}) : $t('vacancy.noExperience') ) }}</span>
       </div>
       <div class="col-span-4 flex items-center gap-x-2">
         <n-icon size="20" class="text-primary">
           <Certificate20Regular/>
         </n-icon>
-        <span class="text-[16px] text-black-secondary">Ta'lim darajasi: Oliy</span>
+        <span class="text-[16px] text-black-secondary">{{$t('detail.educationDegree')}}: {{store.detail?.education?.name}}</span>
       </div>
       <div class="col-span-8 flex items-center gap-x-2">
         <n-icon size="20" class="text-primary">
@@ -63,8 +68,8 @@ const store = useVacancyStore()
         </n-icon>
       </div>
       <div class="pl-4">
-        <p class="text-black-tertiary font-medium">Nomzodlar soni</p>
-        <h3 class="text-3xl font-black text-black-secondary mt-1">6</h3>
+        <p class="text-black-tertiary font-medium">{{$t('detail.candidate')}}</p>
+        <h3 class="text-3xl font-black text-black-secondary mt-1">{{store.detail?.applications_count}}</h3>
       </div>
     </div>
     <div class="flex w-[300px] items-center border border-surface-line rounded-lg px-4 py-4">
@@ -74,8 +79,8 @@ const store = useVacancyStore()
         </n-icon>
       </div>
       <div class="pl-4">
-        <p class="text-black-tertiary font-medium">Qabul yopilishiga qolgan vaqt</p>
-        <h3 class="text-3xl font-black text-black-secondary mt-1">4 kun</h3>
+        <p class="text-black-tertiary font-medium">{{$t('detail.deadline')}}</p>
+        <h3 class="text-3xl font-black text-black-secondary mt-1">{{day}} {{$t('content.day')}}</h3>
       </div>
     </div>
   </div>
@@ -84,7 +89,7 @@ const store = useVacancyStore()
       <n-icon size="20" class="mr-1">
         <ClipboardTaskListLtr20Regular/>
       </n-icon>
-      Malakaviy talablar
+      {{$t('detail.qualification_requirements')}}
     </h2>
     <p class="font-medium text-black-secondary border-b border-surface-line pb-2 leading-[2.4] indent-[20px]"
     v-html="store.detail?.qualification_requirements"
@@ -95,7 +100,7 @@ const store = useVacancyStore()
       <n-icon size="20" class="mr-1">
         <Briefcase24Regular/>
       </n-icon>
-      Lavozimiy majburiyatlari
+      {{$t('detail.position_obligations')}}
     </h2>
     <p class="editor-content-view font-medium text-black-secondary border-b border-surface-line pb-2 leading-[2.4] indent-[20px]"
        v-html="store.detail?.position_obligations"
@@ -106,7 +111,7 @@ const store = useVacancyStore()
       <n-icon size="20" class="mr-1">
         <RibbonStar20Regular/>
       </n-icon>
-      Ish sharoitlari
+      {{$t('detail.working_conditions')}}
     </h2>
     <p class="font-medium text-black-secondary border-b border-surface-line pb-2 leading-[2.4] indent-[20px]"
        v-html="store.detail?.working_conditions"
@@ -117,7 +122,7 @@ const store = useVacancyStore()
       <n-icon size="20" class="mr-1">
         <FlowchartCircle24Regular/>
       </n-icon>
-      Mutaxassisligi
+      {{$t('detail.specialties')}}
     </h2>
     <p class="font-medium text-black-secondary border-b border-surface-line pb-2 leading-[2.4] indent-[20px]"
        v-html="store.detail?.specialties"
