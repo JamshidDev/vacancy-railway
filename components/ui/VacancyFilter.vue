@@ -4,7 +4,9 @@ import {useVacancyStore} from "~/store/index.js"
 const store = useVacancyStore()
 
 const onChange = ()=>{
-
+  store.params.city_id = null
+  store.onIndex()
+  store.onCities(store.params.region_id)
 }
 
 onMounted(()=>{
@@ -31,13 +33,13 @@ onMounted(()=>{
   <div class="col-span-12 border-b border-surface-line pb-4 mb-4">
     <label class="text-black-secondary block mb-1">{{$t('vacancy.city')}}</label>
     <n-select
-        v-model:value="store.params.region_id"
+        v-model:value="store.params.city_id"
         filterable
         clearable
-        :options="store.regionList"
+        :options="store.cityList"
         label-field="name"
         value-field="id"
-        :loading="store.regionLoading"
+        :loading="store.cityLoading"
         size="large"
     />
   </div>

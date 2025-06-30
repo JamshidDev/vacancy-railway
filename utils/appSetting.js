@@ -7,6 +7,7 @@ export const appSetting = {
     themeKey: 'app-theme',
     defaultThemeKey: 'light',
     tokenKey: 'app-token',
+    datePicketFormat:'dd.MM.yyyy',
     languages: {
         UZ: 'uz',
         RU: 'ru',

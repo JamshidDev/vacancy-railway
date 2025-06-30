@@ -1,7 +1,6 @@
 import axios from 'axios'
 import {appSetting} from "@/utils/index.js"
 import {utils} from "@/utils/index.js"
-
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const instance = axios.create({
@@ -30,6 +29,9 @@ instance.interceptors.response.use(
         return Promise.resolve(response)
     },
     error => {
+        if(error?.response.status === 401) {
+            localStorage.removeItem(appSetting.tokenKey)
+        }
         $Toast.error(error?.response?.data?.message)
         return Promise.reject(error)
     }

@@ -34,6 +34,19 @@ const formattedDate =(v)=> {
     return moment(v).format('LL')
 }
 
+const timeToZone = (time)=>{
+    return (time === null || time === undefined)? null :moment(time).format('YYYY-MM-DD')
+}
+
+const timeToUI = (time)=>{
+    return (time === null || time === undefined)? null :moment(time).format('DD-MM-YYYY')
+}
+
+const datePickerFormatter = (time)=>{
+    return  (time === null || time === undefined)? null : new Date(time).getTime()
+}
+
+
 function getDaysBetweenDates(date1, date2) {
     if(!date1 || !date2) return  ''
     const d1 = new Date(date1)
@@ -62,6 +75,9 @@ export const utils = {
     formattedMoney,
     formattedDate,
     getDaysBetweenDates,
+    timeToZone,
+    timeToUI,
+    datePickerFormatter,
 
 }
 

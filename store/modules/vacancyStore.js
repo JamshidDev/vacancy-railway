@@ -13,7 +13,7 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
         salary:null,
     })
 
-
+    const heroSearch = ref(null)
     const regionList = ref([])
     const regionLoading= ref(false)
     const experience= ref(false)
@@ -67,17 +67,17 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
             regionLoading.value = false
         })
     }
-    const onCities = ()=>{
+    const onCities = (v)=>{
         cityLoading.value = true
-        $ApiSerivce.vacancyService.regions().then(res=>{
-            cityList.value =res.data.data.organizations
+        $ApiSerivce.vacancyService.cities({region_id:v}).then(res=>{
+            cityList.value =res.data.data
         }).finally(()=>{
             cityLoading.value = false
         })
     }
     const onIndex = ()=>{
         listLoading.value = true
-        $ApiSerivce.vacancyService.index().then(res=>{
+        $ApiSerivce.vacancyService.index({params:params.value}).then(res=>{
             list.value =res.data.data.data
         }).finally(()=>{
             listLoading.value = false
@@ -113,6 +113,7 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
         list,
         detail,
         showLoading,
+        heroSearch,
 
         onChangeTab,
         onRegions,

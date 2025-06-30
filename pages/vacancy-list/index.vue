@@ -1,6 +1,8 @@
 <script setup>
 import {Search32Filled} from "@vicons/fluent"
 import {useVacancyStore} from "~/store/index.js"
+import {useDebounceFn} from "@vueuse/core"
+const route = useRoute()
 
 definePageMeta({
   layout:"admin-layout",
@@ -8,7 +10,12 @@ definePageMeta({
 })
 const store = useVacancyStore()
 
+const onSearch = useDebounceFn((callback) => {
+  store.onIndex()
+}, 1000, { maxWait: 5000 })
+
 onMounted(()=>{
+  store.params.search = route.query?.search
   store.onIndex()
 })
 </script>
@@ -29,7 +36,13 @@ onMounted(()=>{
             <n-icon size="20" class="mx-2">
               <Search32Filled/>
             </n-icon>
-            <n-input class="input-override" size="large" :placeholder="$t('content.search')"/>
+            <n-input
+                v-model:value="store.params.search"
+                class="input-override"
+                size="large"
+                :placeholder="$t('content.search')"
+                @keydown="onSearch"
+            />
           </div>
           <n-spin class="min-h-[200px]" :show="store.listLoading">
             <template v-for="item in store.list" :key="item.id">

@@ -1,9 +1,11 @@
 import tailwindcss from "@tailwindcss/vite";
+import AutoImport from 'unplugin-auto-import/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
+import i18nConfig from "./i18n/index.js"
 
 export default {
-  ssr: false,
+  ssr:false,
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   runtimeConfig:{
@@ -13,10 +15,7 @@ export default {
     }
   },
   modules:
-       [
-           '@nuxtjs/i18n',
-           '@pinia/nuxt',
-  ],
+       ['@nuxtjs/i18n', '@pinia/nuxt', 'nuxtjs-naive-ui'],
   plugins: [
     '~/plugins/mask.client.js',
     '~/plugins/moment.client.js',
@@ -25,45 +24,29 @@ export default {
     exposeConfig: true,
     viewer: true,
   },
-  i18n:{
-    defaultLocale: 'uz',
-    lazy: true,
-    langDir: '../i18n/locales',
-    detectBrowserLanguage: false,
-    locales: [
-      { code: 'uz', name: 'Uzbek', file: 'uz.json' },
-      { code: 'en', name: 'English', file: 'en.json' },
-      { code: 'ru', name: 'Russian', file: 'ru.json' }
-    ],
-    vueI18n:'i18n/index.js',
-  },
+  i18n:i18nConfig,
   vite: {
     plugins: [
       tailwindcss(),
+      AutoImport({
+        imports: [
+          {
+            'naive-ui': [
+              'useDialog',
+              'useMessage',
+              'useNotification',
+              'useLoadingBar'
+            ]
+          }
+        ]
+      }),
       Components({
         resolvers: [NaiveUiResolver()],
       })
     ],
   },
   css:['/assets/css/tailwind.css'],
-  $development: {
-    routeRules: {
-      '/**': {
-        cache: {
-          swr: false
-        }
-      }
-    },
-  },
-  $production: {
-    routeRules: {
-      '/**': {
-        cache: {
-          swr: false
-        }
-      }
-    },
-  },
+
 }
 
 // pages/**/ui/*.vue

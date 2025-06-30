@@ -18,7 +18,13 @@
     "uz": "uz",
     "ru": "ru",
     "en": "en",
-    "emptyData": "Ma'lumot kiritilmagan"
+    "emptyData": "Ma'lumot kiritilmagan",
+    "confirmDelete": "Haqiqattan ham o'chirmoqchimisiz?",
+    "yes": "Ha",
+    "no": "Yo'q",
+    "add": "Qo'shish",
+    "action": "Amallar",
+    "organization": "Tashkilot"
   },
   "rules": {
     "login": "Email kiritilishi shart!",
@@ -95,6 +101,46 @@
     "working_conditions": "Ish sharoitlari",
     "position_obligations": "Lavozimiy majburiyatlari",
     "qualification_requirements": " Malakaviy talablar"
+  },
+  "info": {
+    "career": {
+      "name": "Mehnat faoliyati",
+      "createTitle": "Mehnat faoliyatini qo'shish",
+      "updateTitle": "Mehnat faoliyatini tahrirlash",
+      "period": "Davr",
+      "from": "Qachondan",
+      "to": "Qachongacha",
+      "position": "Lavozimi",
+      "now": "Hozirgacha ishlayman",
+      "untilNow": "Hozirgacha"
+    },
+    "education": {
+      "name": "Ma'lumoti",
+      "createTitle": "Ma'lumotini qo'shish",
+      "updateTitle": "Ma'lumotini tahrirlash",
+      "from": "Qachondan",
+      "to": "Qachongacha",
+      "university": "Oligoh",
+      "now": "Hozirgacha o'qiyman",
+      "untilNow": "Hozirgacha"
+    },
+    "general": {
+      "name": "Shaxsiy ma'lumoti",
+      "createTitle": "Shaxsiy ma'lumotini qo'shish",
+      "updateTitle": "Shaxsiy ma'lumotini tahrirlash",
+      "country_id": "Tug'ilgan davlat",
+      "region_id": "Tug'ilgan viloyat",
+      "city_id": "Tug'ilgan shahar/viloyat",
+      "current_region_id": "Yashash viloyati",
+      "current_city_id": "Yashash shahar/viloyat",
+      "address": "Manzil",
+      "pin": "Pasport JSHSHIR",
+      "sex": "Jinsi",
+      "nationality_id": "Millati",
+      "education": "Ma'lumoti",
+      "marital_status": "Oilaviy holati",
+      "languages": "Chet-tillarini bilishi"
+    }
   }
 
 }
