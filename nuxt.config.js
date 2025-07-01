@@ -19,6 +19,7 @@ export default {
   plugins: [
     '~/plugins/mask.client.js',
     '~/plugins/moment.client.js',
+    '~/plugins/i18n.client.js',
   ],
   tailwindcss: {
     exposeConfig: true,

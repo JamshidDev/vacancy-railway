@@ -1,9 +1,11 @@
 <script setup>
 import {Briefcase28Regular, Diamond20Filled} from "@vicons/fluent"
 import {useAuthStore} from "~/store/index.js"
+import {useProfileStore} from "../../store/modules/profileStore.js"
 
 
-const store = useAuthStore()
+const store = useProfileStore()
+const authStore = useAuthStore()
 
 const loginSystem = (v)=>{
   store.activeTab = v
@@ -13,7 +15,7 @@ const loginSystem = (v)=>{
 
 
 const isLogin = computed(()=>{
-  return Boolean(store.token)
+  return Boolean(authStore.token)
 })
 
 
@@ -22,7 +24,7 @@ onMounted(()=>{
     store.isActiveNavbar = window.scrollY>3
   })
 
-  if(store.token){
+  if(authStore.token){
     store.onProfile()
   }
 

@@ -47,10 +47,8 @@ export const useAuthStore = defineStore('authStore',()=>{
     const registerActiveTab = ref(1)
     const authLoading = ref(false)
     const loading = ref(false)
-    const profileLoading = ref(false)
     const storage = localStorage.getItem(appSetting.tokenKey) || null
     const token = ref(storage)
-    const account = ref(null)
 
 
     // Methods
@@ -74,14 +72,6 @@ export const useAuthStore = defineStore('authStore',()=>{
             registerActiveTab.value = 2
         }).finally(()=>{
             authLoading.value = false
-        })
-    }
-    const onProfile = ()=>{
-        profileLoading.value = true
-        window.$ApiSerivce.userService.profile().then(res=>{
-            account.value = res.data?.data
-        }).finally(()=>{
-            profileLoading.value = false
         })
     }
     const onRegisterUser = ()=>{
@@ -138,15 +128,13 @@ export const useAuthStore = defineStore('authStore',()=>{
         authLoading,
         loading,
         token,
-        profileLoading,
-        account,
 
         onChangeVisible,
         onChangeTab,
         getToken,
         onRegisterUser,
         onLogin,
-        onProfile,
+
         onLogOut,
     }
 

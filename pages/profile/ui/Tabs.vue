@@ -3,6 +3,7 @@ import {Briefcase28Regular, CheckmarkCircle20Filled, BuildingBank24Regular, Docu
 import {useUserInfoStore} from "~/store/index.js"
 import Career from "./Career.vue"
 import Education from "./Education.vue"
+import Personal from "./Personal.vue"
 
 const tabList = [
   {
@@ -26,8 +27,8 @@ const store = useUserInfoStore()
 </script>
 
 <template>
-  <div class="grid grid-cols-12 gap-10 pt-10">
-      <div class="col-span-3">
+  <div class=" lg:flex pt-10">
+    <div class=" w-full lg:w-[400px]">
         <div class="w-full px-6 py-4  bg-gradient-to-b from-primary/10 to-primary/40 rounded-xl">
 
           <template v-for="item in tabList" :key="item">
@@ -45,10 +46,10 @@ const store = useUserInfoStore()
 
         </div>
       </div>
-    <div class="col-span-9">
+    <div class="w-full lg:w-[calc(100%-400px)] lg:pl-[40px] min-h-[600px]">
       <n-tabs animated v-model:value="store.activeTab" class="hidden-tab-header" type="segment">
         <n-tab-pane :name="store.tabList[0].id">
-         <Career/>
+         <Personal/>
         </n-tab-pane>
         <n-tab-pane :name="store.tabList[1].id">
           <Education/>
@@ -56,7 +57,6 @@ const store = useUserInfoStore()
         <n-tab-pane :name="store.tabList[2].id">
           <Career/>
         </n-tab-pane>
-
       </n-tabs>
     </div>
   </div>

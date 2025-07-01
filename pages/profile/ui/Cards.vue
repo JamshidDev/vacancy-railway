@@ -6,7 +6,7 @@ import {AppGeneric24Regular} from "@vicons/fluent"
 <div class="grid grid-cols-12 gap-4 bg-surface-section rounded-2xl py-6 mt-8 px-4">
 
   <template v-for="item in 4" :key="item">
-    <div class="col-span-3 px-4 py-4 border border-surface-line rounded-2xl flex items-center">
+    <div class="col-span-12 md:col-span-6 lg:col-span-3 px-4 py-4 border border-surface-line rounded-2xl flex items-center">
       <n-icon class="text-primary" size="32">
         <AppGeneric24Regular/>
       </n-icon>

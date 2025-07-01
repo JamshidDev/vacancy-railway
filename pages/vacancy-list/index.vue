@@ -56,7 +56,3 @@ onMounted(()=>{
   </div>
   <SectionFooter/>
 </template>
-
-<style scoped>
-
-</style>

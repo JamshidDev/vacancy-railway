@@ -1,5 +1,11 @@
 <script setup>
+import {useVacancyStore} from "../../store/index.js"
 
+const store = useVacancyStore()
+
+onMounted(()=>{
+  store.onInitialApp()
+})
 </script>
 
 <template>
@@ -18,7 +24,3 @@
     <h3 class="animate-scale-xs text-9xl font-black absolute bottom-[4px] left-[50%] translate-x-[-50%] bg-clip-text text-transparent bg-gradient-to-t from-[10%] from-surface-ground to-primary/20">{{$t('mainSection.vacancy')}}</h3>
   </div>
 </template>
-
-<style scoped>
-
-</style>

@@ -2,8 +2,11 @@
 import {Person20Regular, SignOut24Regular, DocumentBriefcase24Regular} from "@vicons/fluent"
 import {appSetting, utils} from "~/utils/index.js"
 import {useAuthStore} from "~/store/index.js"
+import {useProfileStore} from "../../store/index.js"
+
 const { t } = useI18n()
-const store = useAuthStore()
+const authStore = useAuthStore()
+const store = useProfileStore()
 
 
 
@@ -27,7 +30,7 @@ const option = [
 
 const onSelect = (key)=>{
   if(key === option[2].key){
-    store.onLogOut()
+    authStore.onLogOut()
   }
 }
 
@@ -45,7 +48,7 @@ const onSelect = (key)=>{
           v-else
           round
           size="medium"
-          :src="appSetting.defaultAvatar"
+          :src="store.avatarUrl"
       />
 
       <div class="w-[calc(100%-40px)]">

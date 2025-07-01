@@ -24,6 +24,13 @@
 }
 
 @theme {
+    --breakpoint-*: initial;
+    --breakpoint-sm: 480px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 976px;
+    --breakpoint-xl: 1440px;
+    --breakpoint-2xl: 1536px;
+
     --color-primary:#1967D2;
     --color-success:#2DB346;
     --color-brown:#B3692D;

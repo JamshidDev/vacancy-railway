@@ -35,7 +35,3 @@ const totalVacancy = computed(()=> {
 
   </div>
 </template>
-
-<style scoped>
-
-</style>

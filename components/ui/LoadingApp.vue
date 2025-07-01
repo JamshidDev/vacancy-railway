@@ -1,11 +1,3 @@
-<script setup>
-import {useVacancyStore} from "~/store/index.js"
-const store = useVacancyStore()
-
-onMounted(()=>{
-  store.onInitialApp()
-})
-</script>
 
 <template>
 <div

@@ -24,6 +24,8 @@
     "no": "Yo'q",
     "add": "Qo'shish",
     "action": "Amallar",
+    "man": "Erkak",
+    "woman": "Ayol",
     "organization": "Tashkilot"
   },
   "rules": {
@@ -103,6 +105,15 @@
     "qualification_requirements": " Malakaviy talablar"
   },
   "info": {
+    "banner": {
+      "changePicture": "Rasm yuklash",
+      "pin": "JSHSHIR:",
+      "birthday": "Tug‘ilgan sanasi:",
+      "birthPlace": "Tug‘ilgan joyi:",
+      "phone": "Telefon raqami:",
+      "email": "Elektron pochtasi:",
+      "refresh": "Ma'lumotlarni yangilash"
+    },
     "career": {
       "name": "Mehnat faoliyati",
       "createTitle": "Mehnat faoliyatini qo'shish",
@@ -130,15 +141,19 @@
       "updateTitle": "Shaxsiy ma'lumotini tahrirlash",
       "country_id": "Tug'ilgan davlat",
       "region_id": "Tug'ilgan viloyat",
-      "city_id": "Tug'ilgan shahar/viloyat",
+      "city_id": "Tug'ilgan shahar/tuman",
       "current_region_id": "Yashash viloyati",
-      "current_city_id": "Yashash shahar/viloyat",
+      "current_city_id": "Yashash shahar/tuman",
       "address": "Manzil",
       "pin": "Pasport JSHSHIR",
       "sex": "Jinsi",
       "nationality_id": "Millati",
       "education": "Ma'lumoti",
       "marital_status": "Oilaviy holati",
+      "last_name": "Familiya",
+      "first_name": "Ism",
+      "middle_name": "Sharif",
+      "birthday": "Tug'ilgan sana",
       "languages": "Chet-tillarini bilishi"
     }
   }
