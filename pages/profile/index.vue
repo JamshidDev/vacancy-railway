@@ -7,7 +7,9 @@ import Footer from "../../components/section/Footer.vue"
 definePageMeta({
   layout:"admin-layout",
   breadcrumb:"Profile",
+  middleware:'auth',
 })
+
 </script>
 
 <template>

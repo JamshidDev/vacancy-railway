@@ -50,7 +50,7 @@ const openFile = ()=>{
   </div>
 
 
-  <div class="col-span-12 md:flex mt-8 border border-dashed rounded-2xl border-surface-line p-4">
+  <div class="col-span-12 md:flex mt-8 border border-dashed rounded-2xl border-surface-line p-4 ">
     <img
         class="w-[150px] min-h-[160px] rounded-md overflow-hidden"
         :src="store.avatarUrl" alt="avatar picture">

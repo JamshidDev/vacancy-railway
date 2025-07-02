@@ -8,8 +8,8 @@ const store = useProfileStore()
 const authStore = useAuthStore()
 
 const loginSystem = (v)=>{
-  store.activeTab = v
-  store.authVisible = true
+  authStore.activeTab = v
+  authStore.authVisible = true
 }
 
 

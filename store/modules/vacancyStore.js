@@ -87,7 +87,7 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
     const onShow = (id)=>{
         showLoading.value = true
         $ApiSerivce.vacancyService.show({id}).then(res=>{
-            detail.value =res.data.data
+            detail.value =res.data.data.vacancy
         }).finally(()=>{
             showLoading.value = false
         })

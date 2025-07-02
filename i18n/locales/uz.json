@@ -96,6 +96,8 @@
   },
   "detail": {
     "sendApply": "Ariza yuborish",
+    "uploadFile": "Fayl yuklash uchun bosing!",
+    "sentApply": "Ariza yuborilgan",
     "educationDegree": "Ta'lim darajasi",
     "candidate": "Nomzodlar soni",
     "deadline": "Qabul yopilishiga qolgan vaqt",
@@ -155,6 +157,13 @@
       "middle_name": "Sharif",
       "birthday": "Tug'ilgan sana",
       "languages": "Chet-tillarini bilishi"
+    },
+    "card": {
+      "process": "Kutilayotgan arizalar",
+      "accepted": "Qabul qilingan arizalar",
+      "rejected": "Rad etilgan arizalar",
+      "all": "Barcha arizalar",
+      "count": "Arizalar soni"
     }
   }
 

@@ -1,7 +1,21 @@
 <script setup>
 import {Call28Regular, Location24Regular, Globe24Regular} from "@vicons/fluent"
 import {useVacancyStore} from "~/store/index.js"
+import {useAuthStore, useProfileStore} from "../../../../store/index.js"
+
 const store = useVacancyStore()
+const authStore = useAuthStore()
+const profileStore = useProfileStore()
+
+
+const onApplyApplication = ()=>{
+  if(!authStore.token){
+    authStore.activeTab = 1
+    authStore.authVisible = true
+  }else{
+    profileStore.applyVisible = true
+  }
+}
 </script>
 
 <template>
@@ -10,7 +24,6 @@ const store = useVacancyStore()
     {{store.detail?.organization}},
     {{store.detail?.department}},
     {{store.detail?.position}},
-
   </h2>
 
     <div class="bg-surface-section rounded-lg mt-4">
@@ -35,10 +48,6 @@ const store = useVacancyStore()
 
     </div>
 
-    <n-button type="primary" size="large" class="!w-full !mt-6">{{$t('detail.sendApply')}}</n-button>
+    <n-button @click="onApplyApplication" type="primary" size="large" class="!w-full !mt-6">{{store.detail?.send? $t('detail.sentApply') : $t('detail.sendApply')}}</n-button>
 </div>
 </template>
-
-<style scoped>
-
-</style>

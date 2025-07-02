@@ -29,7 +29,7 @@ instance.interceptors.response.use(
         return Promise.resolve(response)
     },
     error => {
-        if(error?.response.status === 401) {
+        if(error?.response?.status === 401) {
             localStorage.removeItem(appSetting.tokenKey)
         }
         $Toast.error(error?.response?.data?.message)

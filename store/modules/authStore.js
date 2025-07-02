@@ -1,9 +1,11 @@
 import {defineStore} from "pinia"
-import {ref, computed} from "vue"
+import {ref} from "vue"
 import {utils} from "~/utils/index.js"
 import {appSetting} from "~/utils/index.js"
+import {useProfileStore} from "./profileStore.js"
 
 export const useAuthStore = defineStore('authStore',()=>{
+    const store = useProfileStore()
 
     // Variables
     const authVisible = ref(false)
@@ -86,7 +88,7 @@ export const useAuthStore = defineStore('authStore',()=>{
             registerActiveTab.value = 1
             authVisible.value= false
             token.value = res.data?.data?.access_token
-            onProfile()
+            store.onProfile()
         }).finally(()=>{
             authLoading.value = false
         })
@@ -101,7 +103,7 @@ export const useAuthStore = defineStore('authStore',()=>{
             localStorage.setItem(appSetting.tokenKey, res.data?.data?.access_token)
             token.value = res.data?.data?.access_token
             authVisible.value = false
-            onProfile()
+            store.onProfile()
         }).finally(()=>{
             loading.value = false
         })
@@ -112,6 +114,8 @@ export const useAuthStore = defineStore('authStore',()=>{
         token.value = null
         localStorage.removeItem(appSetting.tokenKey)
     }
+
+
 
 
 

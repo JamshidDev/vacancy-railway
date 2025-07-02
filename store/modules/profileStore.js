@@ -1,5 +1,7 @@
 import {defineStore} from "pinia"
 import {ref} from "vue"
+import { v4 as uuidv4 } from 'uuid';
+const route = useRoute()
 
 export const useProfileStore = defineStore('profileStore',()=>{
     const payload = ref({
@@ -52,6 +54,11 @@ export const useProfileStore = defineStore('profileStore',()=>{
     const regionLoading = ref(false)
     const profileLoading = ref(false)
     const account = ref(null)
+    const dashboardList = ref([])
+    const dashboardLoading = ref(false)
+    const sendLoading = ref(false)
+    const applyVisible = ref(false)
+    const docFiles = ref([])
 
     const onGetEnum = ()=>{
         enumLoading.value = true
@@ -111,14 +118,17 @@ export const useProfileStore = defineStore('profileStore',()=>{
             payload.value.current_region_id = v.current_region?.id
             payload.value.current_city_id = v.current_city?.id
             payload.value.address = v.address
-            payload.value.pin = v.pin
+            payload.value.pin = v.pin?.toString()
             payload.value.sex = v.sex
             payload.value.nationality_id = v.nationality?.id
             payload.value.education = v.education?.id
             payload.value.marital_status = v.marital_status?.id
             payload.value.languages = v.languages
-            onGetCities()
-            onGetCurrentCities()
+
+            if(route.params === '/profile'){
+                onGetCities()
+                onGetCurrentCities()
+            }
 
         }).finally(()=>{
             profileLoading.value = false
@@ -143,6 +153,36 @@ export const useProfileStore = defineStore('profileStore',()=>{
         })
     }
 
+    const onGetDashboard = ()=>{
+        dashboardLoading.value = true
+        $ApiSerivce.userService._dashboard().then(res=>{
+            dashboardList.value = res.data.data
+        }).finally(()=>{
+            dashboardLoading.value = false
+        })
+    }
+
+    const onUploadFile = (v)=>{
+        const files = v.target.files
+        docFiles.value = Array.from(files).map((f)=>({
+            id:uuidv4(),
+            file:f,
+        }))
+    }
+
+    const removeFileById = (id)=>{
+        docFiles.value = docFiles.value.filter((f)=>f.id !== id)
+    }
+
+    const onSendApply = (data)=>{
+        sendLoading.value = true
+        window.$ApiSerivce.userService._sendApply({data}).then(res=>{
+            console.log( res.data.data)
+        }).finally(()=>{
+            sendLoading.value = false
+        })
+    }
+
     const fullName = computed(()=>{
         if(!account.value) return  ' '
         return account.value?.last_name + ' '+ account.value?.first_name+' '+account.value?.middle_name
@@ -151,6 +191,7 @@ export const useProfileStore = defineStore('profileStore',()=>{
     const avatarUrl = computed(()=>{
         return account?.value?.photo || appSetting.defaultAvatar
     })
+
 
 
 
@@ -181,6 +222,15 @@ export const useProfileStore = defineStore('profileStore',()=>{
         fullName,
         avatarUrl,
         onUpdateAvatar,
+        onGetDashboard,
+        dashboardList,
+        dashboardLoading,
+        applyVisible,
+        onSendApply,
+        onUploadFile,
+        docFiles,
+        sendLoading,
+        removeFileById,
     }
 
 })
