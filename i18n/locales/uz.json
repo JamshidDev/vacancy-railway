@@ -26,6 +26,7 @@
     "action": "Amallar",
     "man": "Erkak",
     "woman": "Ayol",
+    "interface-language": "Dastur tili",
     "organization": "Tashkilot"
   },
   "rules": {
@@ -96,6 +97,8 @@
   },
   "detail": {
     "sendApply": "Ariza yuborish",
+    "expired": "Muddati tugagan",
+    "process": "Kutilmoqda",
     "uploadFile": "Fayl yuklash uchun bosing!",
     "sentApply": "Ariza yuborilgan",
     "educationDegree": "Ta'lim darajasi",

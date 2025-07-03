@@ -21,25 +21,25 @@ const props = defineProps({
   <h2 class="text-xs text-black-tertiary mt-2 border-b border-surface-line pb-4">• {{data?.department}}</h2>
   <h3 class="text-black-secondary mt-2 font-medium">{{data.organization}}</h3>
   <div class="grid grid-cols-12 mt-2 gap-2">
-    <div class="col-span-6 flex item-center gap-x-2 font-medium">
+    <div class="col-span-12 md:col-span-6 flex item-center gap-x-2 font-medium">
         <n-icon size="18" class="text-primary">
           <Wallet24Regular/>
         </n-icon>
       {{utils.formattedMoney(data.salary)}} {{$t('content.sum')}}
     </div>
-    <div class="col-span-6 flex item-center gap-x-2 font-medium">
+    <div class="col-span-12 md:col-span-6 flex item-center gap-x-2 font-medium">
       <n-icon size="18" class="text-primary">
         <Location24Regular/>
       </n-icon>
       {{data.city?.region?.name}}, {{data.city?.name}}
     </div>
-    <div class="col-span-6 flex item-center gap-x-2 font-medium">
+    <div class="col-span-12 md:col-span-6 flex item-center gap-x-2 font-medium">
       <n-icon size="18" class="text-primary">
         <Clock32Regular/>
       </n-icon>
       {{data.work_type?.name}}
     </div>
-    <div class="col-span-6 flex item-center gap-x-2 font-medium">
+    <div class="col-span-12 md:col-span-6 flex item-center gap-x-2 font-medium">
       <n-icon size="18" class="text-primary">
         <DocumentBriefcase20Regular/>
       </n-icon>
@@ -47,7 +47,7 @@ const props = defineProps({
     </div>
   </div>
   <div class="grid grid-cols-12 mt-6 border-t border-surface-line pt-2 text-black-tertiary">
-    <div class="col-span-6 flex gap-1 items-center">
+    <div class="col-span-12 sm:col-span-6 flex gap-1 items-center">
       <n-icon size="18">
         <CalendarLtr32Regular/>
       </n-icon>
@@ -58,8 +58,7 @@ const props = defineProps({
       </n-icon>
       {{utils.formattedDate(data.to)}}
     </div>
-    <div class="col-span-6 flex justify-end gap-1">
-
+    <div class="col-span-12 sm:col-span-6 flex sm:justify-end gap-1 mt-4 sm:mt-0">
       <n-icon size="18">
         <Person12Filled/>
       </n-icon>

@@ -3,6 +3,7 @@ import {Person20Regular, SignOut24Regular, DocumentBriefcase24Regular} from "@vi
 import {appSetting, utils} from "~/utils/index.js"
 import {useAuthStore} from "~/store/index.js"
 import {useProfileStore} from "../../store/index.js"
+const localePath = useLocalePath()
 
 const { t } = useI18n()
 const authStore = useAuthStore()
@@ -31,6 +32,8 @@ const option = [
 const onSelect = (key)=>{
   if(key === option[2].key){
     authStore.onLogOut()
+  }else if(key === option[0].key){
+    navigateTo(localePath('/profile'))
   }
 }
 

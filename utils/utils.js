@@ -47,15 +47,16 @@ const datePickerFormatter = (time)=>{
 }
 
 
-function getDaysBetweenDates(date1, date2) {
-    if(!date1 || !date2) return  ''
-    const d1 = new Date(date1)
+function getDaysBetweenDates(date2) {
+    if(!date2) return  ''
+    const d1 = new Date()
     const d2 = new Date(date2)
     const utc1 = Date.UTC(d1.getFullYear(), d1.getMonth(), d1.getDate())
     const utc2 = Date.UTC(d2.getFullYear(), d2.getMonth(), d2.getDate())
 
     const msPerDay = 1000 * 60 * 60 * 24
-    return Math.abs(Math.floor((utc2 - utc1) / msPerDay))
+    const result = Math.floor((utc2 - utc1) / msPerDay)
+    return result>0? result: 'detail.expired'
 }
 
 

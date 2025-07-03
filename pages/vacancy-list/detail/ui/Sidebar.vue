@@ -2,20 +2,51 @@
 import {Call28Regular, Location24Regular, Globe24Regular} from "@vicons/fluent"
 import {useVacancyStore} from "~/store/index.js"
 import {useAuthStore, useProfileStore} from "../../../../store/index.js"
-
 const store = useVacancyStore()
 const authStore = useAuthStore()
 const profileStore = useProfileStore()
+const { t} = useI18n()
 
 
-const onApplyApplication = ()=>{
-  if(!authStore.token){
+const onApplyApplication = ()=> {
+  const expire = utils.getDaysBetweenDates(store.detail?.to)
+  if(isNaN(expire)){
+    $Toast.error(t('detail.expired'))
+    return
+  }
+
+  if (!authStore.token) {
     authStore.activeTab = 1
     authStore.authVisible = true
-  }else{
-    profileStore.applyVisible = true
+    return
   }
+
+  if (store.sendData) return
+  profileStore.applyVisible = true
+
 }
+
+const status = computed(()=>{
+  const status = {
+    type:'primary',
+    text:'detail.sendApply'
+  }
+
+  const expire = utils.getDaysBetweenDates(store.detail?.to)
+  if(isNaN(expire)){
+    status.type = 'error'
+    status.text = 'detail.expired'
+  }
+
+  if(store.sendData){
+    status.type = 'warning'
+    status.text = 'detail.sentApply'
+  }
+  return status
+
+
+
+})
 </script>
 
 <template>
@@ -48,6 +79,6 @@ const onApplyApplication = ()=>{
 
     </div>
 
-    <n-button @click="onApplyApplication" type="primary" size="large" class="!w-full !mt-6">{{store.detail?.send? $t('detail.sentApply') : $t('detail.sendApply')}}</n-button>
+    <n-button :loading="store.showLoading" @click="onApplyApplication" secondary :type="status.type" size="large" class="!w-full !mt-6">{{$t(status.text)}}</n-button>
 </div>
 </template>

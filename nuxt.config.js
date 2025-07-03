@@ -7,7 +7,7 @@ import i18nConfig from "./i18n/index.js"
 export default {
   ssr:false,
   compatibilityDate: '2024-04-03',
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   runtimeConfig:{
     secretKey:'Key_secret',
     public:{
@@ -20,6 +20,7 @@ export default {
     '~/plugins/mask.client.js',
     '~/plugins/moment.client.js',
     '~/plugins/i18n.client.js',
+    '~/plugins/localePath.client.js',
   ],
   tailwindcss: {
     exposeConfig: true,

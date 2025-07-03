@@ -14,11 +14,14 @@ const store = useVacancyStore()
     <template v-if="!store.loading && store.lastVacancies.length > 0">
       <div v-for="item in store.lastVacancies"
            :key="item.id"
-           class="w-full flex relative max-w-[800px] mx-auto bg-surface-section border border-surface-line rounded-lg px-4 py-2 mb-8">
-        <div class="absolute top-[26px] left-[-20px] p-6 bg-surface-section border border-surface-line rounded-2xl shadow-navbar">
+           class="w-full md:flex relative max-w-[800px] pt-[50px] md:pt-2 mt-[50px] md:mt-0 mx-auto bg-surface-section border border-surface-line rounded-lg px-4 py-2 mb-8">
+
+        <div class="absolute md:top-[26px] md:left-[-20px] top-[-60px] left-[50%] translate-x-[-50%] md:translate-x-[0] p-6 bg-surface-section border border-surface-line rounded-2xl shadow-navbar">
           <IconBuild/>
         </div>
-        <div class="flex flex-col ml-[80px] pl-2 w-[calc(100%-170px)]">
+
+
+        <div class="flex flex-col md:ml-[80px] pl-2 md:w-[calc(100%-170px)] w-full">
           <h2 class="text-black-primary font-semibold">{{item.position}} </h2>
           <h3 class="text-black-secondary"> {{item.department}}</h3>
           <div class="flex items-center gap-1 mt-4">

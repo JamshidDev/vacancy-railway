@@ -45,7 +45,7 @@ const goPush = (path)=>{
 
 <template>
 <UiPageContent>
-  <div class="flex font-medium items-center gap-2 text-black-tertiary">
+  <div class=" flex flex-wrap font-medium items-center gap-2 text-black-tertiary">
     <n-icon class="text-primary" size="20">
       <Home16Regular/>
     </n-icon>
@@ -65,7 +65,6 @@ const goPush = (path)=>{
       </div>
 
     </template>
-
   </div>
 </UiPageContent>
 </template>

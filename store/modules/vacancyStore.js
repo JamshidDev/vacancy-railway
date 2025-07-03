@@ -40,6 +40,7 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
         },
     ]
     const detail =ref(null)
+    const sendData = ref(null)
     const showLoading =ref(false)
 
 
@@ -88,6 +89,7 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
         showLoading.value = true
         $ApiSerivce.vacancyService.show({id}).then(res=>{
             detail.value =res.data.data.vacancy
+            sendData.value = res.data.data.send
         }).finally(()=>{
             showLoading.value = false
         })
@@ -114,6 +116,7 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
         detail,
         showLoading,
         heroSearch,
+        sendData,
 
         onChangeTab,
         onRegions,

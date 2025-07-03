@@ -24,13 +24,13 @@ onMounted(()=>{
   <div class="w-full bg-surface-section min-h-screen">
     <UiBreadCrump class="mt-[160px] mb-[50px]"/>
     <UiPageContent>
-      <div class="grid grid-cols-12 gap-x-6 mb-4">
-        <div class="col-span-3">
+      <div class="lg:flex mb-4">
+        <div class="w-full lg:w-[330px]">
           <div class="bg-surface-ground rounded-lg px-4 pt-6">
             <UiVacancyFilter/>
           </div>
         </div>
-        <div class="col-span-9">
+        <div class="w-full lg:w-[calc(100%-330px)] lg:pl-8 mt-10 lg:mt-0">
           <h3 class="text-black-primary mb-5 text-xl font-medium uppercase">{{$t('vacancy.vacancyCount', {n:0})}}</h3>
           <div class="w-full mb-10 px-2 flex text-black-tertiary items-center bg-surface-ground border border-surface-line rounded-lg h-[50px]">
             <n-icon size="20" class="mx-2">

@@ -7,7 +7,7 @@ const store = useAuthStore()
     <UiAppToolBar/>
     <div
         style="writing-mode: vertical-lr; text-orientation: mixed; word-spacing: 4px"
-        class="text-sm font-semibold w-[24px] px-2 pb-2 rounded-tr-md rounded-br-md  bg-dark text-white fixed left-0 z-[999] top-[50%] translate-y-[-50%]
+        class="text-sm font-semibold w-[24px] px-2 pb-2 rounded-tr-md rounded-br-md  bg-dark text-white fixed left-0 z-[900] top-[50%] translate-y-[-50%]
 "
     >{{$t('content.betaMode')}}</div>
     <UiModal

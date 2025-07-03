@@ -23,11 +23,11 @@ const store = useVacancyStore()
           <n-spin class="min-h-[200px]" :show="store.loading">
             <div class="grid grid-cols-12 gap-x-6 gap-y-4 ">
               <template v-for="item in store.organizations" :key="item">
-                <div class="col-span-4 p-2 bg-surface-ground border border-surface-line
+                <div class="col-span-12 md:col-span-6  lg:col-span-4 p-2 bg-surface-ground border border-surface-line
                rounded-lg flex items-center cursor-pointer gap-2
 ">
                   <IconBuild2/>
-                  <div class="flex flex-col border-l border-surface-line pl-4">
+                  <div class="flex flex-col border-l border-surface-line pl-4 w-[calc(100%-50px)]">
                     <h2 class="text-black-primary font-semibold text-lg">{{item.organization_full_name}}</h2>
                     <h6 class="text-black-tertiary text-sm mt-6">{{$t('mainSection.availableVacancy',{n:item.vacancies_count})}}</h6>
                   </div>
@@ -43,11 +43,11 @@ const store = useVacancyStore()
           <n-spin class="min-h-[200px]" :show="store.loading">
             <div class="grid grid-cols-12 gap-x-6 gap-y-4 ">
               <template v-for="item in store.regions" :key="item">
-                <div class="col-span-4 p-2 bg-surface-ground border border-surface-line
+                <div class="col-span-12 md:col-span-6  lg:col-span-4 p-2 bg-surface-ground border border-surface-line
                rounded-lg flex items-center cursor-pointer gap-2
 ">
                   <IconBuild />
-                  <div class="flex flex-col border-l border-surface-line pl-4">
+                  <div class="flex flex-col border-l border-surface-line pl-4 w-[calc(100%-50px)]">
                     <h2 class="text-black-primary font-medium text-lg">{{item.region_name}}</h2>
                     <h6 class="text-black-tertiary text-sm mt-6">{{$t('mainSection.availableVacancy',{n:item.vacancies_count})}}</h6>
                   </div>

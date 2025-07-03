@@ -7,8 +7,8 @@ import {useVacancyStore} from "~/store/index.js"
 const store = useVacancyStore()
 
 const day = computed(()=>{
-  if(!store.detail?.to) return
-  return utils.getDaysBetweenDates(store.detail?.created_at, store.detail?.to)
+  if(!store.detail?.to) return 'detail.expired'
+  return utils.getDaysBetweenDates(store.detail?.to)
 })
 </script>
 
@@ -21,37 +21,37 @@ const day = computed(()=>{
 
   <div class="col-span-12">
     <div class="grid grid-cols-12 gap-3">
-      <div class="col-span-4 flex items-center gap-x-2">
+      <div class="col-span-12 md:col-span-4 flex items-center gap-x-2">
         <n-icon size="20" class="text-primary">
           <Wallet24Regular/>
         </n-icon>
         <span class="text-[16px] text-black-secondary">{{utils.formattedMoney(store.detail?.salary)}} {{$t('content.sum')}}</span>
       </div>
-      <div class="col-span-8 flex items-center gap-x-2">
+      <div class="col-span-12 md:col-span-8 flex items-center gap-x-2">
         <n-icon size="20" class="text-primary">
           <Location24Regular/>
         </n-icon>
         <span class="text-[16px] text-black-secondary">{{store.detail?.address}}</span>
       </div>
-      <div class="col-span-4 flex items-center gap-x-2">
+      <div class="col-span-12 md:col-span-4 flex items-center gap-x-2">
         <n-icon size="20" class="text-primary">
           <Clock16Regular/>
         </n-icon>
         <span class="text-[16px] text-black-secondary">{{store.detail?.work_type?.name}}</span>
       </div>
-      <div class="col-span-8 flex items-center gap-x-2">
+      <div class="col-span-12 md:col-span-8 flex items-center gap-x-2">
         <n-icon size="20" class="text-primary">
           <Briefcase16Regular/>
         </n-icon>
         <span class="text-[16px] text-black-secondary">{{(store.detail?.experience? $t('vacancy.minWorkExperience', {n:store.detail?.experience}) : $t('vacancy.noExperience') ) }}</span>
       </div>
-      <div class="col-span-4 flex items-center gap-x-2">
+      <div class="col-span-12 md:col-span-4 flex items-center gap-x-2">
         <n-icon size="20" class="text-primary">
           <Certificate20Regular/>
         </n-icon>
         <span class="text-[16px] text-black-secondary">{{$t('detail.educationDegree')}}: {{store.detail?.education?.name}}</span>
       </div>
-      <div class="col-span-8 flex items-center gap-x-2">
+      <div class="col-span-12 md:col-span-8 flex items-center gap-x-2">
         <n-icon size="20" class="text-primary">
           <BoxToolbox20Regular/>
         </n-icon>
@@ -59,9 +59,8 @@ const day = computed(()=>{
       </div>
     </div>
   </div>
-  <div class="col-span-12 gap-x-8 flex mt-6">
-
-    <div class="flex w-[300px] items-center border border-surface-line rounded-lg px-4 py-4">
+  <div class="col-span-12 gap-x-8 md:flex mt-6 mb-12">
+    <div class="flex w-full md:w-[300px] mb-4 md:mb-0 items-center border border-surface-line rounded-lg px-4 py-4">
       <div class="p-2 bg-success/10 rounded-lg items-center">
         <n-icon size="32" class="text-success ">
           <PersonAccounts24Regular/>
@@ -72,7 +71,7 @@ const day = computed(()=>{
         <h3 class="text-3xl font-black text-black-secondary mt-1">{{store.detail?.applications_count}}</h3>
       </div>
     </div>
-    <div class="flex w-[300px] items-center border border-surface-line rounded-lg px-4 py-4">
+    <div class="flex w-full md:w-[300px] items-center border border-surface-line rounded-lg px-4 py-4">
       <div class="p-2 bg-error/10 rounded-lg flex items-center">
         <n-icon size="32" class="text-error">
           <Clock16Regular/>
@@ -80,7 +79,8 @@ const day = computed(()=>{
       </div>
       <div class="pl-4">
         <p class="text-black-tertiary font-medium">{{$t('detail.deadline')}}</p>
-        <h3 class="text-3xl font-black text-black-secondary mt-1">{{day}} {{$t('content.day')}}</h3>
+        <h3 :class="[isNaN(day)? 'text-error' : 'text-3xl text-black-secondary']" class="font-black mt-1">
+         {{isNaN(day)? $t(day) : day +' '+ $t('content.day')}}</h3>
       </div>
     </div>
   </div>

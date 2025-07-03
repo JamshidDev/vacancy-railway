@@ -3,6 +3,10 @@ import {ref} from "vue"
 import {utils} from "~/utils/index.js"
 import {appSetting} from "~/utils/index.js"
 import {useProfileStore} from "./profileStore.js"
+import {useVacancyStore} from "./vacancyStore.js"
+const localePath = useLocalePath()
+
+const route =  useRoute()
 
 export const useAuthStore = defineStore('authStore',()=>{
     const store = useProfileStore()
@@ -61,6 +65,13 @@ export const useAuthStore = defineStore('authStore',()=>{
     const onChangeTab = (v)=>{
         activeTab.value = v
     }
+
+    const getDetails = ()=>{
+        if(route.path === '/vacancy-list/detail'){
+            const store = useVacancyStore()
+            store.onShow(route.query.id)
+        }
+    }
     const getToken =()=>{
         otpPayload.value.token = null
         authLoading.value = true
@@ -104,6 +115,7 @@ export const useAuthStore = defineStore('authStore',()=>{
             token.value = res.data?.data?.access_token
             authVisible.value = false
             store.onProfile()
+            getDetails()
         }).finally(()=>{
             loading.value = false
         })
@@ -111,6 +123,9 @@ export const useAuthStore = defineStore('authStore',()=>{
 
 
     const onLogOut = ()=>{
+        if(route.path === window.localePath('/profile')){
+            navigateTo(localePath('/'))
+        }
         token.value = null
         localStorage.removeItem(appSetting.tokenKey)
     }

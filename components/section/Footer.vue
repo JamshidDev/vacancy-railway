@@ -11,7 +11,7 @@ relative after:content-[' '] after:w-full after:h-full after:absolute after:top-
     <div class="col-span-12 border-b border-surface-line px-[80px] pb-4 mb-6">
       <UiLogo/>
     </div>
-     <div class="col-span-4 px-4">
+     <div class="col-span-12 md:col-span-6 lg:col-span-4 px-4">
        <div class="flex items-center py-1">
          <n-icon size="20" class="text-primary">
            <Map24Regular/>
@@ -31,13 +31,13 @@ relative after:content-[' '] after:w-full after:h-full after:absolute after:top-
          <span class="pl-4 text-black-secondary font-semibold">Oxirgi yangilangan vaqt: 12.06.2025 02:43:26</span>
        </div>
      </div>
-     <div class="col-span-4 px-4">
+     <div class="col-span-12 md:col-span-6 lg:col-span-4 px-4">
        <span class="text-black-tertiary text-xs">
          Portalda e'lon qilingan materiallardan nusxa ko‘chirish, tarqatish va boshqa shakllarda foydalanish faqat yozma rozilik bilan amalga oshirilishi mumkin.
        </span>
 
      </div>
-     <div class="col-span-4 px-4">
+     <div class="col-span-12 md:col-span-6 lg:col-span-4 px-4">
        <div class="flex items-center py-1">
          <n-icon size="20" class="text-primary">
            <Map24Regular/>

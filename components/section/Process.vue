@@ -5,9 +5,9 @@
 <template>
 <div class="w-full bg-surface-section">
 <UiPageContent>
-  <div class="grid grid-cols-12 pt-[100px] mx-[100px]">
-    <div class="col-span-12 flex justify-center">
-      <div class="w-[360px] relative pt-[60px] pl-[80px]">
+  <div class="grid grid-cols-12 pt-[100px] xl:mx-[100px] lg:mx-[50px]">
+    <div class="col-span-12 lg:flex justify-center">
+      <div class="lg:w-[360px] relative pt-[60px] pl-[80px] mb-10 lg:mb-0">
         <div class="absolute z-10 left-[0px] top-[0px] text-6xl uppercase font-black text-black-tertiary/20">
           01
         </div>
@@ -21,7 +21,7 @@
           {{$t('mainSection.guideAccount')}}
         </div>
       </div>
-      <div class="w-[360px] relative pt-[60px] pl-[80px] mx-4">
+      <div class="lg:w-[360px] relative pt-[60px] pl-[80px] mx-4 mb-10 lg:mb-0">
         <div class="absolute z-10 left-[0px] top-[0px] text-6xl uppercase font-black text-black-tertiary/20">
           02
         </div>
@@ -35,7 +35,7 @@
           {{$t('mainSection.guideJob')}}
         </div>
       </div>
-      <div class="w-[360px] relative pt-[60px] pl-[80px]">
+      <div class="lg:w-[360px] relative pt-[60px] pl-[80px] mb-10 lg:mb-0">
         <div class="absolute z-10 left-[0px] top-[0px] text-6xl uppercase font-black text-black-tertiary/20">
           03
         </div>
@@ -55,7 +55,3 @@
 </UiPageContent>
 </div>
 </template>
-
-<style scoped>
-
-</style>

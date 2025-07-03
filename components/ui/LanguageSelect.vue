@@ -1,7 +1,17 @@
 <script setup>
+import {useProfileStore} from "../../store/index.js"
+
 const { t } = useI18n()
 const { locale} = useI18n()
 const switchLocalePath = useSwitchLocalePath()
+const store = useProfileStore()
+
+defineProps({
+  mobile:{
+    type:Boolean,
+    default:false,
+  }
+})
 const renderOption = (option)=>{
   return [
     h(
@@ -19,10 +29,9 @@ const renderOption = (option)=>{
         ]
     ),]
 }
-const currentKey = ref('uz')
 
 const onChange = (v)=>{
-  currentKey.value = v
+  store.appLanguage = v
   navigateTo(switchLocalePath(v))
 }
 
@@ -46,18 +55,30 @@ const options= [
 ]
 
 onMounted(()=>{
-  currentKey.value = locale._value
+  store.appLanguage = locale._value
 })
 </script>
 
 <template>
-  <n-dropdown
-      @select="onChange"
-      :render-label="renderOption"
-      trigger="click" :options="options">
-    <div class="flex gap-2 items-center pl-1 pr-2 py-1 h-[40px]  border-surface-line rounded-xl border cursor-pointer  overflow-hidden">
-      <img :src="`/${currentKey}.png`" alt="image">
-      <span class="uppercase font-bold text-black-secondary">{{$t(`content.${currentKey}`)}}</span>
+  <template v-if="mobile">
+    <div class="w-full flex justify-between">
+      <template v-for="item in options" :key="item.key">
+        <img @click="onChange(item.key)" :class="item.key === store.appLanguage && '!border-primary'" class="border-[4px] rounded-full border-transparent  w-[40px] transition-all duration-300" :src="item.url" alt="image">
+      </template>
     </div>
-  </n-dropdown>
+  </template>
+
+  <template v-else>
+    <n-dropdown
+        @select="onChange"
+        :render-label="renderOption"
+        trigger="click"
+        :options="options"
+    >
+      <div class="flex gap-2 items-center pl-1 pr-2 py-1 h-[40px]  border-surface-line rounded-xl border cursor-pointer  overflow-hidden">
+        <img :src="`/${store.appLanguage}.png`" alt="image">
+        <span class="uppercase font-bold text-black-secondary">{{$t(`content.${store.appLanguage}`)}}</span>
+      </div>
+    </n-dropdown>
+  </template>
 </template>
