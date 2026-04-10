@@ -8,6 +8,14 @@ export default {
   ssr:false,
   compatibilityDate: '2024-04-03',
   devtools: { enabled: false },
+  app: {
+    head: {
+      title: 'HRM Business',
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/logo-2.png' }
+      ]
+    }
+  },
   runtimeConfig:{
     secretKey:'Key_secret',
     public:{

@@ -9,6 +9,10 @@ const totalVacancy = computed(()=> {
   return `<span class="text-primary">${store.activeVacancy}</span>`
 })
 
+const onSearch = () => {
+  navigateTo(localePath(`/vacancy-list?search=${store.heroSearch || ''}`))
+}
+
 </script>
 
 <template>
@@ -25,10 +29,10 @@ const totalVacancy = computed(()=> {
         <n-icon size="22" class="text-black-tertiary">
           <Search32Regular/>
         </n-icon>
-        <n-input v-model:value="store.heroSearch" class="input-override" :placeholder="$t('content.search')"/>
+        <n-input v-model:value="store.heroSearch" class="input-override" :placeholder="$t('content.search')" @keyup.enter="onSearch"/>
       </div>
       <button
-          @click="navigateTo(localePath(`/vacancy-list?search=${store.heroSearch || ''}`))"
+          @click="onSearch"
           class="bg-primary text-white w-[140px] py-4 px-3 text-sm rounded-2xl cursor-pointer ">
         {{$t('mainSection.searchVacancy')}}</button>
     </div>

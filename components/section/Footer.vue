@@ -28,7 +28,7 @@ relative after:content-[' '] after:w-full after:h-full after:absolute after:top-
          <n-icon size="20" class="text-primary">
            <Clock28Regular/>
          </n-icon>
-         <span class="pl-4 text-black-secondary font-semibold">Oxirgi yangilangan vaqt: 12.06.2025 02:43:26</span>
+         <span class="pl-4 text-black-secondary font-semibold">Oxirgi yangilangan vaqt: 10.04.2026 15:30:00</span>
        </div>
      </div>
      <div class="col-span-12 md:col-span-6 lg:col-span-4 px-4">
@@ -54,7 +54,7 @@ relative after:content-[' '] after:w-full after:h-full after:absolute after:top-
          <n-icon size="20" class="text-primary">
            <Clock28Regular/>
          </n-icon>
-         <span class="pl-4 text-black-secondary font-semibold">Oxirgi yangilangan vaqt: 12.06.2025 02:43:26</span>
+         <span class="pl-4 text-black-secondary font-semibold">Oxirgi yangilangan vaqt: 10.04.2026 15:30:00</span>
        </div>
      </div>
    </div>

@@ -142,7 +142,7 @@ onMounted(()=>{
             <ChevronRight12Regular/>
           </n-icon>
         </div>
-        <div class="flex items-center justify-between p-2 mx-2 mt-2 font-medium border rounded-xl border-surface-line">
+        <div @click="navigateTo(localePath('/profile'))" class="flex items-center justify-between p-2 mx-2 mt-2 font-medium border rounded-xl border-surface-line">
           <span >{{$t('profile.menu.myApplications')}}</span>
           <n-icon size="20" class="text-surface-line">
             <ChevronRight12Regular/>

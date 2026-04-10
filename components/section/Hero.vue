@@ -12,7 +12,7 @@ onMounted(()=>{
   <div class="w-full bg-surface-ground relative overflow-hidden">
     <UiPageContent>
       <div class="grid grid-cols-12 min-h-[900px]">
-        <div class="col-span-12 lg:col-span-6 relative">
+        <div class="col-span-12 lg:col-span-6 relative z-20">
           <UiSearchArea/>
         </div>
         <div class="col-span-12 lg:col-span-6 relative min-h-[300px]">
