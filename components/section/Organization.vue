@@ -1,6 +1,17 @@
 <script setup>
 import {useVacancyStore} from "~/store"
 const store = useVacancyStore()
+const router = useRouter()
+
+const localePath = useLocalePath()
+
+const onClickOrganization = (item) => {
+  navigateTo(localePath(`/vacancy-list?organization_id=${item.id}`))
+}
+
+const onClickRegion = (item) => {
+  navigateTo(localePath(`/vacancy-list?region_id=${item.id}`))
+}
 </script>
 
 <template>
@@ -23,8 +34,8 @@ const store = useVacancyStore()
           <n-spin class="min-h-[200px]" :show="store.loading">
             <div class="grid grid-cols-12 gap-x-6 gap-y-4 ">
               <template v-for="item in store.organizations" :key="item">
-                <div class="col-span-12 md:col-span-6  lg:col-span-4 p-2 bg-surface-ground border border-surface-line
-               rounded-lg flex items-center cursor-pointer gap-2
+                <div @click="onClickOrganization(item)" class="col-span-12 md:col-span-6  lg:col-span-4 p-2 bg-surface-ground border border-surface-line
+               rounded-lg flex items-center cursor-pointer gap-2 hover:shadow-navbar transition-all duration-300
 ">
                   <IconBuild2/>
                   <div class="flex flex-col border-l border-surface-line pl-4 w-[calc(100%-50px)]">
@@ -43,8 +54,8 @@ const store = useVacancyStore()
           <n-spin class="min-h-[200px]" :show="store.loading">
             <div class="grid grid-cols-12 gap-x-6 gap-y-4 ">
               <template v-for="item in store.regions" :key="item">
-                <div class="col-span-12 md:col-span-6  lg:col-span-4 p-2 bg-surface-ground border border-surface-line
-               rounded-lg flex items-center cursor-pointer gap-2
+                <div @click="onClickRegion(item)" class="col-span-12 md:col-span-6  lg:col-span-4 p-2 bg-surface-ground border border-surface-line
+               rounded-lg flex items-center cursor-pointer gap-2 hover:shadow-navbar transition-all duration-300
 ">
                   <IconBuild />
                   <div class="flex flex-col border-l border-surface-line pl-4 w-[calc(100%-50px)]">

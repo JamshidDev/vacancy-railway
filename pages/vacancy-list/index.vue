@@ -15,7 +15,9 @@ const onSearch = useDebounceFn((callback) => {
 }, 1000, { maxWait: 5000 })
 
 onMounted(()=>{
-  store.params.search = route.query?.search
+  store.params.search = route.query?.search || null
+  store.params.region_id = route.query?.region_id ? Number(route.query.region_id) : null
+  store.params.organizations = route.query?.organization_id ? [Number(route.query.organization_id)] : []
   store.onIndex()
 })
 </script>
