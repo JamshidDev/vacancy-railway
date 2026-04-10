@@ -100,6 +100,8 @@
     "expired": "Expired",
     "process": "Pending",
     "uploadFile": "Click to upload a file!",
+    "applyInfoTitle": "Important notice!",
+    "applyInfo": "Please combine your diploma, certificates and other documents into a single PDF file before uploading. Separately uploaded files may not be accepted.",
     "sentApply": "Application sent",
     "educationDegree": "Education level",
     "candidate": "Number of candidates",

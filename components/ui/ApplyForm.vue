@@ -25,6 +25,15 @@ const onSubmit = ()=>{
 <template>
 <div class="w-full grid grid-cols-12 gap-4">
   <div class="col-span-12">
+    <div class="w-full bg-primary/5 border border-primary/20 rounded-lg px-4 py-3 mb-3 flex items-start gap-3">
+      <n-icon size="20" class="text-primary mt-0.5 shrink-0">
+        <Document28Regular/>
+      </n-icon>
+      <div>
+        <p class="text-black-primary font-semibold text-sm">{{$t('detail.applyInfoTitle')}}</p>
+        <p class="text-black-tertiary text-xs mt-1 leading-[18px]">{{$t('detail.applyInfo')}}</p>
+      </div>
+    </div>
       <div @click="openFile" class="w-full cursor-pointer h-[80px] border bg-pattern border-dashed border-surface-line rounded-2xl flex justify-center items-center">
           <span class="font-semibold text-black-tertiary">{{$t('detail.uploadFile')}}</span>
           <input @change="store.onUploadFile" type="file" multiple v-show="false" ref="inputRef" accept=".pdf,.doc,.docx" />
