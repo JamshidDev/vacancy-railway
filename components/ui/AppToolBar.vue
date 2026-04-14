@@ -136,13 +136,13 @@ onMounted(()=>{
             </h6>
           </div>
         </div>
-        <div @click="navigateTo(localePath('/profile'))" class="flex items-center justify-between p-2 mx-2 mt-2 font-medium border rounded-xl border-surface-line">
+        <div @click="navigateTo(localePath('/profile')); store.sidebar = false" class="flex items-center justify-between p-2 mx-2 mt-2 font-medium border rounded-xl border-surface-line">
           <span >{{$t('profile.menu.profile')}}</span>
           <n-icon size="20" class="text-surface-line">
             <ChevronRight12Regular/>
           </n-icon>
         </div>
-        <div @click="navigateTo(localePath('/profile'))" class="flex items-center justify-between p-2 mx-2 mt-2 font-medium border rounded-xl border-surface-line">
+        <div @click="navigateTo(localePath('/applications')); store.sidebar = false" class="flex items-center justify-between p-2 mx-2 mt-2 font-medium border rounded-xl border-surface-line">
           <span >{{$t('profile.menu.myApplications')}}</span>
           <n-icon size="20" class="text-surface-line">
             <ChevronRight12Regular/>

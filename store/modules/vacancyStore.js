@@ -6,11 +6,18 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
     const params = ref({
         region_id:null,
         city_id:null,
-        organizations:[],
+        organization_id:null,
         experience:null,
         search:null,
         education:null,
         salary:null,
+        page:1,
+        per_page:10,
+    })
+
+    const pagination = ref({
+        current_page: 1,
+        total: 0,
     })
 
     const heroSearch = ref(null)
@@ -19,7 +26,18 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
     const experience= ref(false)
     const salary= ref(false)
 
+    const experienceOptions = [1, 2, 3, 4, 5]
+    const salaryOptions = [
+        { value: 500000, label: '500 000' },
+        { value: 1000000, label: '1 000 000' },
+        { value: 2000000, label: '2 000 000' },
+        { value: 3000000, label: '3 000 000' },
+        { value: 5000000, label: '5 000 000' },
+    ]
+
     const organizations = ref([])
+    const organizationList = ref([])
+    const organizationLoading = ref(false)
     const regions = ref([])
     const lastVacancies = ref([])
     const loading = ref(false)
@@ -43,6 +61,18 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
     const sendData = ref(null)
     const showLoading =ref(false)
 
+    // Applications
+    const applicationList = ref([])
+    const applicationLoading = ref(false)
+    const applicationPagination = ref({
+        current_page: 1,
+        total: 0,
+    })
+    const applicationParams = ref({
+        page: 1,
+        per_page: 10,
+    })
+
 
     const onChangeTab = (v)=>{
         activeTab.value = v
@@ -61,6 +91,7 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
     }
 
     const onRegions = ()=>{
+        if (regionList.value.length) return
         regionLoading.value = true
         $ApiSerivce.vacancyService.regions().then(res=>{
             regionList.value =res.data.data
@@ -68,9 +99,18 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
             regionLoading.value = false
         })
     }
+    const onOrganizations = ()=>{
+        if (organizationList.value.length) return
+        organizationLoading.value = true
+        $ApiSerivce.vacancyService.organizations().then(res=>{
+            organizationList.value = res.data.data
+        }).finally(()=>{
+            organizationLoading.value = false
+        })
+    }
     const onCities = (v)=>{
         cityLoading.value = true
-        $ApiSerivce.vacancyService.cities({region_id:v}).then(res=>{
+        $ApiSerivce.vacancyService.cities({params:{region_id:v}}).then(res=>{
             cityList.value =res.data.data
         }).finally(()=>{
             cityLoading.value = false
@@ -79,10 +119,23 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
     const onIndex = ()=>{
         listLoading.value = true
         $ApiSerivce.vacancyService.index({params:params.value}).then(res=>{
-            list.value =res.data.data.data
+            if(res?.data?.data) {
+                list.value = res.data.data.data || []
+                pagination.value.current_page = res.data.data.current_page || 1
+                pagination.value.total = res.data.data.total || 0
+            }
+        }).catch(err=>{
+            console.error('onIndex error:', err)
+            list.value = []
         }).finally(()=>{
             listLoading.value = false
         })
+    }
+
+    const onPageChange = (page)=>{
+        params.value.page = page
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        onIndex()
     }
 
     const onShow = (id)=>{
@@ -95,10 +148,34 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
         })
     }
 
+    const onApplications = ()=>{
+        applicationLoading.value = true
+        $ApiSerivce.vacancyService.applications({params:applicationParams.value}).then(res=>{
+            if(res?.data?.data) {
+                applicationList.value = res.data.data || []
+                applicationPagination.value.total = res.data.data?.length || 0
+            }
+        }).catch(err=>{
+            console.error('onApplications error:', err)
+            applicationList.value = []
+        }).finally(()=>{
+            applicationLoading.value = false
+        })
+    }
+
+    const onApplicationPageChange = (page)=>{
+        applicationParams.value.page = page
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        onApplications()
+    }
 
     return {
         regionList,
         regionLoading,
+        organizationList,
+        organizationLoading,
+        experienceOptions,
+        salaryOptions,
         params,
         experience,
         salary,
@@ -117,13 +194,22 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
         showLoading,
         heroSearch,
         sendData,
+        pagination,
+        applicationList,
+        applicationLoading,
+        applicationPagination,
+        applicationParams,
 
         onChangeTab,
         onRegions,
+        onOrganizations,
         onCities,
         onInitialApp,
         onIndex,
         onShow,
+        onPageChange,
+        onApplications,
+        onApplicationPageChange,
     }
 
 })

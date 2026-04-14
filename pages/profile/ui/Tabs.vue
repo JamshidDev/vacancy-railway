@@ -1,9 +1,11 @@
 <script setup>
-import {Briefcase28Regular, CheckmarkCircle20Filled, BuildingBank24Regular, DocumentBulletList24Regular} from "@vicons/fluent"
+import {Briefcase28Regular, CheckmarkCircle20Filled, BuildingBank24Regular, DocumentBulletList24Regular, ClipboardTaskListLtr24Regular} from "@vicons/fluent"
 import {useUserInfoStore} from "~/store/index.js"
 import Career from "./Career.vue"
 import Education from "./Education.vue"
 import Personal from "./Personal.vue"
+
+const router = useRouter()
 
 const tabList = [
   {
@@ -21,9 +23,23 @@ const tabList = [
     id:3,
     icon:Briefcase28Regular,
   },
+  {
+    name:'profile.menu.myApplications',
+    id:4,
+    icon:ClipboardTaskListLtr24Regular,
+    link:'/applications',
+  },
 ]
 
 const store = useUserInfoStore()
+
+const onTabClick = (item) => {
+  if (item.link) {
+    router.push(item.link)
+  } else {
+    store.onChangeTab(item.id)
+  }
+}
 </script>
 
 <template>
@@ -31,13 +47,13 @@ const store = useUserInfoStore()
     <div class=" w-full lg:w-[400px]">
         <div class="w-full px-6 py-4  bg-gradient-to-b from-primary/10 to-primary/40 rounded-xl">
 
-          <template v-for="item in tabList" :key="item">
+          <template v-for="item in tabList" :key="item.id">
             <div
-                @click="store.onChangeTab(item.id)"
+                @click="onTabClick(item)"
                 class="w-full group cursor-pointer flex items-center px-3 py-4 bg-surface-section rounded-lg mb-3 text-black-tertiary overflow-hidden"
             >
-              <n-icon size="24" :class="[store.activeTab === item.id && 'text-primary']" >
-                <CheckmarkCircle20Filled v-if="store.activeTab === item.id" />
+              <n-icon size="24" :class="[store.activeTab === item.id && !item.link && 'text-primary']" >
+                <CheckmarkCircle20Filled v-if="store.activeTab === item.id && !item.link" />
                 <component :is="item.icon" v-else/>
               </n-icon>
               <span class="text-black-secondary font-semibold pl-4 ">{{$t(item.name)}}</span>

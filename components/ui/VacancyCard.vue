@@ -1,7 +1,7 @@
 <script setup>
 import {Wallet24Regular, Location24Regular,Clock32Regular,
   DocumentBriefcase20Regular, CalendarLtr32Regular, Clock28Regular,
-  ArrowForward24Filled,Eye16Filled,Person12Filled, } from "@vicons/fluent"
+  ArrowForward24Filled,Eye16Filled,Person12Filled, Location16Filled } from "@vicons/fluent"
 
 const router = useRouter()
 const props = defineProps({
@@ -17,8 +17,13 @@ const props = defineProps({
     @click="router.push({path:'/vacancy-list/detail', query:{id:data.id}})"
     class="px-5 py-4 bg-surface-ground border border-surface-line rounded-xl
  mb-4 hover:bg-surface-section cursor-pointer hover:shadow-navbar transition-all duration-300">
-  <h2 class="text-xl text-black-primary font-medium">{{data?.position}}</h2>
-  <h2 class="text-xs text-black-tertiary mt-2 border-b border-surface-line pb-4">• {{data?.department}}</h2>
+  <h2 class="text-xl text-black-primary font-bold">{{data?.position}}</h2>
+  <h2 class="text-xs text-black-tertiary mt-2 border-b border-surface-line pb-4 flex items-center gap-1">
+    <n-icon size="14" class="text-primary">
+      <Location16Filled/>
+    </n-icon>
+    {{data?.department}}
+  </h2>
   <h3 class="text-black-secondary mt-2 font-medium">{{data.organization}}</h3>
   <div class="grid grid-cols-12 mt-2 gap-2">
     <div class="col-span-12 md:col-span-6 flex item-center gap-x-2 font-medium">

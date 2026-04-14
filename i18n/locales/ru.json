@@ -26,10 +26,14 @@
     "no": "Нет",
     "add": "Добавить",
     "action": "Действия",
+    "close": "Закрыть",
+    "viewMessage": "Сообщение",
+    "messageDetails": "Информация о сообщении",
     "man": "Мужчина",
     "woman": "Женщина",
     "interface-language": "Язык интерфейса",
-    "organization": "Организация"
+    "organization": "Организация",
+    "clear": "Очистить"
   },
   "rules": {
     "login": "Необходимо ввести email!",
@@ -111,7 +115,10 @@
     "specialties": "Специальность",
     "working_conditions": "Условия работы",
     "position_obligations": "Обязанности по должности",
-    "qualification_requirements": "Квалификационные требования"
+    "qualification_requirements": "Квалификационные требования",
+    "applySuccessTitle": "Ваша заявка успешно отправлена!",
+    "applySuccessText": "Мы сообщим вам о статусе вашей заявки. Нажмите кнопку ниже, чтобы просмотреть свои заявки.",
+    "viewApplications": "Посмотреть мои заявки"
   },
   "info": {
     "banner": {

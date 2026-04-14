@@ -59,6 +59,7 @@ export const useProfileStore = defineStore('profileStore',()=>{
     const dashboardLoading = ref(false)
     const sendLoading = ref(false)
     const applyVisible = ref(false)
+    const applySuccessVisible = ref(false)
     const docFiles = ref([])
     const sidebar = ref(false)
     const appLanguage = ref('')
@@ -181,10 +182,11 @@ export const useProfileStore = defineStore('profileStore',()=>{
         sendLoading.value = true
         window.$ApiSerivce.userService._sendApply({data}).then(res=>{
             applyVisible.value = false
+            docFiles.value = []
+            applySuccessVisible.value = true
             const store = useVacancyStore()
             const id = route.query.id
             store.onShow(id)
-
         }).finally(()=>{
             sendLoading.value = false
         })
@@ -233,6 +235,7 @@ export const useProfileStore = defineStore('profileStore',()=>{
         dashboardList,
         dashboardLoading,
         applyVisible,
+        applySuccessVisible,
         onSendApply,
         onUploadFile,
         docFiles,

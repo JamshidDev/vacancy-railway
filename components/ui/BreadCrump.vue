@@ -21,6 +21,11 @@ const navigations = [
     path:'/vacancy-list/detail',
     indicator:'detail',
   },
+  {
+    name:"profile.menu.myApplications",
+    path:'/applications',
+    indicator:'applications',
+  },
 ]
 
 

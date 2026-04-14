@@ -24,10 +24,14 @@
     "no": "No",
     "add": "Add",
     "action": "Actions",
+    "close": "Close",
+    "viewMessage": "Message",
+    "messageDetails": "Message details",
     "man": "Man",
     "woman": "Woman",
     "interface-language": "Interface language",
-    "organization": "Organization"
+    "organization": "Organization",
+    "clear": "Clear"
   },
   "rules": {
     "login": "Email is required!",
@@ -109,7 +113,10 @@
     "specialties": "Specialty",
     "working_conditions": "Working conditions",
     "position_obligations": "Position responsibilities",
-    "qualification_requirements": "Qualification requirements"
+    "qualification_requirements": "Qualification requirements",
+    "applySuccessTitle": "Your application has been successfully submitted!",
+    "applySuccessText": "We will notify you about the status of your application. Click the button below to view your applications.",
+    "viewApplications": "View my applications"
   },
   "info": {
     "banner": {

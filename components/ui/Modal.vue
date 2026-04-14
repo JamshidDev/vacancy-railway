@@ -15,6 +15,10 @@ const props = defineProps({
   persistent: {
     type: Boolean,
     default: false
+  },
+  showHeader: {
+    type: Boolean,
+    default: true
   }
 })
 
@@ -43,7 +47,7 @@ const onClickClose = ()=>{
     >
       <template #default>
         <div class="flex flex-col p-2">
-          <div class="w-full">
+          <div v-if="showHeader" class="w-full">
             <slot name="header">
               <div class="flex justify-between px-4 py-2">
                 <slot name="header-title">

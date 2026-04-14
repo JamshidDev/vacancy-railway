@@ -51,11 +51,37 @@ const status = computed(()=>{
 
 <template>
 <div>
-  <h2 class="text-black-primary font-bold">
-    {{store.detail?.organization}},
-    {{store.detail?.department}},
-    {{store.detail?.position}},
-  </h2>
+  <!-- Skeleton -->
+  <template v-if="store.showLoading">
+    <div>
+      <n-skeleton text style="width: 100%; height: 20px" />
+      <n-skeleton text style="width: 80%; height: 20px" class="mt-1" />
+      <n-skeleton text style="width: 60%; height: 20px" class="mt-1" />
+    </div>
+    <div class="bg-surface-section rounded-lg mt-4">
+      <div class="flex items-center py-2 px-2 border-b border-surface-line">
+        <n-skeleton circle style="width: 24px; height: 24px" />
+        <n-skeleton text style="width: 120px; height: 16px" class="ml-4" />
+      </div>
+      <div class="flex items-center py-2 px-2 border-b border-surface-line">
+        <n-skeleton circle style="width: 24px; height: 24px" />
+        <n-skeleton text style="width: 150px; height: 16px" class="ml-4" />
+      </div>
+      <div class="flex items-center py-2 px-2 border-b border-surface-line">
+        <n-skeleton circle style="width: 24px; height: 24px" />
+        <n-skeleton text style="width: 100px; height: 16px" class="ml-4" />
+      </div>
+    </div>
+    <n-skeleton text style="width: 100%; height: 40px; border-radius: 6px" class="mt-6" />
+  </template>
+
+  <!-- Content -->
+  <template v-else>
+    <h2 class="text-black-primary font-bold">
+      {{store.detail?.organization}},
+      {{store.detail?.department}},
+      {{store.detail?.position}},
+    </h2>
 
     <div class="bg-surface-section rounded-lg mt-4">
       <div class="flex items-center py-2 px-2 border-b border-surface-line text-black-secondary">
@@ -76,9 +102,9 @@ const status = computed(()=>{
         </n-icon>
         <span class="pl-4 inline-block font-semibold">{{store.detail?.site || $t('content.emptyData')}}</span>
       </div>
-
     </div>
 
     <n-button :loading="store.showLoading" @click="onApplyApplication" secondary :type="status.type" size="large" class="!w-full !mt-6">{{$t(status.text)}}</n-button>
+  </template>
 </div>
 </template>

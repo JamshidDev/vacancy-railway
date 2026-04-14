@@ -10,11 +10,17 @@ export default {
     cities: async (payload)=>{
         return await axios.get('/v1/vacancies/cities', {params:payload?.params})
     },
+    organizations: async (payload)=>{
+        return await axios.get('/v1/vacancies/organizations', {params:payload?.params})
+    },
     index: async (payload)=>{
         return await axios.get('/v1/vacancies/report', {params:payload?.params})
     },
     show: async (payload)=>{
         return await axios.get(`/v1/vacancies/report/${payload.id}`, {params:payload?.params})
+    },
+    applications: async (payload)=>{
+        return await axios.get('/v1/vacancies/applications', {params:payload?.params})
     },
 }
 

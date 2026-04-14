@@ -35,7 +35,7 @@ const onSelect = (key)=>{
   }else if(key === option[0].key){
     navigateTo(localePath('/profile'))
   }else if(key === option[1].key){
-    navigateTo(localePath('/profile'))
+    navigateTo(localePath('/applications'))
   }
 }
 

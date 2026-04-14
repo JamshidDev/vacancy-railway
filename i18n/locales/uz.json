@@ -24,10 +24,14 @@
     "no": "Yo'q",
     "add": "Qo'shish",
     "action": "Amallar",
+    "close": "Yopish",
+    "viewMessage": "Xabar",
+    "messageDetails": "Xabar ma'lumotlari",
     "man": "Erkak",
     "woman": "Ayol",
     "interface-language": "Dastur tili",
-    "organization": "Tashkilot"
+    "organization": "Tashkilot",
+    "clear": "Tozalash"
   },
   "rules": {
     "login": "Email kiritilishi shart!",
@@ -109,7 +113,10 @@
     "specialties": "Mutaxassisligi",
     "working_conditions": "Ish sharoitlari",
     "position_obligations": "Lavozimiy majburiyatlari",
-    "qualification_requirements": " Malakaviy talablar"
+    "qualification_requirements": " Malakaviy talablar",
+    "applySuccessTitle": "Arizangiz muvaffaqiyatli yuborildi!",
+    "applySuccessText": "Arizangiz holati haqida xabar beramiz. Arizalaringizni ko'rish uchun quyidagi tugmani bosing.",
+    "viewApplications": "Arizalarimni ko'rish"
   },
   "info": {
     "banner": {
