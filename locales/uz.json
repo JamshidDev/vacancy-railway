@@ -187,6 +187,13 @@
       "count": "Arizalar soni"
     }
   },
+  "error": {
+    "notFound": "Sahifa topilmadi",
+    "notFoundDesc": "Siz qidirayotgan sahifa mavjud emas yoki ko'chirilgan bo'lishi mumkin.",
+    "serverError": "Server xatosi",
+    "serverErrorDesc": "Serverda xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko'ring.",
+    "backHome": "Bosh sahifaga qaytish"
+  },
   "footer": {
     "address": "O'zbekiston Respublikasi, Toshkent, 100060, Т. Shevchenko ko'chasi, 7",
     "lastUpdated": "Oxirgi yangilangan vaqt",
