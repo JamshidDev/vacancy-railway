@@ -55,7 +55,7 @@ const options= [
 ]
 
 onMounted(()=>{
-  store.appLanguage = locale._value
+  store.appLanguage = locale.value
 })
 </script>
 

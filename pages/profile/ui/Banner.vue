@@ -1,12 +1,29 @@
 <script setup>
 import {Info24Filled, Print20Regular, DrawerArrowDownload20Regular, ArrowSync16Filled, ArrowSync12Regular} from "@vicons/fluent"
 import {useProfileStore} from "../../../store/index.js"
+import ImageCropper from "../../../components/ui/ImageCropper.vue"
 
 const store = useProfileStore()
 const inputRef = ref(null)
+const cropperVisible = ref(false)
+const selectedFile = ref(null)
 
 const openFile = ()=>{
   inputRef.value?.click()
+}
+
+const onFileChange = (e) => {
+  const file = e.target.files[0]
+  if (file) {
+    selectedFile.value = file
+    cropperVisible.value = true
+  }
+  inputRef.value.value = ''
+}
+
+const onCropComplete = (croppedFile) => {
+  store.onUpdateAvatarWithFile(croppedFile)
+  selectedFile.value = null
 }
 </script>
 
@@ -60,7 +77,13 @@ const openFile = ()=>{
         <p class="text-black-tertiary mb-2">{{$t('info.banner.birthday')}} <span class="text-black-secondary font-semibold">{{utils.timeToUI(store.account?.birthday)}}</span></p>
         <p class="text-black-tertiary mb-2">{{$t('info.banner.birthPlace')}} <span class="text-black-secondary font-semibold"> {{store.account?.city?.name}} </span></p>
         <n-button @click="openFile" class="!mt-4" size="tiny">{{$t('info.banner.changePicture')}}</n-button>
-        <input type="file" @change="store.onUpdateAvatar" v-show="false" ref="inputRef" accept="image/*" />
+        <input type="file" @change="onFileChange" v-show="false" ref="inputRef" accept="image/*" />
+
+        <ImageCropper
+          v-model:visible="cropperVisible"
+          :image-file="selectedFile"
+          @crop="onCropComplete"
+        />
       </div>
       <div class="md:w-1/2 w-full">
         <p class="text-black-tertiary mb-2">{{$t('info.banner.phone')}}  <span class="text-black-secondary font-semibold">+998{{store.account?.phone}} </span></p>

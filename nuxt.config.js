@@ -2,7 +2,6 @@ import tailwindcss from "@tailwindcss/vite";
 import AutoImport from 'unplugin-auto-import/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
-import i18nConfig from "./i18n/index.js"
 
 export default {
   ssr:false,
@@ -34,7 +33,18 @@ export default {
     exposeConfig: true,
     viewer: true,
   },
-  i18n:i18nConfig,
+  i18n: {
+    restructureDir: false,
+    defaultLocale: 'uz',
+    lazy: true,
+    langDir: 'locales',
+    detectBrowserLanguage: false,
+    locales: [
+      { code: 'uz', name: 'Uzbek', file: 'uz.json' },
+      { code: 'en', name: 'English', file: 'en.json' },
+      { code: 'ru', name: 'Russian', file: 'ru.json' }
+    ],
+  },
   vite: {
     plugins: [
       tailwindcss(),

@@ -31,7 +31,15 @@
     "woman": "Woman",
     "interface-language": "Interface language",
     "organization": "Organization",
-    "clear": "Clear"
+    "clear": "Clear",
+    "cropImage": "Crop image",
+    "crop": "Crop",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "rotateLeft": "Rotate left",
+    "rotateRight": "Rotate right",
+    "reset": "Reset",
+    "preview": "Preview"
   },
   "rules": {
     "login": "Email is required!",
@@ -87,7 +95,8 @@
     "availableOrganization": "100+ organizations are waiting for you",
     "newVacancy": "New vacancies",
     "subVacancyText": "Don’t miss the opportunity",
-    "viewMore": "View more"
+    "viewMore": "View more",
+    "goToVacancy": "Go to vacancy"
   },
   "vacancy": {
     "name": "Vacancies",
@@ -177,5 +186,11 @@
       "all": "All applications",
       "count": "Number of applications"
     }
+  },
+  "footer": {
+    "address": "Republic of Uzbekistan, Tashkent, 100060, T. Shevchenko street, 7",
+    "lastUpdated": "Last updated",
+    "copyright": "Copying, distribution and other use of materials published on the portal is allowed only with written consent.",
+    "developedBy": "Developed by"
   }
 }

@@ -5,12 +5,18 @@ const router = useRouter()
 
 const localePath = useLocalePath()
 
-const onClickOrganization = () => {
-  navigateTo(localePath('/vacancy-list'))
+const onClickOrganization = (item) => {
+  navigateTo({
+    path: localePath('/vacancy-list'),
+    query: { organization_id: item.organization_id }
+  })
 }
 
-const onClickRegion = () => {
-  navigateTo(localePath('/vacancy-list'))
+const onClickRegion = (item) => {
+  navigateTo({
+    path: localePath('/vacancy-list'),
+    query: { region_id: item.region_id }
+  })
 }
 </script>
 

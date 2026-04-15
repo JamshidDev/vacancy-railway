@@ -16,7 +16,7 @@ relative after:content-[' '] after:w-full after:h-full after:absolute after:top-
          <n-icon size="20" class="text-primary">
            <Map24Regular/>
          </n-icon>
-         <span class="pl-4 text-black-secondary font-semibold">O‘zbekiston Respublikasi, Toshkent, 100060, Т. Shevchenko ko‘chasi, 7</span>
+         <span class="pl-4 text-black-secondary font-semibold">{{ $t('footer.address') }}</span>
        </div>
        <div class="flex items-center py-1">
          <n-icon size="20" class="text-primary">
@@ -28,12 +28,12 @@ relative after:content-[' '] after:w-full after:h-full after:absolute after:top-
          <n-icon size="20" class="text-primary">
            <Clock28Regular/>
          </n-icon>
-         <span class="pl-4 text-black-secondary font-semibold">Oxirgi yangilangan vaqt: 10.04.2026 15:30:00</span>
+         <span class="pl-4 text-black-secondary font-semibold">{{ $t('footer.lastUpdated') }}: 10.04.2026 15:30:00</span>
        </div>
      </div>
      <div class="col-span-12 md:col-span-6 lg:col-span-4 px-4">
        <span class="text-black-tertiary text-xs">
-         Portalda e'lon qilingan materiallardan nusxa ko‘chirish, tarqatish va boshqa shakllarda foydalanish faqat yozma rozilik bilan amalga oshirilishi mumkin.
+         {{ $t('footer.copyright') }}
        </span>
 
      </div>
@@ -42,7 +42,7 @@ relative after:content-[' '] after:w-full after:h-full after:absolute after:top-
          <n-icon size="20" class="text-primary">
            <Map24Regular/>
          </n-icon>
-         <span class="pl-4 text-black-secondary font-semibold">O‘zbekiston Respublikasi, Toshkent, 100060, Т. Shevchenko ko‘chasi, 7</span>
+         <span class="pl-4 text-black-secondary font-semibold">{{ $t('footer.address') }}</span>
        </div>
        <div class="flex items-center py-1">
          <n-icon size="20" class="text-primary">
@@ -54,7 +54,7 @@ relative after:content-[' '] after:w-full after:h-full after:absolute after:top-
          <n-icon size="20" class="text-primary">
            <Clock28Regular/>
          </n-icon>
-         <span class="pl-4 text-black-secondary font-semibold">Oxirgi yangilangan vaqt: 10.04.2026 15:30:00</span>
+         <span class="pl-4 text-black-secondary font-semibold">{{ $t('footer.lastUpdated') }}: 10.04.2026 15:30:00</span>
        </div>
      </div>
    </div>
@@ -66,7 +66,7 @@ relative after:content-[' '] after:w-full after:h-full after:absolute after:top-
           <span>vacancy.railway.uz</span>
         </div>
         <div class="col-span-6 flex justify-end">
-          Developed by: <span class="text-primary">dasuty.com</span>
+          {{ $t('footer.developedBy') }}: <span class="text-primary ml-1">dasuty.com</span>
         </div>
       </div>
     </UiPageContent>

@@ -31,7 +31,15 @@
     "woman": "Ayol",
     "interface-language": "Dastur tili",
     "organization": "Tashkilot",
-    "clear": "Tozalash"
+    "clear": "Tozalash",
+    "cropImage": "Rasmni qirqish",
+    "crop": "Qirqish",
+    "zoomIn": "Kattalashtirish",
+    "zoomOut": "Kichiklashtirish",
+    "rotateLeft": "Chapga aylantirish",
+    "rotateRight": "O'ngga aylantirish",
+    "reset": "Qayta tiklash",
+    "preview": "Ko'rinishi"
   },
   "rules": {
     "login": "Email kiritilishi shart!",
@@ -87,7 +95,8 @@
     "availableOrganization":"100+ tashkilotlar aynan sizni kutmoqda",
     "newVacancy":"Yangi ish o'rinlari",
     "subVacancyText":"Imkoniyatni qo‘ldan boy bermang",
-    "viewMore":"Ko'rib chiqish"
+    "viewMore":"Ko'rib chiqish",
+    "goToVacancy":"Vakansiyaga o'tish"
   },
   "vacancy": {
     "name": "Ish o'rinlari",
@@ -177,6 +186,12 @@
       "all": "Barcha arizalar",
       "count": "Arizalar soni"
     }
+  },
+  "footer": {
+    "address": "O'zbekiston Respublikasi, Toshkent, 100060, Т. Shevchenko ko'chasi, 7",
+    "lastUpdated": "Oxirgi yangilangan vaqt",
+    "copyright": "Portalda e'lon qilingan materiallardan nusxa ko'chirish, tarqatish va boshqa shakllarda foydalanish faqat yozma rozilik bilan amalga oshirilishi mumkin.",
+    "developedBy": "Ishlab chiquvchi"
   }
 
 }

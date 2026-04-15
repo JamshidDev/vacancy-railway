@@ -2,46 +2,91 @@
 import {ChevronRight20Filled} from "@vicons/fluent"
 import {useVacancyStore} from "~/store/index.js"
 const store = useVacancyStore()
+const router = useRouter()
+const route = useRoute()
 
-const onChange = ()=>{
+// URL query ni yangilash
+const updateQueryParams = () => {
+  const query = {}
+  if (store.params.region_id) query.region_id = store.params.region_id
+  if (store.params.organization_id) query.organization_id = store.params.organization_id
+
+  router.replace({ query })
+}
+
+// Options yuklanguncha qiymatni ko'rsatmaslik uchun
+const regionValue = computed(() => {
+  if (!store.params.region_id) return null
+  if (store.regionLoading || store.regionList.length === 0) return null
+  return store.params.region_id
+})
+
+const organizationValue = computed(() => {
+  if (!store.params.organization_id) return null
+  if (store.organizationLoading || store.organizationList.length === 0) return null
+  return store.params.organization_id
+})
+
+const cityValue = computed(() => {
+  if (!store.params.city_id) return null
+  if (store.cityLoading || store.cityList.length === 0) return null
+  return store.params.city_id
+})
+
+const onRegionChange = (value) => {
+  store.params.region_id = value
   store.params.city_id = null
   store.params.page = 1
+  updateQueryParams()
   store.onIndex()
-  if (store.params.region_id) {
-    store.onCities(store.params.region_id)
+  if (value) {
+    store.onCities(value)
   } else {
     store.cityList = []
   }
 }
 
-const onFilterChange = ()=>{
+const onOrganizationChange = (value) => {
+  store.params.organization_id = value
+  store.params.page = 1
+  updateQueryParams()
+  store.onIndex()
+}
+
+const onCityChange = (value) => {
+  store.params.city_id = value
   store.params.page = 1
   store.onIndex()
 }
 
 const onExperienceChange = (value)=>{
   store.params.experience = value
-  onFilterChange()
+  store.params.page = 1
+  store.onIndex()
 }
 
 const onNoExperienceChange = (value)=>{
   store.params.experience = value ? 0 : null
-  onFilterChange()
+  store.params.page = 1
+  store.onIndex()
 }
 
 const onSalaryChange = (value)=>{
   store.params.salary = value
-  onFilterChange()
+  store.params.page = 1
+  store.onIndex()
 }
 
 const clearExperience = ()=>{
   store.params.experience = null
-  onFilterChange()
+  store.params.page = 1
+  store.onIndex()
 }
 
 const clearSalary = ()=>{
   store.params.salary = null
-  onFilterChange()
+  store.params.page = 1
+  store.onIndex()
 }
 
 onMounted(()=>{
@@ -55,11 +100,11 @@ onMounted(()=>{
     <div class="col-span-12 border-b border-surface-line pb-4 mb-4">
       <label class="text-black-secondary block mb-1">{{$t('vacancy.area')}}</label>
       <n-select
-          v-model:value="store.params.region_id"
+          :value="regionValue"
           filterable
           clearable
           :options="store.regionList"
-          @update:value="onChange"
+          @update:value="onRegionChange"
           label-field="name"
           value-field="id"
           :loading="store.regionLoading"
@@ -69,12 +114,12 @@ onMounted(()=>{
   <div class="col-span-12 border-b border-surface-line pb-4 mb-4">
     <label class="text-black-secondary block mb-1">{{$t('vacancy.city')}}</label>
     <n-select
-        v-model:value="store.params.city_id"
+        :value="cityValue"
         filterable
         clearable
         :disabled="!store.params.region_id"
         :options="store.cityList"
-        @update:value="onFilterChange"
+        @update:value="onCityChange"
         label-field="name"
         value-field="id"
         :loading="store.cityLoading"
@@ -84,11 +129,11 @@ onMounted(()=>{
   <div class="col-span-12 border-b border-surface-line pb-4 mb-4">
     <label class="text-black-secondary block mb-1">{{$t('mainSection.organizations')}}</label>
     <n-select
-        v-model:value="store.params.organization_id"
+        :value="organizationValue"
         filterable
         clearable
         :options="store.organizationList"
-        @update:value="onFilterChange"
+        @update:value="onOrganizationChange"
         label-field="name"
         value-field="id"
         :loading="store.organizationLoading"

@@ -123,7 +123,7 @@ export const useProfileStore = defineStore('profileStore',()=>{
             payload.value.current_city_id = v.current_city?.id
             payload.value.address = v.address
             payload.value.pin = v.pin?.toString()
-            payload.value.sex = v.sex
+            payload.value.sex = typeof v.sex === 'boolean' ? Number(v.sex) : v.sex
             payload.value.nationality_id = v.nationality?.id
             payload.value.education = v.education?.id
             payload.value.marital_status = v.marital_status?.id
@@ -149,6 +149,15 @@ export const useProfileStore = defineStore('profileStore',()=>{
 
     const onUpdateAvatar = (v)=>{
         const file = v.target.files[0]
+        const formData = new FormData()
+        formData.append('photo', file)
+        profileLoading.value = true
+        window.$ApiSerivce.userService.updateAvatar({data:formData}).then(res=>{
+            onProfile()
+        })
+    }
+
+    const onUpdateAvatarWithFile = (file)=>{
         const formData = new FormData()
         formData.append('photo', file)
         profileLoading.value = true
@@ -231,6 +240,7 @@ export const useProfileStore = defineStore('profileStore',()=>{
         fullName,
         avatarUrl,
         onUpdateAvatar,
+        onUpdateAvatarWithFile,
         onGetDashboard,
         dashboardList,
         dashboardLoading,

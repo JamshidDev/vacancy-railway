@@ -6,7 +6,8 @@ import {
   DocumentBriefcase20Regular,
   CalendarLtr32Regular,
   Location16Filled,
-  Info16Regular
+  Info16Regular,
+  ArrowRight16Filled
 } from "@vicons/fluent"
 
 const router = useRouter()
@@ -32,17 +33,18 @@ const hasMessage = computed(() => {
   return props.data?.status?.id !== 1 && props.data?.messages?.length > 0
 })
 
-const onShowMessage = (e) => {
-  e.stopPropagation()
+const onShowMessage = () => {
   emit('showMessage', props.data)
+}
+
+const onGoToVacancy = () => {
+  router.push({path:'/vacancy-list/detail', query:{id:vacancy.value?.id}})
 }
 </script>
 
 <template>
 <div
-    @click="router.push({path:'/vacancy-list/detail', query:{id:vacancy?.id}})"
-    class="px-4 sm:px-5 py-4 bg-surface-ground border border-surface-line rounded-xl
- mb-4 hover:bg-surface-section cursor-pointer hover:shadow-navbar transition-all duration-300">
+    class="px-4 sm:px-5 py-4 bg-surface-ground border border-surface-line rounded-xl mb-4">
   <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-0">
     <h2 class="text-base sm:text-xl text-black-primary font-bold order-2 sm:order-1">{{vacancy?.position?.name}}</h2>
     <div class="flex items-center gap-2 self-start order-1 sm:order-2">
@@ -98,13 +100,21 @@ const onShowMessage = (e) => {
       <span class="line-clamp-1">{{(vacancy?.experience ? $t('vacancy.minWorkExperience', {n:vacancy?.experience}) : $t('vacancy.noExperience'))}}</span>
     </div>
   </div>
-  <div class="mt-4 sm:mt-6 border-t border-surface-line pt-2 text-black-tertiary">
-    <div class="flex gap-1 items-center text-sm">
+  <div class="mt-4 sm:mt-6 border-t border-surface-line pt-3 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+    <div class="flex gap-1 items-center text-sm text-black-tertiary">
       <n-icon size="18" class="flex-shrink-0">
         <CalendarLtr32Regular/>
       </n-icon>
       <span>{{ $t('detail.sentApply') }}: {{utils.formattedDate(data?.created_at)}}</span>
     </div>
+    <n-button @click="onGoToVacancy" type="primary" size="small" secondary>
+      <template #icon>
+        <n-icon size="16">
+          <ArrowRight16Filled/>
+        </n-icon>
+      </template>
+      {{ $t('mainSection.goToVacancy') }}
+    </n-button>
   </div>
 </div>
 </template>
