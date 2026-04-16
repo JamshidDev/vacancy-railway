@@ -125,7 +125,10 @@
     "qualification_requirements": "Qualification requirements",
     "applySuccessTitle": "Your application has been successfully submitted!",
     "applySuccessText": "We will notify you about the status of your application. Click the button below to view your applications.",
-    "viewApplications": "View my applications"
+    "viewApplications": "View my applications",
+    "salaryNegotiable": "Negotiable based on interview",
+    "phdRequired": "Phd/DSc required",
+    "phdNotRequired": "Phd/DSc not required"
   },
   "info": {
     "banner": {

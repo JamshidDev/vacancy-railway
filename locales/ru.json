@@ -127,7 +127,10 @@
     "qualification_requirements": "Квалификационные требования",
     "applySuccessTitle": "Ваша заявка успешно отправлена!",
     "applySuccessText": "Мы сообщим вам о статусе вашей заявки. Нажмите кнопку ниже, чтобы просмотреть свои заявки.",
-    "viewApplications": "Посмотреть мои заявки"
+    "viewApplications": "Посмотреть мои заявки",
+    "salaryNegotiable": "По результатам собеседования",
+    "phdRequired": "Требуется Phd/DSc",
+    "phdNotRequired": "Phd/DSc не требуется"
   },
   "info": {
     "banner": {

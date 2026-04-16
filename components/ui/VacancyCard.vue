@@ -30,7 +30,7 @@ const props = defineProps({
         <n-icon size="18" class="text-primary">
           <Wallet24Regular/>
         </n-icon>
-      {{utils.formattedMoney(data.salary)}} {{$t('content.sum')}}
+      {{data.salary_status ? utils.formattedMoney(data.salary) + ' ' + $t('content.sum') : $t('detail.salaryNegotiable')}}
     </div>
     <div class="col-span-12 md:col-span-6 flex item-center gap-x-2 font-medium">
       <n-icon size="18" class="text-primary">

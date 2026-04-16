@@ -125,7 +125,10 @@
     "qualification_requirements": " Malakaviy talablar",
     "applySuccessTitle": "Arizangiz muvaffaqiyatli yuborildi!",
     "applySuccessText": "Arizangiz holati haqida xabar beramiz. Arizalaringizni ko'rish uchun quyidagi tugmani bosing.",
-    "viewApplications": "Arizalarimni ko'rish"
+    "viewApplications": "Arizalarimni ko'rish",
+    "salaryNegotiable": "Suhbat asosida kelishiladi",
+    "phdRequired": "Phd/DSc talab qilinadi",
+    "phdNotRequired": "Phd/DSc talab qilinmaydi"
   },
   "info": {
     "banner": {

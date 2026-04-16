@@ -90,6 +90,12 @@ const day = computed(()=>{
   <template v-else>
     <div class="col-span-12 mb-8">
       <h2 class="text-xl text-black-primary font-bold">{{store.detail?.position}}</h2>
+      <div class="flex items-center gap-x-2 mt-2">
+        <n-icon size="18" class="text-primary">
+          <Location24Regular/>
+        </n-icon>
+        <span class="text-[15px] text-black-secondary font-semibold">{{store.detail?.department}}</span>
+      </div>
     </div>
 
     <div class="col-span-12">
@@ -98,7 +104,7 @@ const day = computed(()=>{
           <n-icon size="20" class="text-primary">
             <Wallet24Regular/>
           </n-icon>
-          <span class="text-[16px] text-black-secondary">{{utils.formattedMoney(store.detail?.salary)}} {{$t('content.sum')}}</span>
+          <span class="text-[16px] text-black-secondary">{{store.detail?.salary_status ? utils.formattedMoney(store.detail?.salary) + ' ' + $t('content.sum') : $t('detail.salaryNegotiable')}}</span>
         </div>
         <div class="col-span-12 md:col-span-8 flex items-center gap-x-2">
           <n-icon size="20" class="text-primary">
@@ -128,7 +134,7 @@ const day = computed(()=>{
           <n-icon size="20" class="text-primary">
             <BoxToolbox20Regular/>
           </n-icon>
-          <span class="text-[16px] text-black-secondary">Phd/DSc talab etilmagan</span>
+          <span class="text-[16px] text-black-secondary">{{store.detail?.phd_status ? $t('detail.phdRequired') : $t('detail.phdNotRequired')}}</span>
         </div>
       </div>
     </div>
