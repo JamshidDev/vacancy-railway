@@ -169,6 +169,20 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
         onApplications()
     }
 
+    const onDeleteApplicationFile = async (applicationId, fileId)=>{
+        return $ApiSerivce.vacancyService.deleteApplicationFile({applicationId, fileId}).then(res=>{
+            const app = applicationList.value.find(a => a.id === applicationId)
+            if(app){
+                app.files = app.files.filter(f => f.id !== fileId)
+            }
+            return res
+        })
+    }
+
+    const onAddApplicationFile = async (applicationId, formData)=>{
+        return $ApiSerivce.vacancyService.addApplicationFile({applicationId, data: formData})
+    }
+
     return {
         regionList,
         regionLoading,
@@ -210,6 +224,8 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
         onPageChange,
         onApplications,
         onApplicationPageChange,
+        onDeleteApplicationFile,
+        onAddApplicationFile,
     }
 
 })

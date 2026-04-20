@@ -22,11 +22,13 @@ watch(locale, (v)=>{
         :date-locale="localProvider.date"
     >
       <n-message-provider placement="top-right">
-        <NuxtLayout>
-          <NuxtPage/>
-          <Message/>
-          <LoadingApp/>
-        </NuxtLayout>
+        <n-dialog-provider>
+          <NuxtLayout>
+            <NuxtPage/>
+            <Message/>
+            <LoadingApp/>
+          </NuxtLayout>
+        </n-dialog-provider>
       </n-message-provider>
     </n-config-provider>
   </div>

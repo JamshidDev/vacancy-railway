@@ -42,7 +42,7 @@ const onClickClose = ()=>{
         size="huge"
         role="dialog"
         aria-modal="true"
-        :style="{width:width+'px'}"
+        :style="{width:'calc(100vw - 24px)', maxWidth:width+'px'}"
         closable
     >
       <template #default>

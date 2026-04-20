@@ -61,6 +61,7 @@ export const useProfileStore = defineStore('profileStore',()=>{
     const applyVisible = ref(false)
     const applySuccessVisible = ref(false)
     const docFiles = ref([])
+    const fileTypeList = ref([])
     const sidebar = ref(false)
     const appLanguage = ref('')
 
@@ -73,6 +74,7 @@ export const useProfileStore = defineStore('profileStore',()=>{
             nationalList.value = v.nationalities
             countryList.value = v.countries
             maritalStatusList.value = v.marital_statuses
+            fileTypeList.value = v.file_types || []
         }).finally(()=>{
             enumLoading.value = false
         })
@@ -175,16 +177,53 @@ export const useProfileStore = defineStore('profileStore',()=>{
         })
     }
 
-    const onUploadFile = (v)=>{
-        const files = v.target.files
-        docFiles.value = Array.from(files).map((f)=>({
-            id:uuidv4(),
-            file:f,
-        }))
+    const onUploadFile = (event, rowId)=>{
+        const file = event.target.files?.[0]
+        if(!file) return
+        const row = docFiles.value.find(f=>f.id === rowId)
+        if(row) row.file = file
+        event.target.value = ''
+    }
+
+    const onUploadFileByType = (event, typeId)=>{
+        const file = event.target.files?.[0]
+        if(!file) return
+        const existing = docFiles.value.find(f=>f.type_id === typeId)
+        if(existing){
+            existing.file = file
+        } else {
+            docFiles.value.push({
+                id: uuidv4(),
+                file: file,
+                type_id: typeId,
+            })
+        }
+        event.target.value = ''
+    }
+
+    const onAddFileRow = ()=>{
+        docFiles.value.push({
+            id: uuidv4(),
+            file: null,
+            type_id: null,
+        })
+    }
+
+    const onChangeFileType = (rowId, typeId)=>{
+        const row = docFiles.value.find(f=>f.id === rowId)
+        if(row) row.type_id = typeId
     }
 
     const removeFileById = (id)=>{
         docFiles.value = docFiles.value.filter((f)=>f.id !== id)
+    }
+
+    const removeFileByType = (typeId)=>{
+        docFiles.value = docFiles.value.filter((f)=>f.type_id !== typeId)
+    }
+
+    const getFileByType = (typeId)=>{
+        return docFiles.value.find(f=>f.type_id === typeId)
     }
 
     const onSendApply = (data)=>{
@@ -199,6 +238,10 @@ export const useProfileStore = defineStore('profileStore',()=>{
         }).finally(()=>{
             sendLoading.value = false
         })
+    }
+
+    const onResetApplyFiles = ()=>{
+        docFiles.value = []
     }
 
     const fullName = computed(()=>{
@@ -248,9 +291,16 @@ export const useProfileStore = defineStore('profileStore',()=>{
         applySuccessVisible,
         onSendApply,
         onUploadFile,
+        onUploadFileByType,
+        onAddFileRow,
+        onChangeFileType,
+        onResetApplyFiles,
         docFiles,
+        fileTypeList,
         sendLoading,
         removeFileById,
+        removeFileByType,
+        getFileByType,
         sidebar,
         appLanguage,
     }

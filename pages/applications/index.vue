@@ -35,45 +35,45 @@ onMounted(()=>{
 
       <!-- Skeleton Loader -->
       <template v-if="store.applicationLoading">
-        <div v-for="i in 3" :key="i" class="px-4 sm:px-5 py-4 bg-surface-ground border border-surface-line rounded-xl mb-4">
+        <div v-for="i in 3" :key="i" class="px-3 sm:px-4 py-2.5 bg-surface-ground border border-surface-line rounded-lg mb-2">
           <!-- Title & Status -->
-          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-0">
-            <n-skeleton text style="width: 200px; height: 24px" class="order-2 sm:order-1" />
-            <n-skeleton text style="width: 80px; height: 22px; border-radius: 20px" class="order-1 sm:order-2" />
+          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1.5 sm:gap-0">
+            <n-skeleton text style="width: 180px; height: 18px" class="order-2 sm:order-1" />
+            <n-skeleton text style="width: 70px; height: 18px; border-radius: 20px" class="order-1 sm:order-2" />
           </div>
           <!-- Department -->
-          <div class="mt-2 border-b border-surface-line pb-4 flex items-center gap-1">
-            <n-skeleton circle style="width: 14px; height: 14px" />
-            <n-skeleton text style="width: 150px; height: 14px" />
+          <div class="mt-1 pb-2 border-b border-surface-line flex items-center gap-1">
+            <n-skeleton circle style="width: 12px; height: 12px" />
+            <n-skeleton text style="width: 130px; height: 12px" />
           </div>
           <!-- Organization -->
-          <div class="mt-2">
-            <n-skeleton text style="width: 250px; height: 18px" />
+          <div class="mt-1.5">
+            <n-skeleton text style="width: 220px; height: 14px" />
           </div>
           <!-- Grid Info -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 mt-3 gap-2">
-            <div class="flex items-center gap-x-2">
-              <n-skeleton circle style="width: 18px; height: 18px" />
-              <n-skeleton text style="width: 120px; height: 16px" />
+          <div class="grid grid-cols-2 mt-2 gap-1.5">
+            <div class="flex items-center gap-x-1.5">
+              <n-skeleton circle style="width: 14px; height: 14px" />
+              <n-skeleton text style="width: 100px; height: 12px" />
             </div>
-            <div class="flex items-center gap-x-2">
-              <n-skeleton circle style="width: 18px; height: 18px" />
-              <n-skeleton text style="width: 160px; height: 16px" />
+            <div class="flex items-center gap-x-1.5">
+              <n-skeleton circle style="width: 14px; height: 14px" />
+              <n-skeleton text style="width: 140px; height: 12px" />
             </div>
-            <div class="flex items-center gap-x-2">
-              <n-skeleton circle style="width: 18px; height: 18px" />
-              <n-skeleton text style="width: 80px; height: 16px" />
+            <div class="flex items-center gap-x-1.5">
+              <n-skeleton circle style="width: 14px; height: 14px" />
+              <n-skeleton text style="width: 70px; height: 12px" />
             </div>
-            <div class="flex items-center gap-x-2">
-              <n-skeleton circle style="width: 18px; height: 18px" />
-              <n-skeleton text style="width: 140px; height: 16px" />
+            <div class="flex items-center gap-x-1.5">
+              <n-skeleton circle style="width: 14px; height: 14px" />
+              <n-skeleton text style="width: 120px; height: 12px" />
             </div>
           </div>
           <!-- Footer -->
-          <div class="mt-4 sm:mt-6 border-t border-surface-line pt-2">
+          <div class="mt-2 border-t border-surface-line pt-2">
             <div class="flex gap-1 items-center">
-              <n-skeleton circle style="width: 18px; height: 18px" />
-              <n-skeleton text style="width: 180px; height: 14px" />
+              <n-skeleton circle style="width: 14px; height: 14px" />
+              <n-skeleton text style="width: 160px; height: 12px" />
             </div>
           </div>
         </div>

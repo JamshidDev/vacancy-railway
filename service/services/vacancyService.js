@@ -22,5 +22,11 @@ export default {
     applications: async (payload)=>{
         return await axios.get('/v1/vacancies/applications', {params:payload?.params})
     },
+    deleteApplicationFile: async (payload)=>{
+        return await axios.delete(`/v1/vacancies/applications/${payload.applicationId}/files/${payload.fileId}`)
+    },
+    addApplicationFile: async (payload)=>{
+        return await axios.post(`/v1/vacancies/applications/${payload.applicationId}/files`, payload.data)
+    },
 }
 
