@@ -4,9 +4,6 @@ import {utils} from "~/utils/index.js"
 import {appSetting} from "~/utils/index.js"
 import {useProfileStore} from "./profileStore.js"
 import {useVacancyStore} from "./vacancyStore.js"
-const localePath = useLocalePath()
-
-const route =  useRoute()
 
 export const useAuthStore = defineStore('authStore',()=>{
     const store = useProfileStore()
@@ -67,9 +64,12 @@ export const useAuthStore = defineStore('authStore',()=>{
     }
 
     const getDetails = ()=>{
-        if(route.path === '/vacancy-list/detail'){
+        const currentPath = typeof window !== 'undefined' ? window.location.pathname : ''
+        if(currentPath.includes('/vacancy-list/detail')){
             const store = useVacancyStore()
-            store.onShow(route.query.id)
+            const urlParams = new URLSearchParams(window.location.search)
+            const id = urlParams.get('id')
+            if(id) store.onShow(id)
         }
     }
     const getToken =()=>{
@@ -123,8 +123,9 @@ export const useAuthStore = defineStore('authStore',()=>{
 
 
     const onLogOut = ()=>{
-        if(route.path === window.localePath('/profile')){
-            navigateTo(localePath('/'))
+        const currentPath = typeof window !== 'undefined' ? window.location.pathname : ''
+        if(currentPath.includes('/profile')){
+            navigateTo(window.localePath ? window.localePath('/') : '/')
         }
         token.value = null
         localStorage.removeItem(appSetting.tokenKey)

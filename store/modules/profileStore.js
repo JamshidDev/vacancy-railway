@@ -1,7 +1,6 @@
 import {defineStore} from "pinia"
 import {ref} from "vue"
 import { v4 as uuidv4 } from 'uuid';
-const route = useRoute()
 import {useVacancyStore} from "./vacancyStore.js"
 
 export const useProfileStore = defineStore('profileStore',()=>{
@@ -131,7 +130,8 @@ export const useProfileStore = defineStore('profileStore',()=>{
             payload.value.marital_status = v.marital_status?.id
             payload.value.languages = v.languages
 
-            if(route.path === window.localePath('/profile')){
+            const currentPath = typeof window !== 'undefined' ? window.location.pathname : ''
+            if(currentPath === window.localePath?.('/profile') || currentPath.endsWith('/profile')){
                 onGetCities()
                 onGetCurrentCities()
             }
@@ -233,8 +233,9 @@ export const useProfileStore = defineStore('profileStore',()=>{
             docFiles.value = []
             applySuccessVisible.value = true
             const store = useVacancyStore()
-            const id = route.query.id
-            store.onShow(id)
+            const urlParams = new URLSearchParams(window.location.search)
+            const id = urlParams.get('id')
+            if(id) store.onShow(id)
         }).finally(()=>{
             sendLoading.value = false
         })

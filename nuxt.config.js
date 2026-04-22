@@ -24,6 +24,7 @@ export default {
   modules:
        ['@nuxtjs/i18n', '@pinia/nuxt', 'nuxtjs-naive-ui'],
   plugins: [
+    '~/plugins/auth-listener.client.js',
     '~/plugins/mask.client.js',
     '~/plugins/moment.client.js',
     '~/plugins/i18n.client.js',

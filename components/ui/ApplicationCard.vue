@@ -13,7 +13,8 @@ import {
   Dismiss24Filled,
   Add20Filled,
   ArrowUpload24Regular,
-  CheckmarkCircle20Filled
+  CheckmarkCircle20Filled,
+  Eye16Filled
 } from "@vicons/fluent"
 import {useProfileStore, useVacancyStore} from "../../store/index.js"
 
@@ -45,7 +46,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['showMessage'])
+const emit = defineEmits(['showMessage', 'showDetails'])
 
 const vacancy = computed(() => props.data?.vacancy_position)
 const files = computed(() => props.data?.files || [])
@@ -164,13 +165,22 @@ const onShowMessage = () => {
 const onGoToVacancy = () => {
   router.push({path:'/vacancy-list/detail', query:{id:vacancy.value?.id}})
 }
+
+const onShowDetails = () => {
+  emit('showDetails', props.data)
+}
 </script>
 
 <template>
 <div
     class="px-3 sm:px-4 py-2.5 bg-surface-ground border border-surface-line rounded-lg mb-2">
   <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1.5 sm:gap-0">
-    <h2 class="text-sm sm:text-base text-black-primary font-bold order-2 sm:order-1 line-clamp-1">{{vacancy?.position?.name}}</h2>
+    <h2
+        @click="onGoToVacancy"
+        class="text-sm sm:text-base text-black-primary hover:text-primary font-bold order-2 sm:order-1 line-clamp-1 cursor-pointer transition-colors duration-200"
+        :title="$t('applications.viewVacancy')">
+      {{vacancy?.position?.name}}
+    </h2>
     <div class="flex items-center gap-1.5 self-start order-1 sm:order-2">
       <n-tag :type="statusType" size="tiny" round>
         {{ data?.status?.name }}
@@ -291,13 +301,13 @@ const onGoToVacancy = () => {
       </n-icon>
       <span>{{ $t('detail.sentApply') }}: {{utils.formattedDate(data?.created_at)}}</span>
     </div>
-    <n-button @click="onGoToVacancy" type="primary" size="tiny" secondary>
+    <n-button @click="onShowDetails" type="primary" size="tiny" secondary>
       <template #icon>
         <n-icon size="12">
-          <ArrowRight16Filled/>
+          <Eye16Filled/>
         </n-icon>
       </template>
-      {{ $t('mainSection.goToVacancy') }}
+      {{ $t('applications.viewDetails') }}
     </n-button>
   </div>
 

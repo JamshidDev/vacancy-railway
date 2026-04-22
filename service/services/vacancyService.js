@@ -28,5 +28,26 @@ export default {
     addApplicationFile: async (payload)=>{
         return await axios.post(`/v1/vacancies/applications/${payload.applicationId}/files`, payload.data)
     },
+    applicationDetail: async (payload)=>{
+        return await axios.get(`/v1/vacancies/applications/${payload.id}`)
+    },
+    startExam: async (payload)=>{
+        return await axios.post(`/v1/vacancies/applications/${payload.applicationId}/exam/start`, {
+            vacancy_application_exam_id: payload.examId
+        })
+    },
+    continueExam: async (payload)=>{
+        return await axios.post(`/v1/vacancies/applications/${payload.applicationId}/exam/${payload.vacancyExamId}/continue`)
+    },
+    sendExamResult: async (payload)=>{
+        return await axios.post(`/v1/vacancies/applications/${payload.applicationId}/exam/${payload.vacancyExamId}/send-result/${payload.questionId}`, {
+            result: payload.answerId
+        })
+    },
+    finishExam: async (payload)=>{
+        return await axios.post(`/v1/vacancies/applications/${payload.applicationId}/exam/${payload.vacancyExamId}/finish`, {
+            vacancy_application_exam_id: payload.examId
+        })
+    },
 }
 

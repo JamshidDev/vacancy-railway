@@ -183,6 +183,19 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
         return $ApiSerivce.vacancyService.addApplicationFile({applicationId, data: formData})
     }
 
+    const applicationDetail = ref(null)
+    const applicationDetailLoading = ref(false)
+    const onApplicationDetail = async (id)=>{
+        applicationDetailLoading.value = true
+        applicationDetail.value = null
+        return $ApiSerivce.vacancyService.applicationDetail({id}).then(res=>{
+            applicationDetail.value = res?.data?.data || null
+            return res
+        }).finally(()=>{
+            applicationDetailLoading.value = false
+        })
+    }
+
     return {
         regionList,
         regionLoading,
@@ -226,6 +239,9 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
         onApplicationPageChange,
         onDeleteApplicationFile,
         onAddApplicationFile,
+        applicationDetail,
+        applicationDetailLoading,
+        onApplicationDetail,
     }
 
 })

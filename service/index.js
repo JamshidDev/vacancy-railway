@@ -31,6 +31,9 @@ instance.interceptors.response.use(
     error => {
         if(error?.response?.status === 401) {
             localStorage.removeItem(appSetting.tokenKey)
+            if(typeof window !== 'undefined'){
+                window.dispatchEvent(new CustomEvent('auth:unauthorized'))
+            }
         }
         $Toast.error(error?.response?.data?.message)
         return Promise.reject(error)

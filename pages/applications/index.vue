@@ -1,5 +1,5 @@
 <script setup>
-import {useVacancyStore} from "~/store/index.js"
+import {useVacancyStore, useProfileStore} from "~/store/index.js"
 
 definePageMeta({
   layout:"admin-layout",
@@ -8,13 +8,22 @@ definePageMeta({
 })
 
 const store = useVacancyStore()
+const profileStore = useProfileStore()
 
 const messageModalVisible = ref(false)
+const detailsModalVisible = ref(false)
 const selectedApplication = ref(null)
 
 const onShowMessage = (data) => {
   selectedApplication.value = data
   messageModalVisible.value = true
+}
+
+const onShowDetails = (data) => {
+  selectedApplication.value = data
+  detailsModalVisible.value = true
+  profileStore.onGetEnum()
+  store.onApplicationDetail(data.id)
 }
 
 onMounted(()=>{
@@ -83,7 +92,7 @@ onMounted(()=>{
       <template v-else>
         <template v-if="store.applicationList.length">
           <template v-for="item in store.applicationList" :key="item.id">
-            <UiApplicationCard :data="item" @showMessage="onShowMessage" />
+            <UiApplicationCard :data="item" @showMessage="onShowMessage" @showDetails="onShowDetails" />
           </template>
         </template>
         <n-empty v-else :description="$t('content.no-data')" />
@@ -134,6 +143,9 @@ onMounted(()=>{
       </n-button>
     </div>
   </UiModal>
+
+  <!-- Details Modal -->
+  <UiApplicationDetailsModal v-model:visible="detailsModalVisible" />
 </template>
 
 <style scoped>
