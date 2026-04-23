@@ -65,6 +65,8 @@
     "zoomMeeting": "Zoom uchrashuvi",
     "meetingId": "Uchrashuv ID",
     "joinMeeting": "Uchrashuvga qo'shilish",
+    "zoomCheckError": "Uchrashuvni tekshirishda xatolik yuz berdi",
+    "zoomNotAllowed": "Ulanishga ruxsat etilmadi",
     "copyLink": "Havolani nusxalash",
     "examStatus": "Imtihon holati",
     "examName": "Imtihon nomi",

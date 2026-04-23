@@ -89,6 +89,30 @@ const onOpenFile = (url) => {
   if(url) window.open(url, '_blank')
 }
 
+const checkingZoomMeetId = ref(null)
+
+const onJoinZoom = async (zoom) => {
+  if(!zoom) return
+  checkingZoomMeetId.value = zoom.meet_id
+  try {
+    const res = await window.$ApiSerivce.vacancyService.checkZoomMeet({
+      meetUuid: zoom.meet_uuid || '',
+      meetId: zoom.meet_id,
+    })
+    const data = res?.data?.data
+    const joinUrl = data?.join_url || data?.start_url
+    if(res?.data?.error === false && joinUrl){
+      window.open(joinUrl, '_blank')
+    } else {
+      $Toast.error(t('applications.zoomNotAllowed'))
+    }
+  } catch(err) {
+    $Toast.error(err?.response?.data?.message || t('applications.zoomNotAllowed'))
+  } finally {
+    checkingZoomMeetId.value = null
+  }
+}
+
 const onCopy = async (text) => {
   try {
     await navigator.clipboard.writeText(text)
@@ -353,7 +377,10 @@ watch(visible, (v) => {
                       <td>{{ $t('applications.zoomMeeting') }}</td>
                       <td>
                         <div class="flex gap-1 justify-end flex-wrap">
-                          <n-button @click="onOpenFile(stage.details.zoom.join_url)" type="primary" size="tiny" secondary>
+                          <n-button
+                              @click="onJoinZoom(stage.details.zoom)"
+                              :loading="checkingZoomMeetId === stage.details.zoom.meet_id"
+                              type="primary" size="tiny" secondary>
                             <template #icon>
                               <n-icon><Video24Regular/></n-icon>
                             </template>

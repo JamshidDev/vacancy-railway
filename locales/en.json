@@ -65,6 +65,8 @@
     "zoomMeeting": "Zoom meeting",
     "meetingId": "Meeting ID",
     "joinMeeting": "Join meeting",
+    "zoomCheckError": "Failed to check the meeting",
+    "zoomNotAllowed": "Connection is not allowed",
     "copyLink": "Copy link",
     "examStatus": "Exam status",
     "examName": "Exam name",

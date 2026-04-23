@@ -49,5 +49,11 @@ export default {
             vacancy_application_exam_id: payload.examId
         })
     },
+    checkZoomMeet: async (payload)=>{
+        return await axios.post(`/v1/vacancies/zoom/check-meet`, {
+            meet_uuid: payload.meetUuid,
+            meet_id: payload.meetId,
+        })
+    },
 }
 

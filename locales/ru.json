@@ -67,6 +67,8 @@
     "zoomMeeting": "Zoom встреча",
     "meetingId": "ID встречи",
     "joinMeeting": "Присоединиться",
+    "zoomCheckError": "Не удалось проверить встречу",
+    "zoomNotAllowed": "Подключение не разрешено",
     "copyLink": "Копировать ссылку",
     "examStatus": "Статус экзамена",
     "examName": "Название экзамена",
