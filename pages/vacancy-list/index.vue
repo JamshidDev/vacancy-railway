@@ -80,18 +80,18 @@ onMounted(() => {
 
 <template>
   <div class="w-full bg-surface-section min-h-screen">
-    <UiBreadCrump class="mt-[160px] mb-[50px]"/>
+    <UiBreadCrump class="mt-[72px] lg:mt-[88px] mb-8 lg:mb-10"/>
     <UiPageContent>
-      <div class="lg:flex mb-4">
-        <div class="w-full lg:w-[330px]">
-          <div class="bg-surface-ground rounded-lg px-4 pt-6">
+      <div class="lg:flex mb-16 gap-8">
+        <aside class="w-full lg:w-[340px] shrink-0">
+          <div class="bg-surface-ground rounded-xl p-6 lg:sticky lg:top-[112px]">
             <UiVacancyFilter/>
           </div>
-        </div>
-        <div class="w-full lg:w-[calc(100%-330px)] lg:pl-8 mt-10 lg:mt-0">
-          <h3 class="text-black-primary mb-5 text-xl font-medium uppercase">{{$t('vacancy.vacancyCount', {n:store.pagination.total})}}</h3>
-          <div class="w-full mb-10 px-2 flex text-black-tertiary items-center bg-surface-ground border border-surface-line rounded-lg h-[50px]">
-            <n-icon size="20" class="mx-2">
+        </aside>
+        <div class="flex-1 min-w-0 mt-10 lg:mt-0">
+          <h1 class="text-black-primary mb-5 text-2xl md:text-[28px] font-bold uppercase">{{$t('vacancy.vacancyCount', {n:store.pagination.total})}}</h1>
+          <div class="w-full mb-8 px-3 flex text-black-tertiary items-center bg-surface-ground border border-surface-line rounded-xl h-[56px] focus-within:border-primary/50 transition-colors">
+            <n-icon size="24" class="mx-2">
               <Search32Filled/>
             </n-icon>
             <n-input

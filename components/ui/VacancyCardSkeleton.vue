@@ -11,7 +11,7 @@ const props = defineProps({
   <div
     v-for="i in count"
     :key="i"
-    class="px-5 py-4 bg-surface-ground border border-surface-line rounded-xl mb-4"
+    class="px-6 py-5 bg-surface-soft border border-surface-line rounded-xl mb-5"
   >
     <!-- Title -->
     <div class="h-6 w-3/4 skeleton-box rounded"></div>

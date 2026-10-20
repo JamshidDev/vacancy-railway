@@ -1,9 +1,9 @@
 
 
 <template>
-<div class=" lg:flex w-full mt-6">
-  <div class="md:w-full lg:w-[300px] xl:w-[400px] mb-10">
-      <div class="bg-primary/16 p-6 w-full rounded-lg ">
+<div class="lg:flex w-full mb-10">
+  <div class="md:w-full lg:w-[320px] xl:w-[380px] mb-10 shrink-0">
+      <div class="bg-surface-ground p-6 w-full rounded-xl lg:sticky lg:top-[112px]">
         <slot name="sidebar"></slot>
       </div>
   </div>

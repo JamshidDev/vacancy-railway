@@ -1,9 +1,10 @@
 <script setup>
-import {Wallet24Regular, Location24Regular,Clock32Regular,
-  DocumentBriefcase20Regular, CalendarLtr32Regular, Clock28Regular,
-  ArrowForward24Filled,Eye16Filled,Person12Filled, Location16Filled } from "@vicons/fluent"
+import {Wallet24Regular, Location24Regular,Clock24Regular,
+  DocumentBriefcase20Regular, CalendarLtr24Regular, Timer24Regular,
+  ArrowForward24Filled,Eye24Regular,People24Regular } from "@vicons/fluent"
 
 const router = useRouter()
+const localePath = useLocalePath()
 const props = defineProps({
   data:{
     type: Object,
@@ -14,65 +15,71 @@ const props = defineProps({
 
 <template>
 <div
-    @click="router.push({path:'/vacancy-list/detail', query:{id:data.id}})"
-    class="px-5 py-4 bg-surface-ground border border-surface-line rounded-xl
- mb-4 hover:bg-surface-section cursor-pointer hover:shadow-navbar transition-all duration-300">
-  <h2 class="text-xl text-black-primary font-bold">{{data?.position}}</h2>
-  <h2 class="text-xs text-black-tertiary mt-2 border-b border-surface-line pb-4 flex items-center gap-1">
-    <n-icon size="14" class="text-primary">
-      <Location16Filled/>
-    </n-icon>
-    {{data?.department}}
-  </h2>
-  <h3 class="text-black-secondary mt-2 font-medium">{{data.organization}}</h3>
-  <div class="grid grid-cols-12 mt-2 gap-2">
-    <div class="col-span-12 md:col-span-6 flex item-center gap-x-2 font-medium">
-        <n-icon size="18" class="text-primary">
+    @click="router.push({path:localePath('/vacancy-list/detail'), query:{id:data.id}})"
+    class="group px-6 py-5 bg-surface-soft border border-surface-line rounded-xl
+ mb-5 cursor-pointer hover:border-primary/40 hover:shadow-card transition-all duration-300">
+  <h2 class="text-xl md:text-2xl text-black-primary font-bold leading-[1.3] group-hover:text-primary transition-colors">{{data?.organization}}</h2>
+  <p class="text-black-tertiary font-semibold mt-2">&bull; {{data?.department}}</p>
+
+  <div class="border-t border-surface-line mt-4 pt-4">
+    <h3 class="text-lg md:text-xl text-black-primary font-bold">{{data?.position}}</h3>
+    <div class="grid grid-cols-12 mt-3 gap-x-6 gap-y-3 text-black-primary">
+      <div class="col-span-12 md:col-span-6 flex items-center gap-x-3 font-semibold text-lg">
+        <n-icon size="22" class="text-primary shrink-0">
           <Wallet24Regular/>
         </n-icon>
-      {{data.salary_status ? utils.formattedMoney(data.salary) + ' ' + $t('content.sum') : $t('detail.salaryNegotiable')}}
-    </div>
-    <div class="col-span-12 md:col-span-6 flex item-center gap-x-2 font-medium">
-      <n-icon size="18" class="text-primary">
-        <Location24Regular/>
-      </n-icon>
-      {{data.city?.region?.name}}, {{data.city?.name}}
-    </div>
-    <div class="col-span-12 md:col-span-6 flex item-center gap-x-2 font-medium">
-      <n-icon size="18" class="text-primary">
-        <Clock32Regular/>
-      </n-icon>
-      {{data.work_type?.name}}
-    </div>
-    <div class="col-span-12 md:col-span-6 flex item-center gap-x-2 font-medium">
-      <n-icon size="18" class="text-primary">
-        <DocumentBriefcase20Regular/>
-      </n-icon>
-      {{(data.experience ? $t('vacancy.minWorkExperience', {n:data.experience}) : $t('vacancy.noExperience'))}}
+        {{data.salary_status ? utils.formattedMoney(data.salary) + ' ' + $t('content.sum') : $t('detail.salaryNegotiable')}}
+      </div>
+      <div class="col-span-12 md:col-span-6 flex items-center gap-x-3 font-semibold">
+        <n-icon size="22" class="text-primary shrink-0">
+          <Location24Regular/>
+        </n-icon>
+        {{data.city?.region?.name}}, {{data.city?.name}}
+      </div>
+      <div class="col-span-12 md:col-span-6 flex items-center gap-x-3 font-semibold">
+        <n-icon size="22" class="text-primary shrink-0">
+          <Clock24Regular/>
+        </n-icon>
+        {{data.work_type?.name}}
+      </div>
+      <div class="col-span-12 md:col-span-6 flex items-center gap-x-3 font-semibold">
+        <n-icon size="22" class="text-primary shrink-0">
+          <DocumentBriefcase20Regular/>
+        </n-icon>
+        {{(data.experience ? $t('vacancy.minWorkExperience', {n:data.experience}) : $t('vacancy.noExperience'))}}
+      </div>
     </div>
   </div>
-  <div class="grid grid-cols-12 mt-6 border-t border-surface-line pt-2 text-black-tertiary">
-    <div class="col-span-12 sm:col-span-6 flex gap-1 items-center">
-      <n-icon size="18">
-        <CalendarLtr32Regular/>
-      </n-icon>
-      {{utils.formattedDate(data.created_at)}}
 
-      <n-icon size="18" class="ml-6">
-        <Clock28Regular/>
-      </n-icon>
-      {{utils.formattedDate(data.to)}}
+  <div class="flex flex-wrap justify-between gap-3 mt-5 border-t border-surface-line pt-4 text-black-tertiary text-[17px]">
+    <div class="flex flex-wrap gap-x-6 gap-y-2 items-center">
+      <span class="flex items-center gap-2">
+        <n-icon size="20">
+          <CalendarLtr24Regular/>
+        </n-icon>
+        {{utils.formattedDate(data.created_at)}}
+      </span>
+      <span class="flex items-center gap-2">
+        <n-icon size="20">
+          <Timer24Regular/>
+        </n-icon>
+        {{utils.formattedDate(data.to)}}
+      </span>
     </div>
-    <div class="col-span-12 sm:col-span-6 flex sm:justify-end gap-1 mt-4 sm:mt-0">
-      <n-icon size="18">
-        <Person12Filled/>
-      </n-icon>
-      <span class="mr-4">{{data.applications_count}} {{$t('content.person')}}</span>
-      <n-icon size="18">
-        <Eye16Filled/>
-      </n-icon>
-      <span class="mr-4">{{data.view_count}} {{$t('content.ta')}}</span>
-      <n-icon size="18">
+    <div class="flex items-center gap-x-6">
+      <span class="flex items-center gap-2">
+        <n-icon size="20">
+          <Eye24Regular/>
+        </n-icon>
+        {{data.view_count}} {{$t('content.ta')}}
+      </span>
+      <span class="flex items-center gap-2">
+        <n-icon size="20">
+          <People24Regular/>
+        </n-icon>
+        {{data.applications_count}} {{$t('content.person')}}
+      </span>
+      <n-icon size="22" class="text-black-primary group-hover:text-primary transition-colors">
         <ArrowForward24Filled/>
       </n-icon>
     </div>

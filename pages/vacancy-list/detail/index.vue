@@ -27,7 +27,7 @@ onMounted(()=>{
 
 <template>
   <div class="w-full bg-surface-section min-h-screen">
-    <UiBreadCrump class="mt-[160px] mb-[50px]" :custom-title="store.detail?.position || ''" />
+    <UiBreadCrump class="mt-[72px] lg:mt-[88px] mb-8 lg:mb-10" :custom-title="store.detail?.position || ''" />
     <UiPageContent class="mb-6">
       <Box>
         <template #sidebar>
