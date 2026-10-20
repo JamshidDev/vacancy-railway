@@ -8,7 +8,7 @@ const localePath = useLocalePath()
 </script>
 
 <template>
-<section class="w-full bg-surface-ground py-16 lg:py-24">
+<section class="w-full bg-surface-ground py-12 md:py-16 lg:py-24">
   <UiPageContent>
     <UiSectionTitle :title="$t('mainSection.newVacancy')" :subtitle="$t('mainSection.subVacancyText')">
       <template #right>

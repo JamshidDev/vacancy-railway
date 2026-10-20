@@ -46,23 +46,23 @@ onMounted(()=>{
 </script>
 
 <template>
-<div class="grid grid-cols-12 gap-4 mt-6">
+<div class="grid grid-cols-12 gap-3 sm:gap-4 mt-4 sm:mt-6">
 
   <template v-for="item in dashboardData" :key="item.name">
     <div
         @click="goToApplications"
-        class="col-span-12 sm:col-span-6 lg:col-span-3 p-5 bg-surface-soft border border-surface-line rounded-xl flex items-center gap-4 cursor-pointer hover:shadow-card hover:border-primary/30 transition-all duration-300">
-      <div :class="item.color" class="w-[52px] h-[52px] rounded-lg flex items-center justify-center shrink-0">
-        <n-icon size="26">
+        class="col-span-6 lg:col-span-3 p-3 sm:p-5 bg-surface-soft border border-surface-line rounded-xl flex items-center gap-3 sm:gap-4 cursor-pointer hover:shadow-card hover:border-primary/30 transition-all duration-300">
+      <div :class="item.color" class="w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] rounded-lg flex items-center justify-center shrink-0">
+        <n-icon size="22">
           <component :is="item.icon"/>
         </n-icon>
       </div>
       <div class="min-w-0">
-        <div class="text-[28px] font-bold leading-[1.1] text-black-primary">
+        <div class="text-2xl sm:text-[28px] font-bold leading-[1.1] text-black-primary">
           <span v-if="store.dashboardLoading" class="w-[40px] h-[28px] inline-block animate-shimmer shimmer rounded"></span>
           <template v-else>{{item.count}}</template>
         </div>
-        <p class="text-black-tertiary">{{$t(item.name)}}</p>
+        <p class="text-black-tertiary text-xs sm:text-base leading-[1.25]">{{$t(item.name)}}</p>
       </div>
     </div>
   </template>

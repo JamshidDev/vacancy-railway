@@ -212,7 +212,9 @@
     "minExperience": "Minimal mehnat staji",
     "noExperience": "Mehnat staji talab etilmaydi",
     "vacancyCount": "Bo'sh ish o'rinlar soni: {n}",
-    "minWorkExperience": "Kamida {n} yillik staj"
+    "minWorkExperience": "Kamida {n} yillik staj",
+    "filters": "Filtrlar",
+    "showResults": "Natijalarni ko'rsatish ({n})"
   },
   "detail": {
     "sendApply": "Ariza yuborish",

@@ -212,7 +212,9 @@
     "minExperience": "Minimum work experience",
     "noExperience": "No work experience required",
     "vacancyCount": "Number of vacancies: {n}",
-    "minWorkExperience": "At least {n} years of experience"
+    "minWorkExperience": "At least {n} years of experience",
+    "filters": "Filters",
+    "showResults": "Show results ({n})"
   },
   "detail": {
     "sendApply": "Submit application",

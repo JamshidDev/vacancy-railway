@@ -10,7 +10,7 @@ const wagonWindows = Array.from({length: 5}, (_, i) => 18 + i * 32)
 <svg
     class="w-full h-full"
     viewBox="0 0 1440 260"
-    preserveAspectRatio="xMaxYMax slice"
+    preserveAspectRatio="xMidYMax slice"
     aria-hidden="true"
 >
   <!-- Kontakt tarmog'i -->

@@ -41,11 +41,11 @@ onMounted(()=>{
 <template>
   <section class="w-full bg-gradient-to-b from-surface-ground to-surface-soft relative overflow-hidden pt-[72px] lg:pt-[88px]">
     <div class="absolute bottom-0 left-0 w-full h-[240px] bg-[url('/footer.png')] bg-no-repeat bg-bottom bg-size-[100%_auto] opacity-40 pointer-events-none"></div>
-    <div class="absolute bottom-0 left-0 w-full h-[170px] md:h-[220px] lg:h-[260px] pointer-events-none">
+    <div class="absolute bottom-0 left-0 w-full h-[160px] md:h-[220px] lg:h-[260px] pointer-events-none">
       <UiRailwayScene/>
     </div>
     <UiPageContent class="relative z-10">
-      <div class="grid grid-cols-12 gap-6 lg:min-h-[700px] pt-14 pb-[190px] md:pb-[240px] lg:py-0">
+      <div class="grid grid-cols-12 gap-6 lg:min-h-[700px] pt-10 md:pt-14 pb-[150px] md:pb-[240px] lg:py-0">
         <div class="col-span-12 lg:col-span-7 flex items-center lg:pb-[170px]">
           <UiSearchArea/>
         </div>
@@ -73,15 +73,15 @@ onMounted(()=>{
             </div>
           </div>
           <!-- Mobil: statistika qatori -->
-          <div class="lg:hidden grid grid-cols-3 gap-3">
-            <div v-for="item in stats" :key="item.label" class="bg-surface-section rounded-xl shadow-card p-3">
+          <div class="lg:hidden grid grid-cols-3 bg-surface-section rounded-xl shadow-card divide-x divide-surface-line">
+            <div v-for="item in stats" :key="item.label" class="flex flex-col items-center text-center px-2 py-4 min-w-0">
               <div :class="item.color" class="w-[36px] h-[36px] rounded-lg flex items-center justify-center mb-2">
                 <n-icon size="20">
                   <component :is="item.icon"/>
                 </n-icon>
               </div>
               <div class="text-xl font-bold text-black-primary leading-[1.1]">{{formatCount(item.value)}}</div>
-              <div class="text-xs text-black-tertiary">{{$t(item.label)}}</div>
+              <div class="text-xs text-black-tertiary leading-[1.25] mt-1">{{$t(item.label)}}</div>
             </div>
           </div>
         </div>

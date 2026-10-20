@@ -214,7 +214,9 @@
     "minExperience": "Минимальный стаж работы",
     "noExperience": "Стаж работы не требуется",
     "vacancyCount": "Количество вакансий: {n}",
-    "minWorkExperience": "Не менее {n} лет стажа"
+    "minWorkExperience": "Не менее {n} лет стажа",
+    "filters": "Фильтры",
+    "showResults": "Показать результаты ({n})"
   },
   "detail": {
     "sendApply": "Отправить заявку",

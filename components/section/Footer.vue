@@ -52,7 +52,7 @@ const navigations = [
       </div>
     </div>
   </UiPageContent>
-  <div class="w-full border-t border-black-tertiary/20 py-4">
+  <div class="w-full border-t border-black-tertiary/20 pt-4 pb-14 lg:pb-4">
     <UiPageContent>
       <div class="flex flex-col sm:flex-row justify-between gap-2 text-sm text-black-secondary">
         <span>© vacancy.railway.uz</span>

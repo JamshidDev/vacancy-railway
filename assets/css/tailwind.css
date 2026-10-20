@@ -140,3 +140,25 @@ body{
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200% 100%;
 }
+/* Backend'dan keladigan matn (vakansiya shartlari): tor ekranda ikki chetga tekislash so'zlar orasida katta bo'shliq qoldiradi */
+@media (max-width: 767px) {
+    .rich-text,
+    .rich-text * {
+        text-align: left !important;
+    }
+}
+.rich-text img,
+.rich-text table {
+    max-width: 100%;
+}
+.rich-text table {
+    display: block;
+    overflow-x: auto;
+}
+
+.no-scrollbar {
+    scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}

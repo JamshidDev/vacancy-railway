@@ -105,6 +105,11 @@ const status = computed(()=>{
     </div>
 
     <n-button :loading="store.showLoading" @click="onApplyApplication" :secondary="status.type !== 'primary'" :type="status.type" size="large" class="!w-full !mt-6">{{$t(status.text)}}</n-button>
+
+    <!-- Mobil: ariza tugmasi ekran pastida doim ko'rinib turadi -->
+    <div class="lg:hidden fixed bottom-0 left-0 right-0 z-[95] bg-surface-section border-t border-surface-line px-4 pt-3 pb-[calc(12px+env(safe-area-inset-bottom))] shadow-navbar">
+      <n-button :loading="store.showLoading" @click="onApplyApplication" :secondary="status.type !== 'primary'" :type="status.type" size="large" block>{{$t(status.text)}}</n-button>
+    </div>
   </template>
 </div>
 </template>

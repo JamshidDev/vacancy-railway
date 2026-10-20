@@ -1,5 +1,5 @@
 <script setup>
-import {Search32Filled} from "@vicons/fluent"
+import {Search32Filled, Filter24Regular} from "@vicons/fluent"
 import {useVacancyStore} from "~/store/index.js"
 import {useDebounceFn} from "@vueuse/core"
 
@@ -9,6 +9,16 @@ definePageMeta({
 })
 const store = useVacancyStore()
 const route = useRoute()
+
+// Mobil filtr paneli
+const filterVisible = ref(false)
+const activeFilterCount = computed(()=> [
+  store.params.region_id,
+  store.params.city_id,
+  store.params.organization_id,
+  store.params.experience,
+  store.params.salary,
+].filter(v => v !== null && v !== undefined && v !== '').length)
 
 const onSearch = useDebounceFn(() => {
   store.params.page = 1
@@ -80,17 +90,17 @@ onMounted(() => {
 
 <template>
   <div class="w-full bg-surface-section min-h-screen">
-    <UiBreadCrump class="mt-[72px] lg:mt-[88px] mb-8 lg:mb-10"/>
+    <UiBreadCrump class="mt-[72px] lg:mt-[88px] mb-6 md:mb-8 lg:mb-10"/>
     <UiPageContent>
-      <div class="lg:flex mb-16 gap-8">
-        <aside class="w-full lg:w-[340px] shrink-0">
+      <div class="lg:flex mb-12 lg:mb-16 gap-8">
+        <aside class="hidden lg:block w-[340px] shrink-0">
           <div class="bg-surface-ground rounded-xl p-6 lg:sticky lg:top-[112px]">
             <UiVacancyFilter/>
           </div>
         </aside>
-        <div class="flex-1 min-w-0 mt-10 lg:mt-0">
-          <h1 class="text-black-primary mb-5 text-2xl md:text-[28px] font-bold uppercase">{{$t('vacancy.vacancyCount', {n:store.pagination.total})}}</h1>
-          <div class="w-full mb-8 px-3 flex text-black-tertiary items-center bg-surface-ground border border-surface-line rounded-xl h-[56px] focus-within:border-primary/50 transition-colors">
+        <div class="flex-1 min-w-0">
+          <h1 class="text-black-primary mb-4 md:mb-5 text-xl sm:text-2xl md:text-[28px] font-bold uppercase">{{$t('vacancy.vacancyCount', {n:store.pagination.total})}}</h1>
+          <div class="w-full mb-4 lg:mb-8 px-3 flex text-black-tertiary items-center bg-surface-ground border border-surface-line rounded-xl h-[52px] md:h-[56px] focus-within:border-primary/50 transition-colors">
             <n-icon size="24" class="mx-2">
               <Search32Filled/>
             </n-icon>
@@ -102,6 +112,15 @@ onMounted(() => {
                 @input="onSearch"
             />
           </div>
+          <button
+              @click="filterVisible = true"
+              class="lg:hidden w-full mb-5 h-[48px] flex items-center justify-center gap-2 rounded-xl border border-surface-line bg-surface-section text-black-primary font-semibold cursor-pointer">
+            <n-icon size="20" class="text-primary">
+              <Filter24Regular/>
+            </n-icon>
+            {{$t('vacancy.filters')}}
+            <span v-if="activeFilterCount" class="min-w-[22px] h-[22px] px-1.5 rounded-full bg-primary text-white text-xs flex items-center justify-center">{{activeFilterCount}}</span>
+          </button>
           <div class="min-h-[200px]">
             <template v-if="store.listLoading">
               <UiVacancyCardSkeleton :count="5" />
@@ -113,7 +132,7 @@ onMounted(() => {
               <UiNoResult v-if="store.list.length === 0" />
             </template>
           </div>
-          <div class="flex justify-center mt-8 pagination-wrapper">
+          <div v-if="store.pagination.total > store.params.per_page" class="flex justify-center mt-6 md:mt-8 pagination-wrapper">
             <n-pagination
                 :page="store.pagination.current_page"
                 :page-count="Math.ceil(store.pagination.total / store.params.per_page)"
@@ -127,6 +146,22 @@ onMounted(() => {
     </UiPageContent>
   </div>
   <SectionFooter/>
+
+  <n-drawer
+      v-model:show="filterVisible"
+      placement="bottom"
+      height="85vh"
+      class="!rounded-t-2xl"
+  >
+    <n-drawer-content :title="$t('vacancy.filters')" closable :native-scrollbar="false">
+      <UiVacancyFilter/>
+      <template #footer>
+        <n-button type="primary" size="large" block @click="filterVisible = false">
+          {{$t('vacancy.showResults', {n: store.pagination.total})}}
+        </n-button>
+      </template>
+    </n-drawer-content>
+  </n-drawer>
 </template>
 
 <style scoped>

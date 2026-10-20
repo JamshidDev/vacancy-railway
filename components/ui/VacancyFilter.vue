@@ -145,7 +145,7 @@ onMounted(()=>{
   <div class="col-span-12 mb-5">
     <div
         @click="store.experience=!store.experience"
-        class="flex justify-between items-center cursor-pointer bg-surface-section rounded-[10px] px-4 h-[48px]">
+        class="flex justify-between items-center cursor-pointer bg-surface-section border border-surface-line rounded-[10px] px-4 h-[48px]">
       <span class="text-black-primary font-semibold text-[17px]">{{$t('vacancy.minExperience')}}</span>
       <n-icon
           size="18"
@@ -178,7 +178,7 @@ onMounted(()=>{
   <div class="col-span-12 mb-5">
     <div
         @click="store.salary=!store.salary"
-        class="flex justify-between items-center cursor-pointer bg-surface-section rounded-[10px] px-4 h-[48px]">
+        class="flex justify-between items-center cursor-pointer bg-surface-section border border-surface-line rounded-[10px] px-4 h-[48px]">
       <span class="text-black-primary font-semibold text-[17px]">{{$t('vacancy.salary')}}</span>
       <n-icon
           size="18"
