@@ -1,5 +1,5 @@
 import {defineStore} from "pinia"
-import {ref} from "vue"
+import {ref, watch} from "vue"
 import {utils} from "~/utils/index.js"
 import {appSetting} from "~/utils/index.js"
 import {useProfileStore} from "./profileStore.js"
@@ -50,6 +50,20 @@ export const useAuthStore = defineStore('authStore',()=>{
     const registerActiveTab = ref(1)
     const authLoading = ref(false)
     const loading = ref(false)
+
+    // Parolni tiklash: 'login' yoki 'reset' ko'rinishi; qadamlar 1 - telefon, 2 - kod va yangi parol, 3 - tayyor
+    const RESEND_DELAY = 60 * 1000
+    const loginView = ref('login')
+    const resetStep = ref(1)
+    const resetLoading = ref(false)
+    const resendAvailableAt = ref(0)
+    const resetPayload = ref({
+        phone:"+998",
+        token:null,
+        otp:null,
+        password:null,
+        password_confirmation:null,
+    })
     const storage = localStorage.getItem(appSetting.tokenKey) || null
     const token = ref(storage)
 
@@ -122,6 +136,64 @@ export const useAuthStore = defineStore('authStore',()=>{
     }
 
 
+    const resetPasswordState = ()=>{
+        resetStep.value = 1
+        resetPayload.value.token = null
+        resetPayload.value.otp = null
+        resetPayload.value.password = null
+        resetPayload.value.password_confirmation = null
+    }
+
+    const openPasswordReset = ()=>{
+        resetPasswordState()
+        // Kirish formasida raqam kiritilgan bo'lsa, qayta yozdirmaymiz
+        resetPayload.value.phone = payload.value.phone || "+998"
+        loginView.value = 'reset'
+    }
+
+    const closePasswordReset = ()=>{
+        loginView.value = 'login'
+        resetPasswordState()
+    }
+
+    const onResetSendCode = ()=>{
+        resetLoading.value = true
+        const data = {
+            phone:utils.clearPhoneNumber(resetPayload.value.phone),
+        }
+        window.$ApiSerivce.authService.forgotPassword({data}).then(res=>{
+            resetPayload.value.token = res.data?.data?.token
+            resetPayload.value.otp = null
+            resendAvailableAt.value = Date.now() + RESEND_DELAY
+            resetStep.value = 2
+        }).finally(()=>{
+            resetLoading.value = false
+        })
+    }
+
+    const onResetPassword = ()=>{
+        resetLoading.value = true
+        const data = {
+            token:resetPayload.value.token,
+            otp:resetPayload.value.otp.toString().replace(/,/g,''),
+            password:resetPayload.value.password,
+            password_confirmation:resetPayload.value.password_confirmation,
+        }
+        window.$ApiSerivce.authService.resetPassword({data}).then(()=>{
+            // Kirish formasiga raqamni tayyorlab qo'yamiz, parolni foydalanuvchi o'zi kiritadi
+            payload.value.phone = resetPayload.value.phone
+            payload.value.password = null
+            resetStep.value = 3
+        }).finally(()=>{
+            resetLoading.value = false
+        })
+    }
+
+    // Modal yopilganda keyingi ochilishda oddiy kirish formasi chiqsin
+    watch(authVisible, (visible)=>{
+        if(!visible) closePasswordReset()
+    })
+
     const onLogOut = ()=>{
         const currentPath = typeof window !== 'undefined' ? window.location.pathname : ''
         // Token talab qiladigan sahifalardan chiqishda bosh sahifaga.
@@ -155,6 +227,16 @@ export const useAuthStore = defineStore('authStore',()=>{
         getToken,
         onRegisterUser,
         onLogin,
+
+        loginView,
+        resetStep,
+        resetLoading,
+        resendAvailableAt,
+        resetPayload,
+        openPasswordReset,
+        closePasswordReset,
+        onResetSendCode,
+        onResetPassword,
 
         onLogOut,
     }

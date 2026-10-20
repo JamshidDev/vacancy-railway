@@ -161,6 +161,23 @@
   "auth": {
     "login": "Login",
     "register": "Register",
+    "reset": {
+      "forgot": "Forgot password?",
+      "title": "Reset password",
+      "phoneHint": "Enter the phone number you registered with, and we will send a confirmation code to it.",
+      "sendCode": "Send code",
+      "codeSentTo": "The confirmation code was sent to {phone}",
+      "changePhone": "Change number",
+      "newPassword": "New password",
+      "confirmPassword": "Repeat new password",
+      "passwordMismatch": "Passwords do not match",
+      "resend": "Resend code",
+      "resendIn": "Resend code in {n} s",
+      "submit": "Update password",
+      "successTitle": "Password updated",
+      "successText": "You can now sign in with your new password.",
+      "backToLogin": "Sign in"
+    },
     "form": {
       "phone": "Phone number",
       "otp": "Enter the SMS code sent to your phone number",

@@ -161,6 +161,23 @@
   "auth": {
     "login": "Tizimga kirish",
     "register": "Ro'yhatdan o'tish",
+    "reset": {
+      "forgot": "Parolni unutdingizmi?",
+      "title": "Parolni tiklash",
+      "phoneHint": "Ro'yxatdan o'tgan telefon raqamingizni kiriting, unga tasdiqlash kodi yuboriladi.",
+      "sendCode": "Kod yuborish",
+      "codeSentTo": "Tasdiqlash kodi {phone} raqamiga yuborildi",
+      "changePhone": "Raqamni o'zgartirish",
+      "newPassword": "Yangi parol",
+      "confirmPassword": "Yangi parolni takrorlang",
+      "passwordMismatch": "Parollar mos kelmadi",
+      "resend": "Kodni qayta yuborish",
+      "resendIn": "Kodni qayta yuborish: {n} s",
+      "submit": "Parolni yangilash",
+      "successTitle": "Parol yangilandi",
+      "successText": "Endi yangi parol bilan tizimga kirishingiz mumkin.",
+      "backToLogin": "Tizimga kirish"
+    },
     "form": {
       "phone": "Telefon raqam",
       "otp": "Telefon raqamingizga yuborilgan sms kodni kiriting",

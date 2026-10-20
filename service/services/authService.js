@@ -9,6 +9,13 @@ export default {
     },
     register : async (payload)=>{
         return await axios.post('/v1/vacancies/register', payload?.data)
+    },
+    // Parolni tiklash — backend hali tayyor emas, kontrakt CLAUDE.md da
+    forgotPassword : async (payload)=>{
+        return await axios.post('/v1/vacancies/password/forgot', payload?.data)
+    },
+    resetPassword : async (payload)=>{
+        return await axios.post('/v1/vacancies/password/reset', payload?.data)
     }
 }
 

@@ -16,7 +16,9 @@ const onSubmit = ()=>{
 </script>
 
 <template>
+  <UiPasswordResetForm v-if="store.loginView === 'reset'"/>
   <n-form
+      v-else
       class="w-full grid grid-cols-12"
       ref="formRef"
       :rules="rules.common($t)"
@@ -58,9 +60,17 @@ const onSubmit = ()=>{
         </template>
       </n-input>
     </n-form-item>
+    <div class="col-span-12 flex justify-end -mt-2">
+      <button
+          type="button"
+          @click="store.openPasswordReset()"
+          class="text-sm font-semibold text-primary hover:underline cursor-pointer">
+        {{$t('auth.reset.forgot')}}
+      </button>
+    </div>
     <n-button
         :loading="store.loading"
-        class="col-span-12 !mt-6 uppercase !mb-4"
+        class="col-span-12 !mt-4 uppercase !mb-4"
         @click="onSubmit"
         type="primary">
       {{$t('content.send')}}
