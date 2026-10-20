@@ -136,7 +136,9 @@
     "rotateLeft": "Rotate left",
     "rotateRight": "Rotate right",
     "reset": "Reset",
-    "preview": "Preview"
+    "preview": "Preview",
+    "datePlaceholder": "dd.mm.yyyy",
+    "openCalendar": "Open calendar"
   },
   "rules": {
     "login": "Email is required!",

@@ -136,7 +136,9 @@
     "rotateLeft": "Chapga aylantirish",
     "rotateRight": "O'ngga aylantirish",
     "reset": "Qayta tiklash",
-    "preview": "Ko'rinishi"
+    "preview": "Ko'rinishi",
+    "datePlaceholder": "kk.oo.yyyy",
+    "openCalendar": "Kalendarni ochish"
   },
   "rules": {
     "login": "Email kiritilishi shart!",

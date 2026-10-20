@@ -43,7 +43,7 @@ const onEdit = (v)=>{
 }
 
 const onAdd = ()=>{
-  store.resetCareerPayload()
+  store.resetEducationPayload()
   store.educationVisibleType = true
   store.educationVisible = true
 }
@@ -156,12 +156,8 @@ onMounted(()=>{
               path="from"
               :rule-path="rules.names.requiredNumberField"
           >
-            <n-date-picker
-                clearable
-                class="w-full"
+            <UiDateInput
                 v-model:value="store.educationPayload.from"
-                type="date"
-                :format="appSetting.datePicketFormat"
             />
           </n-form-item>
           <n-form-item
@@ -171,13 +167,9 @@ onMounted(()=>{
               :rule-path="store.educationPayload.now? undefined : rules.names.requiredNumberField "
               :show-feedback="!store.educationPayload.now"
           >
-            <n-date-picker
+            <UiDateInput
                 :disabled="store.educationPayload.now"
-                class="w-full"
-                clearable
                 v-model:value="store.educationPayload.to"
-                type="date"
-                :format="appSetting.datePicketFormat"
             />
           </n-form-item>
           <div class="col-span-12 flex justify-end">

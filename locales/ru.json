@@ -138,7 +138,9 @@
     "rotateLeft": "Повернуть влево",
     "rotateRight": "Повернуть вправо",
     "reset": "Сбросить",
-    "preview": "Предпросмотр"
+    "preview": "Предпросмотр",
+    "datePlaceholder": "дд.мм.гггг",
+    "openCalendar": "Открыть календарь"
   },
   "rules": {
     "login": "Необходимо ввести email!",

@@ -156,12 +156,8 @@ onMounted(()=>{
             path="from"
             :rule-path="rules.names.requiredNumberField"
         >
-          <n-date-picker
-              clearable
-              class="w-full"
+          <UiDateInput
               v-model:value="store.careerPayload.from"
-              type="date"
-              :format="appSetting.datePicketFormat"
           />
         </n-form-item>
         <n-form-item
@@ -171,13 +167,9 @@ onMounted(()=>{
             :rule-path="store.careerPayload.now? undefined : rules.names.requiredNumberField "
             :show-feedback="!store.careerPayload.now"
         >
-          <n-date-picker
+          <UiDateInput
               :disabled="store.careerPayload.now"
-              class="w-full"
-              clearable
               v-model:value="store.careerPayload.to"
-              type="date"
-              :format="appSetting.datePicketFormat"
           />
         </n-form-item>
         <div class="col-span-12 flex justify-end">
