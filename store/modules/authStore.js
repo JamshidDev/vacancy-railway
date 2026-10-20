@@ -124,7 +124,8 @@ export const useAuthStore = defineStore('authStore',()=>{
 
     const onLogOut = ()=>{
         const currentPath = typeof window !== 'undefined' ? window.location.pathname : ''
-        if(currentPath.includes('/profile')){
+        // Token talab qiladigan sahifalardan chiqishda bosh sahifaga.
+        if(['/profile', '/applications', '/exam'].some(p => currentPath.includes(p))){
             navigateTo(window.localePath ? window.localePath('/') : '/')
         }
         token.value = null
