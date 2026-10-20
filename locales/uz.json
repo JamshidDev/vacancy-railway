@@ -193,7 +193,14 @@
     "newVacancy":"Yangi ish o'rinlari",
     "subVacancyText":"Imkoniyatni qo‘ldan boy bermang",
     "viewMore":"Ko'rib chiqish",
-    "goToVacancy":"Vakansiyaga o'tish"
+    "goToVacancy":"Vakansiyaga o'tish",
+    "statVacancies": "Bo'sh ish o'rinlari",
+    "statOrganizations": "Tashkilotlar soni",
+    "statRegions": "Hududlar",
+    "allVacancies": "Barcha vakansiyalar",
+    "howItWorks": "Qanday ishlaydi",
+    "howItWorksSub": "Uch qadamda ishga ariza topshiring",
+    "heroCount": "{n} ta bo'sh ish o'rni"
   },
   "vacancy": {
     "name": "Ish o'rinlari",
@@ -307,7 +314,8 @@
     "address": "O'zbekiston Respublikasi, Toshkent, 100060, Т. Shevchenko ko'chasi, 7",
     "lastUpdated": "Oxirgi yangilangan vaqt",
     "copyright": "Portalda e'lon qilingan materiallardan nusxa ko'chirish, tarqatish va boshqa shakllarda foydalanish faqat yozma rozilik bilan amalga oshirilishi mumkin.",
-    "developedBy": "Ishlab chiquvchi"
+    "developedBy": "Ishlab chiquvchi",
+    "phone": "Ishonch telefoni"
   }
 
 }

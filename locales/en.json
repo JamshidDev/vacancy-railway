@@ -193,7 +193,14 @@
     "newVacancy": "New vacancies",
     "subVacancyText": "Don’t miss the opportunity",
     "viewMore": "View more",
-    "goToVacancy": "Go to vacancy"
+    "goToVacancy": "Go to vacancy",
+    "statVacancies": "Vacancies",
+    "statOrganizations": "Organizations",
+    "statRegions": "Regions",
+    "allVacancies": "All vacancies",
+    "howItWorks": "How it works",
+    "howItWorksSub": "Apply for a job in three steps",
+    "heroCount": "{n} open vacancies"
   },
   "vacancy": {
     "name": "Vacancies",
@@ -307,6 +314,7 @@
     "address": "Republic of Uzbekistan, Tashkent, 100060, T. Shevchenko street, 7",
     "lastUpdated": "Last updated",
     "copyright": "Copying, distribution and other use of materials published on the portal is allowed only with written consent.",
-    "developedBy": "Developed by"
+    "developedBy": "Developed by",
+    "phone": "Hotline"
   }
 }

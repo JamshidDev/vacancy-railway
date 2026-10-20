@@ -1,81 +1,66 @@
 <script setup>
-import {Map24Regular, Clock28Regular, Call24Regular} from "@vicons/fluent"
+import {Location20Regular, Clock20Regular, Call20Regular} from "@vicons/fluent"
+const localePath = useLocalePath()
+
+const navigations = [
+  {name:'mainSection.name', path:'/'},
+  {name:'vacancy.name', path:'/vacancy-list'},
+]
 </script>
 
 <template>
-<div class="w-full bg-[url('/footer.png')] xl:bg-size-[100%_260px]  bg-no-repeat bg-bottom
-relative after:content-[' '] after:w-full after:h-full after:absolute after:top-0 after:left-0 after:bg-primary/12 z-[1]
-">
+<footer class="w-full bg-gradient-to-b from-surface-ground to-[#E9EEF9]">
   <UiPageContent>
-   <div class="grid grid-cols-12 relative pt-10 mb-10">
-    <div class="col-span-12 border-b border-surface-line px-[80px] pb-4 mb-6">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 py-8 border-b border-black-tertiary/20">
       <UiLogo/>
+      <nav class="flex flex-wrap gap-x-8 gap-y-3">
+        <a
+            v-for="item in navigations"
+            :key="item.path"
+            :href="localePath(item.path)"
+            @click.prevent="navigateTo(localePath(item.path))"
+            class="uppercase font-semibold text-black-primary hover:text-primary transition-colors"
+        >{{$t(item.name)}}</a>
+      </nav>
     </div>
-     <div class="col-span-12 md:col-span-6 lg:col-span-4 px-4">
-       <div class="flex items-center py-1">
-         <n-icon size="20" class="text-primary">
-           <Map24Regular/>
-         </n-icon>
-         <span class="pl-4 text-black-secondary font-semibold">{{ $t('footer.address') }}</span>
-       </div>
-       <div class="flex items-center py-1">
-         <n-icon size="20" class="text-primary">
-           <Call24Regular/>
-         </n-icon>
-         <span class="pl-4 text-black-secondary font-semibold">1005</span>
-       </div>
-       <div class="flex items-center py-1">
-         <n-icon size="20" class="text-primary">
-           <Clock28Regular/>
-         </n-icon>
-         <span class="pl-4 text-black-secondary font-semibold">{{ $t('footer.lastUpdated') }}: 10.04.2026 15:30:00</span>
-       </div>
-     </div>
-     <div class="col-span-12 md:col-span-6 lg:col-span-4 px-4">
-       <span class="text-black-tertiary text-xs">
-         {{ $t('footer.copyright') }}
-       </span>
 
-     </div>
-     <div class="col-span-12 md:col-span-6 lg:col-span-4 px-4">
-       <div class="flex items-center py-1">
-         <n-icon size="20" class="text-primary">
-           <Map24Regular/>
-         </n-icon>
-         <span class="pl-4 text-black-secondary font-semibold">{{ $t('footer.address') }}</span>
-       </div>
-       <div class="flex items-center py-1">
-         <n-icon size="20" class="text-primary">
-           <Call24Regular/>
-         </n-icon>
-         <span class="pl-4 text-black-secondary font-semibold">1005</span>
-       </div>
-       <div class="flex items-center py-1">
-         <n-icon size="20" class="text-primary">
-           <Clock28Regular/>
-         </n-icon>
-         <span class="pl-4 text-black-secondary font-semibold">{{ $t('footer.lastUpdated') }}: 10.04.2026 15:30:00</span>
-       </div>
-     </div>
-   </div>
+    <div class="grid grid-cols-12 gap-6 py-8">
+      <div class="col-span-12 md:col-span-6 lg:col-span-4 flex flex-col gap-3">
+        <div class="flex items-start gap-3">
+          <n-icon size="20" class="text-primary mt-[2px] shrink-0">
+            <Location20Regular/>
+          </n-icon>
+          <span class="text-black-primary">{{ $t('footer.address') }}</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <n-icon size="20" class="text-primary shrink-0">
+            <Call20Regular/>
+          </n-icon>
+          <span class="text-black-primary">{{ $t('footer.phone') }}: <a href="tel:1005" class="font-semibold hover:text-primary">1005</a></span>
+        </div>
+      </div>
+      <div class="col-span-12 md:col-span-6 lg:col-span-4 flex items-start gap-3">
+        <n-icon size="20" class="text-primary mt-[2px] shrink-0">
+          <Clock20Regular/>
+        </n-icon>
+        <span class="text-black-primary">{{ $t('footer.lastUpdated') }}: 10.04.2026 15:30:00</span>
+      </div>
+      <div class="col-span-12 lg:col-span-4">
+        <p class="text-black-tertiary text-sm">
+          {{ $t('footer.copyright') }}
+        </p>
+      </div>
+    </div>
   </UiPageContent>
-  <div class="w-full border-t border-surface-line py-4">
+  <div class="w-full border-t border-black-tertiary/20 py-4">
     <UiPageContent>
-      <div class="grid grid-cols-12 ">
-        <div class="col-span-6">
-          <span>vacancy.railway.uz</span>
-        </div>
-        <div class="col-span-6 flex justify-end">
-          {{ $t('footer.developedBy') }}: <span class="text-primary ml-1">dasuty.com</span>
-        </div>
+      <div class="flex flex-col sm:flex-row justify-between gap-2 text-sm text-black-secondary">
+        <span>© vacancy.railway.uz</span>
+        <span>
+          {{ $t('footer.developedBy') }}: <span class="text-primary font-semibold">dasuty.com</span>
+        </span>
       </div>
     </UiPageContent>
   </div>
-
-
-</div>
+</footer>
 </template>
-
-<style scoped>
-
-</style>
