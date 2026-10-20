@@ -1,10 +1,10 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');*/
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300..900&display=swap');
 @import "./override.scss";
 
 @import "tailwindcss";
 :root{
-    --primary:#1967D2;
+    --primary:#3165CB;
     --success:#2DB346;
     --brown:#B3692D;
     --indigo:#8883EC;
@@ -15,12 +15,13 @@
     --secondary:#74788d;
 
     --surface-section:#FFFFFF;
-    --surface-ground:#F9FCFF;
-    --surface-line:#dfe6f4;
+    --surface-ground:#F3F5FB;
+    --surface-soft:#F8FAFE;
+    --surface-line:#E5EBF8;
 
-    --black-primary:#17161D;
-    --black-secondary:#3D3D3D;
-    --black-tertiary:#999999;
+    --black-primary:#26292E;
+    --black-secondary:#4A5059;
+    --black-tertiary:#79838E;
 }
 
 @theme {
@@ -31,7 +32,7 @@
     --breakpoint-xl: 1440px;
     --breakpoint-2xl: 1536px;
 
-    --color-primary:#1967D2;
+    --color-primary:var(--primary);
     --color-success:#2DB346;
     --color-brown:#B3692D;
     --color-indigo:#8883EC;
@@ -44,6 +45,7 @@
 
     --color-surface-ground:var(--surface-ground);
     --color-surface-section:var(--surface-section);
+    --color-surface-soft:var(--surface-soft);
     --color-surface-line:var(--surface-line);
 
     --color-black-primary:var(--black-primary);
@@ -51,21 +53,28 @@
     --color-black-tertiary:var(--black-tertiary);
 
 
-    --shadow-navbar:0px 0px 25px rgba(61, 161, 238, 0.2);
+    --shadow-navbar:0px 2px 16px rgba(38, 41, 46, 0.08);
+    --shadow-card:0px 8px 30px rgba(49, 101, 203, 0.10);
 
     --animate-spin: spin 12s linear infinite;
     --animate-reverse-spin: reverse-spin 12s linear infinite;
     --animate-slide-down: slide-down 0.4s ease-in-out forwards;
     --animate-scale-xs: scale-xs 20s ease-in-out infinite;
     --animate-shimmer: shimmer 1s infinite linear;
+    --animate-float: float 6s ease-in-out infinite;
 
 
 }
 
 
 
+body{
+    background-color: var(--surface-section);
+    color: var(--black-primary);
+}
+
 *{
-    font-family: "Manrope", sans-serif;
+    font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
     font-style: normal;
     font-optical-sizing: auto;
 }
@@ -108,6 +117,14 @@
     }
     100% {
         transform:scale(1)
+    }
+}
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-12px);
     }
 }
 @keyframes shimmer {
