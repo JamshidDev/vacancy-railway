@@ -1,57 +1,42 @@
 <script setup>
-
+const steps = [
+  {
+    title:'mainSection.registerAccount',
+    text:'mainSection.guideAccount',
+    image:'/note.png',
+  },
+  {
+    title:'mainSection.applyJob',
+    text:'mainSection.guideJob',
+    image:'/apply.png',
+  },
+  {
+    title:'mainSection.createResume',
+    text:'mainSection.guideResume',
+    image:'/resume.png',
+  },
+]
 </script>
 
 <template>
-<div class="w-full bg-surface-section">
+<section class="w-full bg-surface-section py-12 md:py-16 lg:py-24">
 <UiPageContent>
-  <div class="grid grid-cols-12 pt-[100px] xl:mx-[100px] lg:mx-[50px]">
-    <div class="col-span-12 lg:flex justify-center">
-      <div class="lg:w-[360px] relative pt-[60px] pl-[80px] mb-10 lg:mb-0">
-        <div class="absolute z-10 left-[0px] top-[0px] text-6xl uppercase font-black text-black-tertiary/20">
-          01
+  <UiSectionTitle :title="$t('mainSection.howItWorks')" :subtitle="$t('mainSection.howItWorksSub')"/>
+  <div class="grid grid-cols-12 gap-6">
+    <div
+        v-for="(item, index) in steps"
+        :key="item.title"
+        class="col-span-12 md:col-span-4 relative bg-surface-soft border border-surface-line rounded-xl p-5 sm:p-6 hover:shadow-card transition-shadow duration-300">
+      <div class="flex items-center justify-between mb-4 sm:mb-6">
+        <div class="w-[60px] h-[60px] bg-surface-section rounded-lg shadow-navbar flex items-center justify-center p-3">
+          <img :src="item.image" alt="step icon" class="max-w-full max-h-full" />
         </div>
-        <div class="relative leading-[1.2] bg-[#3898E2] p-4 rounded-2xl text-lg text-white pl-[100px]">
-          {{$t('mainSection.registerAccount')}}
-          <div class="bg-white shadow-navbar absolute top-[20px] left-[-20px] rounded-lg p-4">
-            <img src="/note.png" alt=".." />
-          </div>
-        </div>
-        <div class="mt-14 text-black-secondary">
-          {{$t('mainSection.guideAccount')}}
-        </div>
+        <span class="text-5xl font-black text-primary/15">0{{index + 1}}</span>
       </div>
-      <div class="lg:w-[360px] relative pt-[60px] pl-[80px] mx-4 mb-10 lg:mb-0">
-        <div class="absolute z-10 left-[0px] top-[0px] text-6xl uppercase font-black text-black-tertiary/20">
-          02
-        </div>
-        <div class="relative leading-[1.2] bg-[#BC84CA] p-4 rounded-2xl text-lg text-white pl-[100px]">
-          {{$t('mainSection.applyJob')}}
-          <div class="bg-white shadow-navbar absolute top-[20px] left-[-20px] rounded-lg p-4">
-            <img src="/apply.png" alt=".." />
-          </div>
-        </div>
-        <div class="mt-14 text-black-secondary">
-          {{$t('mainSection.guideJob')}}
-        </div>
-      </div>
-      <div class="lg:w-[360px] relative pt-[60px] pl-[80px] mb-10 lg:mb-0">
-        <div class="absolute z-10 left-[0px] top-[0px] text-6xl uppercase font-black text-black-tertiary/20">
-          03
-        </div>
-        <div class="relative leading-[1.2] bg-[#56D8B1] p-4 rounded-2xl text-lg text-white pl-[100px]">
-          {{$t('mainSection.createResume')}}
-          <div class="bg-white shadow-navbar absolute top-[20px] left-[-20px] rounded-lg p-4">
-            <img src="/resume.png" alt=".." />
-          </div>
-        </div>
-        <div class="mt-14 text-black-secondary">
-          {{$t('mainSection.guideResume')}}
-        </div>
-      </div>
+      <h3 class="text-lg sm:text-xl font-bold text-black-primary">{{$t(item.title)}}</h3>
+      <p class="text-black-tertiary mt-2">{{$t(item.text)}}</p>
     </div>
-
   </div>
 </UiPageContent>
-</div>
+</section>
 </template>

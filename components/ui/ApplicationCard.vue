@@ -5,7 +5,6 @@ import {
   Clock32Regular,
   DocumentBriefcase20Regular,
   CalendarLtr32Regular,
-  Location16Filled,
   Info16Regular,
   ArrowRight16Filled,
   DocumentPdf24Regular,
@@ -172,148 +171,155 @@ const onShowDetails = () => {
 </script>
 
 <template>
-<div
-    class="px-3 sm:px-4 py-2.5 bg-surface-ground border border-surface-line rounded-lg mb-2">
-  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1.5 sm:gap-0">
-    <h2
-        @click="onGoToVacancy"
-        class="text-sm sm:text-base text-black-primary hover:text-primary font-bold order-2 sm:order-1 line-clamp-1 cursor-pointer transition-colors duration-200"
-        :title="$t('applications.viewVacancy')">
-      {{vacancy?.position?.name}}
-    </h2>
-    <div class="flex items-center gap-1.5 self-start order-1 sm:order-2">
-      <n-tag :type="statusType" size="tiny" round>
-        {{ data?.status?.name }}
-      </n-tag>
-      <n-button
-          v-if="hasMessage"
-          @click="onShowMessage"
-          :type="statusType"
-          size="tiny"
-          secondary
-      >
-        <template #icon>
-          <n-icon size="12">
-            <Info16Regular/>
-          </n-icon>
-        </template>
-        {{ $t('content.viewMessage') }}
-      </n-button>
+<div class="group px-4 py-4 sm:px-6 sm:py-5 bg-surface-soft border border-surface-line rounded-xl mb-4 hover:border-primary/30 hover:shadow-card transition-all duration-300">
+  <!-- Sarlavha: lavozim va holat -->
+  <div class="flex flex-col-reverse sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+    <div class="min-w-0">
+      <h2
+          @click="onGoToVacancy"
+          :title="$t('applications.viewVacancy')"
+          class="text-lg sm:text-xl text-black-primary hover:text-primary font-bold leading-[1.3] cursor-pointer transition-colors line-clamp-2">
+        {{vacancy?.position?.name}}
+      </h2>
+      <p class="text-black-tertiary font-semibold text-sm sm:text-base mt-1 line-clamp-1">&bull; {{vacancy?.department?.name}}</p>
+    </div>
+    <div class="flex items-center gap-2 shrink-0 self-start">
+      <UiStatusBadge :type="statusType" :label="data?.status?.name"/>
     </div>
   </div>
-  <h2 class="text-[11px] text-black-tertiary mt-1 pb-2 border-b border-surface-line flex items-center gap-1">
-    <n-icon size="12" class="text-primary flex-shrink-0">
-      <Location16Filled/>
-    </n-icon>
-    <span class="line-clamp-1">{{vacancy?.department?.name}}</span>
-  </h2>
-  <h3 class="text-black-secondary mt-1.5 font-medium text-xs sm:text-sm line-clamp-1">{{vacancy?.organization?.name}}</h3>
-  <div class="grid grid-cols-2 mt-2 gap-1.5 text-xs sm:text-sm">
-    <div class="flex items-center gap-x-1.5 font-medium">
-        <n-icon size="14" class="text-primary flex-shrink-0">
+
+  <!-- Vakansiya ma'lumotlari -->
+  <div class="border-t border-surface-line mt-3 sm:mt-4 pt-3 sm:pt-4">
+    <h3 class="text-black-secondary font-semibold text-sm sm:text-base line-clamp-2">{{vacancy?.organization?.name}}</h3>
+    <div class="grid grid-cols-12 mt-3 gap-x-6 gap-y-2 text-sm sm:text-base text-black-primary">
+      <div class="col-span-12 md:col-span-6 flex items-center gap-x-3 font-semibold">
+        <n-icon size="20" class="text-primary shrink-0">
           <Wallet24Regular/>
         </n-icon>
-      <span class="line-clamp-1">{{utils.formattedMoney(vacancy?.salary)}} {{$t('content.sum')}}</span>
-    </div>
-    <div class="flex items-center gap-x-1.5 font-medium">
-      <n-icon size="14" class="text-primary flex-shrink-0">
-        <Location24Regular/>
-      </n-icon>
-      <span class="line-clamp-1">{{vacancy?.city?.region?.name}}, {{vacancy?.city?.name}}</span>
-    </div>
-    <div class="flex items-center gap-x-1.5 font-medium">
-      <n-icon size="14" class="text-primary flex-shrink-0">
-        <Clock32Regular/>
-      </n-icon>
-      <span class="line-clamp-1">{{vacancy?.work_type?.name}}</span>
-    </div>
-    <div class="flex items-center gap-x-1.5 font-medium">
-      <n-icon size="14" class="text-primary flex-shrink-0">
-        <DocumentBriefcase20Regular/>
-      </n-icon>
-      <span class="line-clamp-1">{{(vacancy?.experience ? $t('vacancy.minWorkExperience', {n:vacancy?.experience}) : $t('vacancy.noExperience'))}}</span>
+        <span class="line-clamp-1">{{utils.formattedMoney(vacancy?.salary)}} {{$t('content.sum')}}</span>
+      </div>
+      <div class="col-span-12 md:col-span-6 flex items-center gap-x-3 font-semibold">
+        <n-icon size="20" class="text-primary shrink-0">
+          <Location24Regular/>
+        </n-icon>
+        <span class="line-clamp-1">{{vacancy?.city?.region?.name}}, {{vacancy?.city?.name}}</span>
+      </div>
+      <div class="col-span-12 md:col-span-6 flex items-center gap-x-3 font-semibold">
+        <n-icon size="20" class="text-primary shrink-0">
+          <Clock32Regular/>
+        </n-icon>
+        <span class="line-clamp-1">{{vacancy?.work_type?.name}}</span>
+      </div>
+      <div class="col-span-12 md:col-span-6 flex items-center gap-x-3 font-semibold">
+        <n-icon size="20" class="text-primary shrink-0">
+          <DocumentBriefcase20Regular/>
+        </n-icon>
+        <span class="line-clamp-1">{{(vacancy?.experience ? $t('vacancy.minWorkExperience', {n:vacancy?.experience}) : $t('vacancy.noExperience'))}}</span>
+      </div>
     </div>
   </div>
-  <div class="mt-2 border-t border-surface-line pt-2">
-    <div class="flex items-center justify-between gap-2 mb-1.5 flex-wrap">
-      <p class="text-[10px] font-semibold text-black-tertiary uppercase tracking-wide">
-        {{$t('applications.uploadedFiles')}} ({{files.length}})
+
+  <!-- Hujjatlar -->
+  <div class="border-t border-surface-line mt-3 sm:mt-4 pt-3 sm:pt-4">
+    <div class="flex items-center justify-between gap-2 mb-3 flex-wrap">
+      <p class="text-sm font-bold text-black-primary">
+        {{$t('applications.uploadedFiles')}}
+        <span class="text-black-tertiary font-semibold">({{files.length}})</span>
       </p>
-      <n-button @click="onOpenAddFile" size="tiny" type="primary" secondary>
+      <n-button @click="onOpenAddFile" size="small" type="primary" secondary>
         <template #icon>
-          <n-icon size="12">
+          <n-icon>
             <Add20Filled/>
           </n-icon>
         </template>
         {{$t('applications.addFile')}}
       </n-button>
     </div>
-    <div v-if="files.length > 0" class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+    <div v-if="files.length > 0" class="grid grid-cols-1 md:grid-cols-2 gap-2">
       <div
           v-for="file in files"
           :key="file.id"
-          class="flex flex-col sm:flex-row sm:items-center gap-1.5 px-2 py-1.5 bg-surface-section border border-surface-line rounded-md">
-        <div class="flex items-center gap-1.5 flex-1 min-w-0 w-full">
-          <n-icon size="14" class="text-primary shrink-0">
+          class="flex items-center gap-3 px-3 py-2.5 bg-surface-section border border-surface-line rounded-lg">
+        <div class="w-9 h-9 rounded-lg bg-error/10 text-error flex items-center justify-center shrink-0">
+          <n-icon size="20">
             <DocumentPdf24Regular/>
           </n-icon>
-          <div class="flex-1 min-w-0">
-            <p class="text-[10px] font-medium text-black-tertiary truncate leading-tight">
-              {{getFileTypeName(file.type) || $t('applications.document')}}
-            </p>
-            <p class="text-[11px] text-black-primary font-medium truncate leading-tight">
-              {{file.file_name}}
-            </p>
-          </div>
         </div>
-        <div class="flex items-center gap-1 shrink-0 w-full sm:w-auto justify-end">
-          <n-button @click="onOpenFile(file.file)" size="tiny" type="primary" secondary class="shrink-0">
+        <div class="flex-1 min-w-0">
+          <p class="text-xs text-black-tertiary truncate">
+            {{getFileTypeName(file.type) || $t('applications.document')}}
+          </p>
+          <p class="text-sm text-black-primary font-semibold truncate">
+            {{file.file_name}}
+          </p>
+        </div>
+        <div class="flex items-center gap-1.5 shrink-0">
+          <n-button
+              @click="onOpenFile(file.file)"
+              :aria-label="$t('applications.open')"
+              :title="$t('applications.open')"
+              size="small" type="primary" secondary>
             <template #icon>
-              <n-icon size="12">
+              <n-icon>
                 <Open24Regular/>
               </n-icon>
             </template>
-            <span class="hidden sm:inline">{{$t('applications.open')}}</span>
           </n-button>
           <n-button
               @click="onDeleteFile(file)"
               :loading="deletingFileId === file.id"
-              size="tiny"
+              :aria-label="$t('content.remove')"
+              :title="$t('content.remove')"
+              size="small"
               type="error"
-              secondary
-              class="shrink-0">
+              secondary>
             <template #icon>
-              <n-icon size="12">
+              <n-icon>
                 <Dismiss24Filled/>
               </n-icon>
             </template>
-            <span class="hidden sm:inline">{{$t('content.remove')}}</span>
           </n-button>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="mt-2 border-t border-surface-line pt-2 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-    <div class="flex gap-1 items-center text-[11px] text-black-tertiary">
-      <n-icon size="14" class="flex-shrink-0">
+  <!-- Pastki qator: sana va amallar -->
+  <div class="border-t border-surface-line mt-3 sm:mt-4 pt-3 sm:pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+    <div class="flex items-center gap-2 text-sm text-black-tertiary">
+      <n-icon size="18" class="shrink-0">
         <CalendarLtr32Regular/>
       </n-icon>
       <span>{{ $t('detail.sentApply') }}: {{utils.formattedDate(data?.created_at)}}</span>
     </div>
-    <n-button @click="onShowDetails" type="primary" size="tiny" secondary>
-      <template #icon>
-        <n-icon size="12">
-          <Eye16Filled/>
-        </n-icon>
-      </template>
-      {{ $t('applications.viewDetails') }}
-    </n-button>
+    <div class="flex items-center gap-2">
+      <n-button
+          v-if="hasMessage"
+          @click="onShowMessage"
+          :type="statusType"
+          secondary
+          class="flex-1 sm:flex-none">
+        <template #icon>
+          <n-icon>
+            <Info16Regular/>
+          </n-icon>
+        </template>
+        {{ $t('content.viewMessage') }}
+      </n-button>
+      <n-button @click="onShowDetails" type="primary" class="flex-1 sm:flex-none">
+        <template #icon>
+          <n-icon>
+            <Eye16Filled/>
+          </n-icon>
+        </template>
+        {{ $t('applications.viewDetails') }}
+      </n-button>
+    </div>
   </div>
 
   <UiModal :width="500" v-model:visible="addFileVisible">
     <template #header-title>
-      <span class="uppercase font-bold text-base text-black-primary">{{$t('applications.addFileTitle')}}</span>
+      <span class="font-bold text-lg text-black-primary">{{$t('applications.addFileTitle')}}</span>
     </template>
 
     <div class="w-full flex flex-col gap-3">
@@ -321,7 +327,7 @@ const onShowDetails = () => {
         <n-icon size="16" class="text-warning mt-0.5 shrink-0">
           <Info16Regular/>
         </n-icon>
-        <p class="text-black-secondary text-xs leading-[16px]">{{$t('applications.addFileInfo')}}</p>
+        <p class="text-black-secondary text-sm leading-[1.45]">{{$t('applications.addFileInfo')}}</p>
       </div>
 
       <div class="max-h-[380px] overflow-y-auto pr-1 apply-scroll">
@@ -357,19 +363,19 @@ const onShowDetails = () => {
               </div>
 
               <div class="flex-1 min-w-0 flex flex-col">
-                <p class="text-xs font-semibold text-black-primary leading-tight line-clamp-2 px-2.5 py-2 border-b border-surface-line">
+                <p class="text-sm font-semibold text-black-primary leading-tight line-clamp-2 px-3 py-2.5 border-b border-surface-line">
                   {{type.name}}
                 </p>
 
                 <div class="p-2">
                   <div v-if="!getPendingFileByType(type.id)"
                        @click="onPickFileByType(type.id)"
-                       class="w-full cursor-pointer py-1.5 border border-dashed border-surface-line rounded-md flex justify-center items-center gap-2 bg-surface-ground hover:bg-surface-section hover:border-black-tertiary/40 transition-all">
+                       class="w-full cursor-pointer py-2.5 border border-dashed border-surface-line rounded-md flex justify-center items-center gap-2 bg-surface-ground hover:bg-surface-section hover:border-black-tertiary/40 transition-all">
                     <n-icon size="14" class="text-black-tertiary">
                       <ArrowUpload24Regular/>
                     </n-icon>
-                    <span class="text-[11px] font-medium text-black-secondary">{{$t('detail.uploadFile')}}</span>
-                    <span class="text-[10px] text-black-tertiary">(PDF)</span>
+                    <span class="text-sm font-medium text-black-secondary">{{$t('detail.uploadFile')}}</span>
+                    <span class="text-xs text-black-tertiary">(PDF)</span>
                   </div>
 
                   <div v-else class="flex items-center gap-2 px-2 py-1 bg-surface-ground border border-surface-line rounded-md">
@@ -377,8 +383,8 @@ const onShowDetails = () => {
                       <DocumentPdf24Regular/>
                     </n-icon>
                     <div class="flex-1 min-w-0">
-                      <p class="text-[11px] font-medium text-black-primary truncate leading-tight">{{getPendingFileByType(type.id)?.file?.name}}</p>
-                      <p class="text-[10px] text-black-tertiary">{{formatFileSize(getPendingFileByType(type.id)?.file?.size)}}</p>
+                      <p class="text-sm font-medium text-black-primary truncate leading-tight">{{getPendingFileByType(type.id)?.file?.name}}</p>
+                      <p class="text-xs text-black-tertiary">{{formatFileSize(getPendingFileByType(type.id)?.file?.size)}}</p>
                     </div>
                     <n-button @click="onClearPendingFile(type.id)" size="tiny" type="error" secondary class="shrink-0">
                       <template #icon>
@@ -408,7 +414,7 @@ const onShowDetails = () => {
         <n-button @click="addFileVisible = false" :disabled="addingFile" class="!w-full" type="error" secondary>
           {{$t('content.cancel')}}
         </n-button>
-        <n-button @click="onSubmitAddFile" :loading="addingFile" :disabled="!hasPendingFiles" class="!w-full" type="primary" secondary>
+        <n-button @click="onSubmitAddFile" :loading="addingFile" :disabled="!hasPendingFiles" class="!w-full" type="primary">
           {{$t('content.save')}}
         </n-button>
       </div>

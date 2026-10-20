@@ -1,5 +1,4 @@
 <script setup>
-import {Home16Regular, ChevronDoubleRight20Filled} from "@vicons/fluent"
 const route = useRoute()
 const router = useRouter()
 
@@ -41,35 +40,32 @@ const breadCrumbs = computed(()=>{
   })
 })
 
+const localePath = useLocalePath()
 const goPush = (path)=>{
-  router.push(path)
+  router.push(localePath(path))
 }
 
 
 </script>
 
 <template>
-<UiPageContent>
-  <div class=" flex flex-wrap font-medium items-center gap-2 text-black-tertiary">
-    <n-icon class="text-primary" size="20">
-      <Home16Regular/>
-    </n-icon>
-   <span @click="goPush('/')" class="hover:text-primary hover:underline cursor-pointer">{{$t('mainSection.name')}}</span>
-    <template v-for="(item, idx) in breadCrumbs" :key="idx">
-      <div
-          class="flex items-center gap-2 text-black-tertiary hover:text-primary cursor-pointer"
-          :class="[(breadCrumbs.length-1) === idx && 'text-primary']"
-          @click="goPush(item.path)">
-        <n-icon size="14">
-          <ChevronDoubleRight20Filled/>
-        </n-icon>
-        <span class="hover:underline">
-
-          {{(breadCrumbs?.length-1) === idx? customTitle || $t(item?.name) : $t(item?.name)}}
-        </span>
-      </div>
-
-    </template>
-  </div>
-</UiPageContent>
+<div class="w-full bg-surface-ground border-b border-surface-line">
+  <UiPageContent>
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-1 py-4 text-[15px]">
+     <span @click="goPush('/')" class="text-black-primary font-semibold hover:text-primary cursor-pointer">{{$t('mainSection.name')}}</span>
+      <template v-for="(item, idx) in breadCrumbs" :key="idx">
+        <span class="w-[5px] h-[5px] rounded-full bg-black-primary"></span>
+        <span
+            v-if="(breadCrumbs.length-1) === idx"
+            class="text-black-tertiary line-clamp-1"
+        >{{customTitle || $t(item?.name)}}</span>
+        <span
+            v-else
+            @click="goPush(item.path)"
+            class="text-black-primary font-semibold hover:text-primary cursor-pointer"
+        >{{$t(item?.name)}}</span>
+      </template>
+    </div>
+  </UiPageContent>
+</div>
 </template>

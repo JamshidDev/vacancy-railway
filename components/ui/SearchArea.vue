@@ -6,7 +6,7 @@ const localePath = useLocalePath()
 
 const totalVacancy = computed(()=> {
   if (store.loading) return `<span class="w-[40px] h-[20px] inline-block animate-shimmer shimmer rounded mb-[-4px]"></span>`
-  return `<span class="text-primary">${store.activeVacancy}</span>`
+  return `<span class="text-primary font-semibold">${Number(store.activeVacancy || 0).toLocaleString('ru-RU')}</span>`
 })
 
 const onSearch = () => {
@@ -16,24 +16,23 @@ const onSearch = () => {
 </script>
 
 <template>
-  <div class="w-full max-w-[700px] lg:absolute lg:bottom-[300px] pt-[100px] lg:pt-[0px]">
-    <p class="text-black-primary font-medium text-lg" v-html="$t('mainSection.subtitle', {n:totalVacancy})"></p>
+  <div class="w-full max-w-[760px]">
+    <p class="text-black-primary text-xl lg:text-2xl" v-html="$t('mainSection.heroCount', {n:totalVacancy})"></p>
 
+    <h1 class="text-black-primary text-[34px] md:text-[44px] xl:text-[52px] leading-[1.15] font-bold mt-3" v-html="$t('mainSection.title', {word:`<span class='text-primary'>${$t('mainSection.job')}</span>`})">
+    </h1>
+    <h6 class="text-black-tertiary mt-10 lg:text-lg">{{$t('mainSection.thirdTitle')}}</h6>
 
-    <h3 class="text-black-primary text-4xl lg:text-5xl xl:text-6xl font-medium mt-8" v-html="$t('mainSection.title', {word:`<span class='text-primary px-1'>${$t('mainSection.job')}</span>`})">
-    </h3>
-    <h6 class="text-black-secondary mt-16 lg:text-lg">{{$t('mainSection.thirdTitle')}}</h6>
-
-    <div class="w-full p-1 rounded-2xl bg-surface-section border border-surface-line flex gap-2 items-center mt-4">
-      <div class="w-[calc(100%-140px)] flex items-center">
-        <n-icon size="22" class="text-black-tertiary">
+    <div class="w-full p-3 rounded-xl bg-surface-section shadow-card flex gap-2 items-center mt-4">
+      <div class="flex-1 flex items-center pl-2 min-w-0">
+        <n-icon size="24" class="text-black-tertiary shrink-0">
           <Search32Regular/>
         </n-icon>
-        <n-input v-model:value="store.heroSearch" class="input-override" :placeholder="$t('content.search')" @keyup.enter="onSearch"/>
+        <n-input v-model:value="store.heroSearch" size="large" class="input-override" :placeholder="$t('content.search')" @keyup.enter="onSearch"/>
       </div>
       <button
           @click="onSearch"
-          class="bg-primary text-white w-[140px] py-4 px-3 text-sm rounded-2xl cursor-pointer ">
+          class="bg-primary hover:bg-primary/90 text-white h-[48px] px-6 md:px-10 font-semibold rounded-lg cursor-pointer shrink-0 transition-colors">
         {{$t('mainSection.searchVacancy')}}</button>
     </div>
 

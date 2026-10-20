@@ -35,7 +35,7 @@ const onSelect = (key)=>{
   }else if(key === option[0].key){
     navigateTo(localePath('/profile'))
   }else if(key === option[1].key){
-    navigateTo(localePath('/applications'))
+    navigateTo({path:localePath('/profile'), query:{tab:'applications'}})
   }
 }
 
@@ -54,6 +54,8 @@ const onSelect = (key)=>{
           round
           size="medium"
           :src="store.avatarUrl"
+          object-fit="cover"
+          :img-props="{style:'object-position: center 20%'}"
       />
 
       <div class="w-[calc(100%-40px)]">

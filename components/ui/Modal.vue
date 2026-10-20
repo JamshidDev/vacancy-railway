@@ -46,10 +46,10 @@ const onClickClose = ()=>{
         closable
     >
       <template #default>
-        <div class="flex flex-col p-2">
+        <div class="flex flex-col p-1 sm:p-2">
           <div v-if="showHeader" class="w-full">
             <slot name="header">
-              <div class="flex justify-between px-4 py-2">
+              <div class="flex justify-between items-center gap-3 px-3 sm:px-4 py-2">
                 <slot name="header-title">
                   <h3 class="text-lg font-medium">{{title}}</h3>
                 </slot>
@@ -63,7 +63,7 @@ const onClickClose = ()=>{
               </div>
             </slot>
           </div>
-          <div class="px-4">
+          <div class="px-3 sm:px-4">
             <slot name="default">
             </slot>
           </div>

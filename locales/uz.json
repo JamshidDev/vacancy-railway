@@ -37,6 +37,8 @@
     "errorStarting": "Imtihonni boshlashda xatolik yuz berdi"
   },
   "applications": {
+    "stagesProgress": "{done} / {total} bosqich yakunlandi",
+    "stageNumber": "{n}-bosqich",
     "uploadedFiles": "Yuklangan hujjatlar",
     "document": "Hujjat",
     "open": "Ochish",
@@ -136,7 +138,12 @@
     "rotateLeft": "Chapga aylantirish",
     "rotateRight": "O'ngga aylantirish",
     "reset": "Qayta tiklash",
-    "preview": "Ko'rinishi"
+    "preview": "Ko'rinishi",
+    "datePlaceholder": "kk.oo.yyyy",
+    "openCalendar": "Kalendarni ochish",
+    "darkMode": "Tungi rejim",
+    "lightMode": "Kunduzgi rejim",
+    "theme": "Mavzu"
   },
   "rules": {
     "login": "Email kiritilishi shart!",
@@ -156,6 +163,23 @@
   "auth": {
     "login": "Tizimga kirish",
     "register": "Ro'yhatdan o'tish",
+    "reset": {
+      "forgot": "Parolni unutdingizmi?",
+      "title": "Parolni tiklash",
+      "phoneHint": "Ro'yxatdan o'tgan telefon raqamingizni kiriting, unga tasdiqlash kodi yuboriladi.",
+      "sendCode": "Kod yuborish",
+      "codeSentTo": "Tasdiqlash kodi {phone} raqamiga yuborildi",
+      "changePhone": "Raqamni o'zgartirish",
+      "newPassword": "Yangi parol",
+      "confirmPassword": "Yangi parolni takrorlang",
+      "passwordMismatch": "Parollar mos kelmadi",
+      "resend": "Kodni qayta yuborish",
+      "resendIn": "Kodni qayta yuborish: {n} s",
+      "submit": "Parolni yangilash",
+      "successTitle": "Parol yangilandi",
+      "successText": "Endi yangi parol bilan tizimga kirishingiz mumkin.",
+      "backToLogin": "Tizimga kirish"
+    },
     "form": {
       "phone": "Telefon raqam",
       "otp": "Telefon raqamingizga yuborilgan sms kodni kiriting",
@@ -175,8 +199,8 @@
   "mainSection": {
     "name": "Asosiy",
     "subtitle":"Bizda {n} ta bosh ish o'rni",
-    "title":"Hayot tarzingizga mos keladigan {word} toping!",
-    "job":"kasbni",
+    "title":"Kasbiy yo'lingizni {word} bilan boshlang!",
+    "job":"temir yo'l",
     "searchVacancy":"Izlash",
     "vacancy":"Ish o'rinlari",
     "registerAccount":"Hisobingizni yarating",
@@ -185,7 +209,7 @@
     "applyJob":"Ish o‘rnini izlang va tanlang",
     "createResume":"Ariza yuboring va holatini kuzating",
     "guideResume": "Ma'lumotlringizni to'ldiring va arizani shaklida topshiring.",
-    "thirdTitle":"Kasb, lavozim nomini kiriting",
+    "thirdTitle":"Lavozim nomini kiriting: mashinist, elektromexanik, dispetcher...",
     "organizations":"Tashkilotlar",
     "byArea":"Hudud bo‘yicha",
     "availableVacancy":"E'londagi tanlovlar soni:{n} ta",
@@ -193,7 +217,14 @@
     "newVacancy":"Yangi ish o'rinlari",
     "subVacancyText":"Imkoniyatni qo‘ldan boy bermang",
     "viewMore":"Ko'rib chiqish",
-    "goToVacancy":"Vakansiyaga o'tish"
+    "goToVacancy":"Vakansiyaga o'tish",
+    "statVacancies": "Bo'sh ish o'rinlari",
+    "statOrganizations": "Tashkilotlar soni",
+    "statRegions": "Hududlar",
+    "allVacancies": "Barcha vakansiyalar",
+    "howItWorks": "Qanday ishlaydi",
+    "howItWorksSub": "Uch qadamda ishga ariza topshiring",
+    "heroCount": "Temir yo'l tizimida {n} ta bo'sh ish o'rni"
   },
   "vacancy": {
     "name": "Ish o'rinlari",
@@ -203,7 +234,9 @@
     "minExperience": "Minimal mehnat staji",
     "noExperience": "Mehnat staji talab etilmaydi",
     "vacancyCount": "Bo'sh ish o'rinlar soni: {n}",
-    "minWorkExperience": "Kamida {n} yillik staj"
+    "minWorkExperience": "Kamida {n} yillik staj",
+    "filters": "Filtrlar",
+    "showResults": "Natijalarni ko'rsatish ({n})"
   },
   "detail": {
     "sendApply": "Ariza yuborish",
@@ -307,7 +340,8 @@
     "address": "O'zbekiston Respublikasi, Toshkent, 100060, Т. Shevchenko ko'chasi, 7",
     "lastUpdated": "Oxirgi yangilangan vaqt",
     "copyright": "Portalda e'lon qilingan materiallardan nusxa ko'chirish, tarqatish va boshqa shakllarda foydalanish faqat yozma rozilik bilan amalga oshirilishi mumkin.",
-    "developedBy": "Ishlab chiquvchi"
+    "developedBy": "Ishlab chiquvchi",
+    "phone": "Ishonch telefoni"
   }
 
 }

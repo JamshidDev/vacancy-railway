@@ -37,6 +37,8 @@
     "errorStarting": "Failed to start the exam"
   },
   "applications": {
+    "stagesProgress": "{done} of {total} stages completed",
+    "stageNumber": "Stage {n}",
     "uploadedFiles": "Uploaded files",
     "document": "Document",
     "open": "Open",
@@ -136,7 +138,12 @@
     "rotateLeft": "Rotate left",
     "rotateRight": "Rotate right",
     "reset": "Reset",
-    "preview": "Preview"
+    "preview": "Preview",
+    "datePlaceholder": "dd.mm.yyyy",
+    "openCalendar": "Open calendar",
+    "darkMode": "Dark mode",
+    "lightMode": "Light mode",
+    "theme": "Theme"
   },
   "rules": {
     "login": "Email is required!",
@@ -156,6 +163,23 @@
   "auth": {
     "login": "Login",
     "register": "Register",
+    "reset": {
+      "forgot": "Forgot password?",
+      "title": "Reset password",
+      "phoneHint": "Enter the phone number you registered with, and we will send a confirmation code to it.",
+      "sendCode": "Send code",
+      "codeSentTo": "The confirmation code was sent to {phone}",
+      "changePhone": "Change number",
+      "newPassword": "New password",
+      "confirmPassword": "Repeat new password",
+      "passwordMismatch": "Passwords do not match",
+      "resend": "Resend code",
+      "resendIn": "Resend code in {n} s",
+      "submit": "Update password",
+      "successTitle": "Password updated",
+      "successText": "You can now sign in with your new password.",
+      "backToLogin": "Sign in"
+    },
     "form": {
       "phone": "Phone number",
       "otp": "Enter the SMS code sent to your phone number",
@@ -175,8 +199,8 @@
   "mainSection": {
     "name": "Home",
     "subtitle": "We have {n} job vacancies",
-    "title": "Find a {word} that suits your lifestyle!",
-    "job": "profession",
+    "title": "Start your career journey with the {word}!",
+    "job": "railway",
     "searchVacancy": "Search",
     "vacancy": "Vacancies",
     "registerAccount": "Create your account",
@@ -185,7 +209,7 @@
     "applyJob": "Search and apply for jobs",
     "createResume": "Submit an application and track its status",
     "guideResume": "Fill in your details and submit the application in the required format.",
-    "thirdTitle": "Enter the profession or position name",
+    "thirdTitle": "Enter a position: locomotive driver, electromechanic, dispatcher...",
     "organizations": "Organizations",
     "byArea": "By region",
     "availableVacancy": "Number of vacancies in the listing: {n}",
@@ -193,7 +217,14 @@
     "newVacancy": "New vacancies",
     "subVacancyText": "Don’t miss the opportunity",
     "viewMore": "View more",
-    "goToVacancy": "Go to vacancy"
+    "goToVacancy": "Go to vacancy",
+    "statVacancies": "Vacancies",
+    "statOrganizations": "Organizations",
+    "statRegions": "Regions",
+    "allVacancies": "All vacancies",
+    "howItWorks": "How it works",
+    "howItWorksSub": "Apply for a job in three steps",
+    "heroCount": "{n} open positions on the railway"
   },
   "vacancy": {
     "name": "Vacancies",
@@ -203,7 +234,9 @@
     "minExperience": "Minimum work experience",
     "noExperience": "No work experience required",
     "vacancyCount": "Number of vacancies: {n}",
-    "minWorkExperience": "At least {n} years of experience"
+    "minWorkExperience": "At least {n} years of experience",
+    "filters": "Filters",
+    "showResults": "Show results ({n})"
   },
   "detail": {
     "sendApply": "Submit application",
@@ -307,6 +340,7 @@
     "address": "Republic of Uzbekistan, Tashkent, 100060, T. Shevchenko street, 7",
     "lastUpdated": "Last updated",
     "copyright": "Copying, distribution and other use of materials published on the portal is allowed only with written consent.",
-    "developedBy": "Developed by"
+    "developedBy": "Developed by",
+    "phone": "Hotline"
   }
 }

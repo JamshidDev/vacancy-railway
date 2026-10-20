@@ -61,7 +61,7 @@ onMounted(()=>{
 
 <template>
   <template v-if="mobile">
-    <div class="w-full flex justify-between">
+    <div class="w-full flex gap-3">
       <template v-for="item in options" :key="item.key">
         <img @click="onChange(item.key)" :class="item.key === store.appLanguage && '!border-primary'" class="border-[4px] rounded-full border-transparent  w-[40px] transition-all duration-300" :src="item.url" alt="image">
       </template>
@@ -75,9 +75,9 @@ onMounted(()=>{
         trigger="click"
         :options="options"
     >
-      <div class="flex gap-2 items-center pl-1 pr-2 py-1 h-[40px]  border-surface-line rounded-xl border cursor-pointer  overflow-hidden">
-        <img :src="`/${store.appLanguage}.png`" alt="image">
-        <span class="uppercase font-bold text-black-secondary">{{$t(`content.${store.appLanguage}`)}}</span>
+      <div class="flex gap-2 items-center px-3 h-[44px] bg-surface-ground hover:bg-surface-line rounded-lg cursor-pointer overflow-hidden transition-colors">
+        <img class="w-[22px] h-[22px] rounded-full object-cover" :src="`/${store.appLanguage}.png`" alt="image">
+        <span class="uppercase font-bold text-black-primary">{{$t(`content.${store.appLanguage}`)}}</span>
       </div>
     </n-dropdown>
   </template>

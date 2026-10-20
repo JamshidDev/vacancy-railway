@@ -128,7 +128,7 @@ const onImgLoad = () => {
             <h3 class="text-base font-semibold text-black-secondary">{{ $t('content.cropImage') }}</h3>
             <button
               @click="onClose"
-              class="w-7 h-7 rounded-full flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-all"
+              class="w-7 h-7 rounded-full flex items-center justify-center text-black-tertiary hover:bg-surface-ground hover:text-black-secondary transition-all"
             >
               <n-icon size="18"><Dismiss24Regular /></n-icon>
             </button>
@@ -136,7 +136,7 @@ const onImgLoad = () => {
 
           <!-- Loading state -->
           <div v-if="fileLoading" class="p-4">
-            <div class="w-full h-[250px] flex items-center justify-center bg-gray-50 rounded-lg">
+            <div class="w-full h-[250px] flex items-center justify-center bg-surface-soft rounded-lg">
               <n-spin size="medium" />
             </div>
           </div>
@@ -174,12 +174,12 @@ const onImgLoad = () => {
 
                 <!-- Controls -->
                 <div class="flex justify-center items-center mt-3">
-                  <div class="inline-flex items-center bg-gray-100 rounded-full px-1 py-1 gap-1">
+                  <div class="inline-flex items-center bg-surface-ground rounded-full px-1 py-1 gap-1">
                     <n-tooltip trigger="hover">
                       <template #trigger>
                         <button
                           @click="zoomOut"
-                          class="w-8 h-8 rounded-full flex items-center justify-center text-gray-600 hover:bg-white hover:text-primary hover:shadow-sm transition-all"
+                          class="w-8 h-8 rounded-full flex items-center justify-center text-black-secondary hover:bg-surface-section hover:text-primary hover:shadow-sm transition-all"
                         >
                           <n-icon size="18"><ZoomOut24Regular /></n-icon>
                         </button>
@@ -191,7 +191,7 @@ const onImgLoad = () => {
                       <template #trigger>
                         <button
                           @click="zoomIn"
-                          class="w-8 h-8 rounded-full flex items-center justify-center text-gray-600 hover:bg-white hover:text-primary hover:shadow-sm transition-all"
+                          class="w-8 h-8 rounded-full flex items-center justify-center text-black-secondary hover:bg-surface-section hover:text-primary hover:shadow-sm transition-all"
                         >
                           <n-icon size="18"><ZoomIn24Regular /></n-icon>
                         </button>
@@ -199,13 +199,13 @@ const onImgLoad = () => {
                       {{ $t('content.zoomIn') }}
                     </n-tooltip>
 
-                    <div class="w-px h-5 bg-gray-300 mx-1"></div>
+                    <div class="w-px h-5 bg-surface-line mx-1"></div>
 
                     <n-tooltip trigger="hover">
                       <template #trigger>
                         <button
                           @click="rotateLeft"
-                          class="w-8 h-8 rounded-full flex items-center justify-center text-gray-600 hover:bg-white hover:text-primary hover:shadow-sm transition-all"
+                          class="w-8 h-8 rounded-full flex items-center justify-center text-black-secondary hover:bg-surface-section hover:text-primary hover:shadow-sm transition-all"
                         >
                           <n-icon size="18"><ArrowRotateCounterclockwise24Regular /></n-icon>
                         </button>
@@ -217,7 +217,7 @@ const onImgLoad = () => {
                       <template #trigger>
                         <button
                           @click="rotateRight"
-                          class="w-8 h-8 rounded-full flex items-center justify-center text-gray-600 hover:bg-white hover:text-primary hover:shadow-sm transition-all"
+                          class="w-8 h-8 rounded-full flex items-center justify-center text-black-secondary hover:bg-surface-section hover:text-primary hover:shadow-sm transition-all"
                         >
                           <n-icon size="18"><ArrowRotateClockwise24Regular /></n-icon>
                         </button>
@@ -225,13 +225,13 @@ const onImgLoad = () => {
                       {{ $t('content.rotateRight') }}
                     </n-tooltip>
 
-                    <div class="w-px h-5 bg-gray-300 mx-1"></div>
+                    <div class="w-px h-5 bg-surface-line mx-1"></div>
 
                     <n-tooltip trigger="hover">
                       <template #trigger>
                         <button
                           @click="resetCrop"
-                          class="w-8 h-8 rounded-full flex items-center justify-center text-gray-600 hover:bg-white hover:text-orange-500 hover:shadow-sm transition-all"
+                          class="w-8 h-8 rounded-full flex items-center justify-center text-black-secondary hover:bg-surface-section hover:text-orange-500 hover:shadow-sm transition-all"
                         >
                           <n-icon size="18"><ArrowReset24Regular /></n-icon>
                         </button>
@@ -245,7 +245,7 @@ const onImgLoad = () => {
               <!-- Preview -->
               <div class="w-[75px] flex-shrink-0">
                 <p class="text-xs text-black-tertiary mb-1.5 text-center">{{ $t('content.preview') }}</p>
-                <div class="w-[75px] h-[100px] rounded-lg overflow-hidden bg-gray-100 border border-dashed border-gray-300">
+                <div class="w-[75px] h-[100px] rounded-lg overflow-hidden bg-surface-ground border border-dashed border-surface-line">
                   <img
                     v-if="previewUrl"
                     :src="previewUrl"

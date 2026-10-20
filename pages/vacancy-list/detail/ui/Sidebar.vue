@@ -58,7 +58,7 @@ const status = computed(()=>{
       <n-skeleton text style="width: 80%; height: 20px" class="mt-1" />
       <n-skeleton text style="width: 60%; height: 20px" class="mt-1" />
     </div>
-    <div class="bg-surface-section rounded-lg mt-4">
+    <div class="bg-surface-section rounded-xl mt-4 px-2">
       <div class="flex items-center py-2 px-2 border-b border-surface-line">
         <n-skeleton circle style="width: 24px; height: 24px" />
         <n-skeleton text style="width: 120px; height: 16px" class="ml-4" />
@@ -77,13 +77,13 @@ const status = computed(()=>{
 
   <!-- Content -->
   <template v-else>
-    <h2 class="text-black-primary font-bold">
+    <h2 class="text-black-primary font-bold text-lg leading-[1.35]">
       {{store.detail?.organization}},
       {{store.detail?.department}},
       {{store.detail?.position}},
     </h2>
 
-    <div class="bg-surface-section rounded-lg mt-4">
+    <div class="bg-surface-section rounded-xl mt-4 px-2">
       <div class="flex items-center py-2 px-2 border-b border-surface-line text-black-secondary">
         <n-icon size="24" class="text-primary">
           <Call28Regular/>
@@ -104,7 +104,12 @@ const status = computed(()=>{
       </div>
     </div>
 
-    <n-button :loading="store.showLoading" @click="onApplyApplication" secondary :type="status.type" size="large" class="!w-full !mt-6">{{$t(status.text)}}</n-button>
+    <n-button :loading="store.showLoading" @click="onApplyApplication" :secondary="status.type !== 'primary'" :type="status.type" size="large" class="!w-full !mt-6">{{$t(status.text)}}</n-button>
+
+    <!-- Mobil: ariza tugmasi ekran pastida doim ko'rinib turadi -->
+    <div class="lg:hidden fixed bottom-0 left-0 right-0 z-[95] bg-surface-section border-t border-surface-line px-4 pt-3 pb-[calc(12px+env(safe-area-inset-bottom))] shadow-navbar">
+      <n-button :loading="store.showLoading" @click="onApplyApplication" :secondary="status.type !== 'primary'" :type="status.type" size="large" block>{{$t(status.text)}}</n-button>
+    </div>
   </template>
 </div>
 </template>

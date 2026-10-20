@@ -28,12 +28,12 @@ const onCropComplete = (croppedFile) => {
 </script>
 
 <template>
-<div class="w-full grid grid-cols-12 lg:pt-[160px] pt-[60px]">
+<div class="w-full grid grid-cols-12 lg:pt-[128px] pt-[104px]">
   <div class="col-span-12 lg:col-span-6 flex items-center">
-    <h3 class="font-semibold text-xl text-black-secondary uppercase">{{store.fullName}}</h3>
+    <h1 class="font-bold text-xl sm:text-2xl md:text-[28px] text-black-primary uppercase leading-[1.25]">{{store.fullName}}</h1>
   </div>
   <div class="col-span-12 lg:col-span-6 mt-4 lg:mt-0">
-    <div class="flex flex-wrap justify-end gap-4">
+    <div class="flex flex-wrap lg:justify-end gap-3 sm:gap-4">
       <n-button type="primary" ghost>
         <span class="hidden md:inline-block">{{$t('info.banner.refresh')}}</span>
         <template #icon>
@@ -67,16 +67,16 @@ const onCropComplete = (croppedFile) => {
   </div>
 
 
-  <div class="col-span-12 md:flex mt-8 border border-dashed rounded-2xl border-surface-line p-4 ">
+  <div class="col-span-12 flex items-start gap-4 md:gap-6 mt-5 sm:mt-6 bg-surface-soft border rounded-xl border-surface-line p-4 sm:p-5">
     <img
-        class="w-[150px] min-h-[160px] rounded-md overflow-hidden"
+        class="w-[90px] sm:w-[150px] aspect-[3/4] shrink-0 rounded-lg overflow-hidden object-cover object-top bg-surface-ground"
         :src="store.avatarUrl" alt="avatar picture">
-    <div class="w-full md:w-[calc(100%-150px)] md:flex md:pl-6 pl-0 mt-6 md:mt-0">
-      <div class="md:w-1/2 w-full">
-        <p class="text-black-tertiary mb-2">{{$t('info.banner.pin')}} <span class="text-black-secondary font-semibold">{{store.account?.pin}}</span></p>
+    <div class="flex-1 min-w-0 md:flex text-sm sm:text-base">
+      <div class="md:w-1/2 w-full mb-3 md:mb-0">
+        <p class="text-black-tertiary mb-2 break-words">{{$t('info.banner.pin')}} <span class="text-black-secondary font-semibold">{{store.account?.pin}}</span></p>
         <p class="text-black-tertiary mb-2">{{$t('info.banner.birthday')}} <span class="text-black-secondary font-semibold">{{utils.timeToUI(store.account?.birthday)}}</span></p>
         <p class="text-black-tertiary mb-2">{{$t('info.banner.birthPlace')}} <span class="text-black-secondary font-semibold"> {{store.account?.city?.name}} </span></p>
-        <n-button @click="openFile" class="!mt-4" size="tiny">{{$t('info.banner.changePicture')}}</n-button>
+        <n-button @click="openFile" class="!mt-2 sm:!mt-4" size="small">{{$t('info.banner.changePicture')}}</n-button>
         <input type="file" @change="onFileChange" v-show="false" ref="inputRef" accept="image/*" />
 
         <ImageCropper

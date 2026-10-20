@@ -21,32 +21,32 @@ const onClickRegion = (item) => {
 </script>
 
 <template>
-<div class="w-full">
+<section class="w-full bg-surface-section pb-12 md:pb-16 lg:pb-24">
     <UiPageContent>
-      <h3 class="text-center text-black-primary text-4xl font-medium pt-[100px]">{{$t('mainSection.organizations')}}</h3>
-      <small class="text-black-tertiary text-center mt-4 text-[14px]">{{$t('mainSection.availableOrganization')}}</small>
-
-      <div class="w-full flex gap-4 bg-primary/10 border-surface-line p-1 rounded-xl mt-6">
-        <template v-for="(item,index) in store.tabList" :key="index">
-          <div
-              @click="store.onChangeTab(item.id)"
-              :class="[item.id === store.activeTab && 'shadow bg-surface-section']"
-              class="px-8 py-1  rounded-lg font-medium  uppercase transition-all duration-300 cursor-pointer">{{$t(item.name)}}</div>
+      <UiSectionTitle :title="$t('mainSection.organizations')" :subtitle="$t('mainSection.availableOrganization')">
+        <template #right>
+          <div class="flex w-full sm:w-auto bg-surface-ground p-1 rounded-lg">
+            <template v-for="(item,index) in store.tabList" :key="index">
+              <div
+                  @click="store.onChangeTab(item.id)"
+                  :class="[item.id === store.activeTab ? 'bg-surface-section shadow-navbar text-black-primary' : 'text-black-secondary hover:text-primary']"
+                  class="flex-1 sm:flex-none text-center px-4 md:px-7 py-2 rounded-md font-semibold uppercase transition-all duration-300 cursor-pointer text-sm md:text-base">{{$t(item.name)}}</div>
+            </template>
+          </div>
         </template>
-      </div>
+      </UiSectionTitle>
 
-      <n-tabs animated v-model:value="store.activeTab" class="hidden-tab-header mb-[60px]" type="segment">
+      <n-tabs animated v-model:value="store.activeTab" class="hidden-tab-header" type="segment">
         <n-tab-pane :name="store.tabList[0].id">
-          <n-spin class="min-h-[200px]" :show="store.loading">
-            <div class="grid grid-cols-12 gap-x-6 gap-y-4 ">
+          <n-spin :class="store.loading && 'min-h-[200px]'" :show="store.loading">
+            <div class="grid grid-cols-12 gap-6">
               <template v-for="item in store.organizations" :key="item">
-                <div @click="onClickOrganization(item)" class="col-span-12 md:col-span-6  lg:col-span-4 p-2 bg-surface-ground border border-surface-line
-               rounded-lg flex items-center cursor-pointer gap-2 hover:shadow-navbar transition-all duration-300
-">
-                  <IconBuild2/>
-                  <div class="flex flex-col border-l border-surface-line pl-4 w-[calc(100%-50px)]">
-                    <h2 class="text-black-primary font-semibold text-lg">{{item.organization_full_name}}</h2>
-                    <h6 class="text-black-tertiary text-sm mt-6">{{$t('mainSection.availableVacancy',{n:item.vacancies_count})}}</h6>
+                <div @click="onClickOrganization(item)" class="col-span-12 md:col-span-6 lg:col-span-4 p-4 sm:p-5 bg-surface-soft border border-surface-line
+               rounded-xl flex items-center cursor-pointer gap-4 sm:gap-5 hover:shadow-card hover:border-primary/30 transition-all duration-300">
+                  <div class="text-black-tertiary/60 shrink-0 w-[48px] sm:w-auto [&_svg]:w-full [&_svg]:h-auto"><IconBuild2/></div>
+                  <div class="flex flex-col justify-between self-stretch border-l border-surface-line pl-4 sm:pl-5 min-w-0">
+                    <h3 class="text-black-primary font-bold text-base sm:text-lg leading-[1.3] line-clamp-2">{{item.organization_full_name}}</h3>
+                    <p class="text-black-secondary text-sm mt-4">{{$t('mainSection.availableVacancy',{n:item.vacancies_count})}}</p>
                   </div>
                 </div>
               </template>
@@ -57,16 +57,15 @@ const onClickRegion = (item) => {
 
         </n-tab-pane>
         <n-tab-pane :name="store.tabList[1].id">
-          <n-spin class="min-h-[200px]" :show="store.loading">
-            <div class="grid grid-cols-12 gap-x-6 gap-y-4 ">
+          <n-spin :class="store.loading && 'min-h-[200px]'" :show="store.loading">
+            <div class="grid grid-cols-12 gap-6">
               <template v-for="item in store.regions" :key="item">
-                <div @click="onClickRegion(item)" class="col-span-12 md:col-span-6  lg:col-span-4 p-2 bg-surface-ground border border-surface-line
-               rounded-lg flex items-center cursor-pointer gap-2 hover:shadow-navbar transition-all duration-300
-">
-                  <IconBuild />
-                  <div class="flex flex-col border-l border-surface-line pl-4 w-[calc(100%-50px)]">
-                    <h2 class="text-black-primary font-medium text-lg">{{item.region_name}}</h2>
-                    <h6 class="text-black-tertiary text-sm mt-6">{{$t('mainSection.availableVacancy',{n:item.vacancies_count})}}</h6>
+                <div @click="onClickRegion(item)" class="col-span-12 md:col-span-6 lg:col-span-4 p-4 sm:p-5 bg-surface-soft border border-surface-line
+               rounded-xl flex items-center cursor-pointer gap-4 sm:gap-5 hover:shadow-card hover:border-primary/30 transition-all duration-300">
+                  <div class="text-black-tertiary/60 shrink-0 w-[48px] sm:w-auto [&_svg]:w-full [&_svg]:h-auto"><IconBuild/></div>
+                  <div class="flex flex-col justify-between self-stretch border-l border-surface-line pl-4 sm:pl-5 min-w-0">
+                    <h3 class="text-black-primary font-bold text-base sm:text-lg leading-[1.3] line-clamp-2">{{item.region_name}}</h3>
+                    <p class="text-black-secondary text-sm mt-4">{{$t('mainSection.availableVacancy',{n:item.vacancies_count})}}</p>
                   </div>
                 </div>
               </template>
@@ -77,9 +76,5 @@ const onClickRegion = (item) => {
         </n-tab-pane>
       </n-tabs>
     </UiPageContent>
-</div>
+</section>
 </template>
-
-<style scoped>
-
-</style>

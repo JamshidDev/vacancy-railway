@@ -1,13 +1,16 @@
 <script setup>
-import {Briefcase28Regular, Diamond20Filled, Navigation20Filled, Dismiss12Filled, ChevronRight12Regular} from "@vicons/fluent"
+import {PersonAdd24Regular, DoorArrowLeft20Regular, Navigation20Filled, Dismiss12Filled, ChevronRight12Regular, WeatherMoon24Regular, WeatherSunny24Regular} from "@vicons/fluent"
 import {useAuthStore} from "~/store/index.js"
 import {useProfileStore} from "../../store/modules/profileStore.js"
 const localePath = useLocalePath()
+const route = useRoute()
+const router = useRouter()
 
 
 
 const store = useProfileStore()
 const authStore = useAuthStore()
+const {isDark, toggleTheme} = useTheme()
 
 const loginSystem = (v)=>{
   authStore.activeTab = v
@@ -20,114 +23,174 @@ const isLogin = computed(()=>{
   return Boolean(authStore.token)
 })
 
+const navigations = computed(()=>{
+  const list = [
+    {name:'mainSection.name', path:'/'},
+    {name:'vacancy.name', path:'/vacancy-list'},
+  ]
+  if(isLogin.value){
+    list.push({name:'profile.menu.myApplications', path:'/profile', query:{tab:'applications'}})
+  }
+  return list
+})
+
+// Til prefiksini olib tashlab, joriy bo'limni aniqlash
+const isActive = (item)=>{
+  const current = route.path.replace(/^\/(ru|en)(?=\/|$)/, '') || '/'
+  if(item.query?.tab) return current.startsWith(item.path) && route.query.tab === item.query.tab
+  if(item.path === '/') return current === '/'
+  return current.startsWith(item.path)
+}
+
+const toRoute = (item)=> ({path:localePath(item.path), query:item.query})
+
+const onNavigate = (item)=>{
+  store.sidebar = false
+  navigateTo(toRoute(item))
+}
+
 
 onMounted(()=>{
-  window.addEventListener('scroll', (v)=>{
-    store.isActiveNavbar = window.scrollY>3
-  })
-
-
   if(authStore.token){
     store.onProfile()
   }
-
-
 })
 </script>
 <template>
-<div class="w-full fixed top-0 left-0 z-[100] flex" :class="[store.isActiveNavbar && 'animate-slide-down']">
-  <div class="w-full flex max-w-[1200px] mx-auto  py-2 px-4 rounded-bl-lg rounded-br-lg transition-all duration-400" :class="[store.isActiveNavbar && 'shadow-navbar bg-surface-section']">
-    <UiLogo class="mr-4"/>
-   <div class="flex justify-end w-[calc(100%-200px)]">
-<!--     <UiNavbar/>-->
-     <div class="flex items-center gap-2">
-       <span class="hidden md:inline-block"><UiLanguageSelect/></span>
-       <template v-if="!isLogin">
-         <button
-             @click="loginSystem(2)"
-             class="bg-primary/20 hover:bg-primary/30 px-3 py-2 rounded-lg items-center
-             gap-2 text-primary font-medium cursor-pointer hidden md:flex ">
-           <n-icon size="24">
-             <Briefcase28Regular/>
-           </n-icon>
-           <span >{{$t('content.register')}}</span>
-         </button>
-         <button
-             @click="loginSystem(1)"
-             class="bg-primary hover:bg-primary/90 px-3 py-2 font-medium rounded-lg hidden md:flex  items-center gap-2 text-white cursor-pointer">
-           <n-icon size="24" class="">
-             <Diamond20Filled/>
-           </n-icon>
-           <span>{{$t('content.login')}}</span>
-         </button>
-       </template>
-       <span v-else class="hidden md:inline-block">
-         <UiUserMenu />
-       </span>
+<header class="w-full fixed top-0 left-0 z-[100] bg-surface-section shadow-navbar">
+  <div class="w-full max-w-[1320px] mx-auto h-[72px] lg:h-[88px] px-4 md:px-6 flex items-center justify-between gap-4">
+    <UiLogo/>
 
-       <span class="md:hidden">
-         <n-button text @click="()=>store.sidebar=!store.sidebar" size="large" type="primary">
-         <template #icon>
-           <n-icon>
-             <Navigation20Filled/>
-           </n-icon>
-         </template>
-       </n-button>
-       </span>
+    <nav class="hidden lg:flex items-center gap-8">
+      <template v-for="item in navigations" :key="item.name">
+        <a
+            :href="router.resolve(toRoute(item)).href"
+            @click.prevent="onNavigate(item)"
+            :class="[isActive(item) ? 'text-primary' : 'text-black-primary hover:text-primary']"
+            class="uppercase font-semibold text-[17px] tracking-[0.01em] transition-colors duration-200"
+        >{{$t(item.name)}}</a>
+      </template>
+    </nav>
 
-     </div>
-   </div>
-
-  </div>
-</div>
-
-  <div :class="[store.sidebar? 'left-0 ' : 'left-[-300px]']" class="h-screen shadow-2xl fixed top-0 w-[260px] bg-white z-[999] transition-all duration-400 pt-4">
-
-    <div class="flex justify-between items-center pb-2 px-1 mb-[40px]">
-      <UiLogo/>
-      <n-button ghost @click="()=>store.sidebar=false" >
-        <template #icon>
-          <n-icon>
-            <Dismiss12Filled/>
+    <div class="flex items-center gap-3">
+      <button
+          @click="toggleTheme"
+          :aria-label="$t(isDark ? 'content.lightMode' : 'content.darkMode')"
+          :title="$t(isDark ? 'content.lightMode' : 'content.darkMode')"
+          class="w-[44px] h-[44px] flex items-center justify-center rounded-lg bg-surface-ground hover:bg-surface-line text-primary cursor-pointer transition-colors">
+        <n-icon size="22">
+          <WeatherSunny24Regular v-if="isDark"/>
+          <WeatherMoon24Regular v-else/>
+        </n-icon>
+      </button>
+      <span class="hidden md:inline-block"><UiLanguageSelect/></span>
+      <template v-if="!isLogin">
+        <button
+            @click="loginSystem(2)"
+            class="h-[44px] bg-surface-ground hover:bg-surface-line px-4 rounded-lg items-center
+            gap-2 text-primary font-semibold cursor-pointer hidden md:flex transition-colors">
+          <n-icon size="20">
+            <PersonAdd24Regular/>
           </n-icon>
-        </template>
-      </n-button>
+          <span>{{$t('content.register')}}</span>
+        </button>
+        <button
+            @click="loginSystem(1)"
+            class="h-[44px] bg-primary hover:bg-primary/90 px-5 font-semibold rounded-lg hidden md:flex items-center gap-2 text-white cursor-pointer transition-colors">
+          <n-icon size="20">
+            <DoorArrowLeft20Regular/>
+          </n-icon>
+          <span>{{$t('content.loginSystem')}}</span>
+        </button>
+      </template>
+      <span v-else class="hidden md:inline-block">
+        <UiUserMenu />
+      </span>
+
+      <button
+          @click="()=>store.sidebar=!store.sidebar"
+          class="lg:hidden w-[44px] h-[44px] flex items-center justify-center rounded-lg bg-surface-ground text-primary cursor-pointer">
+        <n-icon size="22">
+          <Navigation20Filled/>
+        </n-icon>
+      </button>
+
     </div>
-    <div class="w-full h-[calc(100vh-200px)]">
+  </div>
+</header>
+
+  <div
+      v-if="store.sidebar"
+      @click="store.sidebar = false"
+      class="lg:hidden fixed inset-0 bg-dark/50 z-[998]"
+  ></div>
+  <div :class="[store.sidebar? 'left-0 ' : 'left-[-320px]']" class="h-screen shadow-2xl fixed top-0 w-[290px] bg-surface-section z-[999] transition-all duration-400 flex flex-col">
+
+    <div class="flex justify-between items-center h-[72px] px-4 border-b border-surface-line">
+      <UiLogo/>
+      <button
+          @click="()=>store.sidebar=false"
+          class="w-[36px] h-[36px] flex items-center justify-center rounded-lg bg-surface-ground text-black-tertiary cursor-pointer">
+        <n-icon size="14">
+          <Dismiss12Filled/>
+        </n-icon>
+      </button>
+    </div>
+    <div class="w-full flex-1 overflow-y-auto p-4">
+
+      <template v-for="item in navigations" :key="item.name">
+        <div
+            @click="onNavigate(item)"
+            :class="[isActive(item) ? 'text-primary bg-surface-ground' : 'text-black-primary']"
+            class="flex items-center justify-between px-3 py-3 rounded-lg uppercase font-semibold cursor-pointer">
+          <span>{{$t(item.name)}}</span>
+          <n-icon size="16" class="text-black-tertiary">
+            <ChevronRight12Regular/>
+          </n-icon>
+        </div>
+      </template>
+
+      <div class="border-t border-surface-line my-4"></div>
 
       <template v-if="!isLogin">
-        <div  @click="loginSystem(1)" class="flex items-center justify-between p-2 mx-2 mt-2 font-medium border rounded-xl border-surface-line">
-          <span >{{$t('content.login')}}</span>
-          <n-icon size="20" class="text-surface-line">
-            <ChevronRight12Regular/>
+        <button
+            @click="loginSystem(1); store.sidebar = false"
+            class="w-full h-[44px] bg-primary text-white font-semibold rounded-lg flex items-center justify-center gap-2 cursor-pointer">
+          <n-icon size="20">
+            <DoorArrowLeft20Regular/>
           </n-icon>
-        </div>
-        <div  @click="loginSystem(2)" class="flex items-center justify-between p-2 mx-2 mt-2 font-medium border rounded-xl border-surface-line">
-          <span >{{$t('content.register')}}</span>
-          <n-icon size="20" class="text-surface-line">
-            <ChevronRight12Regular/>
+          {{$t('content.loginSystem')}}
+        </button>
+        <button
+            @click="loginSystem(2); store.sidebar = false"
+            class="w-full h-[44px] mt-3 bg-surface-ground text-primary font-semibold rounded-lg flex items-center justify-center gap-2 cursor-pointer">
+          <n-icon size="20">
+            <PersonAdd24Regular/>
           </n-icon>
-        </div>
+          {{$t('content.register')}}
+        </button>
       </template >
       <template v-else>
-        <div class="flex items-center gap-2 cursor-pointer w-full p-4">
+        <div class="flex items-center gap-3 w-full p-3 rounded-xl bg-surface-ground">
           <n-spin v-if="store.profileLoading" size="medium" />
           <n-avatar
               v-else
               round
               size="medium"
               :src="store.avatarUrl"
+              object-fit="cover"
+              :img-props="{style:'object-position: center 20%'}"
           />
 
-          <div class="w-[calc(100%-40px)]">
-            <h2 class="text-black-primary font-semibold leading-[1] line-clamp-1">
+          <div class="w-[calc(100%-48px)]">
+            <h2 class="text-black-primary font-semibold leading-[1.1] line-clamp-1">
               <n-skeleton v-if="store.profileLoading" text :repeat="1" round />
               <template v-else>
                 {{store.account? store.account?.last_name : ''}}
                 {{store.account? store.account?.first_name : ''}}
               </template>
             </h2>
-            <h6 class="text-black-tertiary font-medium text-xs line-clamp-1">
+            <h6 class="text-black-tertiary text-sm line-clamp-1">
               <n-skeleton v-if="store.profileLoading" text :repeat="1" round />
               <template v-else>
                 {{store.account? store.account?.middle_name : ''}}
@@ -136,21 +199,15 @@ onMounted(()=>{
             </h6>
           </div>
         </div>
-        <div @click="navigateTo(localePath('/profile')); store.sidebar = false" class="flex items-center justify-between p-2 mx-2 mt-2 font-medium border rounded-xl border-surface-line">
+        <div @click="onNavigate({path:'/profile'})" class="flex items-center justify-between px-3 py-3 mt-2 font-semibold rounded-lg cursor-pointer text-black-primary">
           <span >{{$t('profile.menu.profile')}}</span>
-          <n-icon size="20" class="text-surface-line">
+          <n-icon size="16" class="text-black-tertiary">
             <ChevronRight12Regular/>
           </n-icon>
         </div>
-        <div @click="navigateTo(localePath('/applications')); store.sidebar = false" class="flex items-center justify-between p-2 mx-2 mt-2 font-medium border rounded-xl border-surface-line">
-          <span >{{$t('profile.menu.myApplications')}}</span>
-          <n-icon size="20" class="text-surface-line">
-            <ChevronRight12Regular/>
-          </n-icon>
-        </div>
-        <div @click="authStore.onLogOut()" class="flex items-center justify-between p-2 mx-2 mt-2 font-medium border rounded-xl border-surface-line">
+        <div @click="authStore.onLogOut()" class="flex items-center justify-between px-3 py-3 font-semibold rounded-lg cursor-pointer text-error">
           <span >{{$t('profile.menu.logout')}}</span>
-          <n-icon size="20" class="text-surface-line">
+          <n-icon size="16" class="text-black-tertiary">
             <ChevronRight12Regular/>
           </n-icon>
         </div>
@@ -159,9 +216,20 @@ onMounted(()=>{
       </template>
 
     </div>
-    <div class="px-2 border-b border-surface-line pb-2">
-      <p class="font-medium text-black-tertiary pb-2">{{$t('content.interface-language')}}</p>
-      <UiLanguageSelect class="px-4" :mobile="true" />
+    <div class="px-4 py-4 border-t border-surface-line">
+      <div class="flex items-center justify-between mb-4">
+        <span class="font-semibold text-black-tertiary text-sm">{{$t('content.theme')}}</span>
+        <n-switch :value="isDark" @update:value="toggleTheme">
+          <template #checked-icon>
+            <n-icon><WeatherMoon24Regular/></n-icon>
+          </template>
+          <template #unchecked-icon>
+            <n-icon><WeatherSunny24Regular/></n-icon>
+          </template>
+        </n-switch>
+      </div>
+      <p class="font-semibold text-black-tertiary pb-2 text-sm">{{$t('content.interface-language')}}</p>
+      <UiLanguageSelect :mobile="true" />
     </div>
 
   </div>

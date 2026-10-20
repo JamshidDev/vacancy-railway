@@ -1,5 +1,5 @@
 
-const triggerEvents =  ['input', 'blur-sm', 'change']
+const triggerEvents =  ['input', 'blur', 'change']
 
 
 

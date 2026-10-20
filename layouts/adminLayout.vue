@@ -5,11 +5,14 @@ const store = useAuthStore()
 <template>
   <div>
     <UiAppToolBar/>
+    <!-- Desktop: chap chetda vertikal yorliq; mobil: kontentni yopmaydigan kichik pastki belgi -->
     <div
         style="writing-mode: vertical-lr; text-orientation: mixed; word-spacing: 4px"
-        class="text-sm font-semibold w-[24px] px-2 pb-2 rounded-tr-md rounded-br-md  bg-dark text-white fixed left-0 z-[900] top-[50%] translate-y-[-50%]
-"
+        class="hidden lg:flex text-xs font-semibold w-[22px] py-3 rounded-tr-md rounded-br-md bg-dark/85 ring-1 ring-white/10 text-white fixed left-0 z-[90] top-[50%] translate-y-[-50%] items-center justify-center"
     >{{$t('content.betaMode')}}</div>
+    <div class="lg:hidden fixed left-2 bottom-2 z-[90] px-2.5 py-1 rounded-full bg-dark/80 ring-1 ring-white/10 text-white text-[11px] font-semibold pointer-events-none">
+      {{$t('content.betaMode')}}
+    </div>
     <UiModal
         :width="500"
         v-model:visible="store.authVisible"

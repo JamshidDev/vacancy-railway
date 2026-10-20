@@ -6,6 +6,10 @@ import Education from "./Education.vue"
 import Personal from "./Personal.vue"
 
 const router = useRouter()
+const route = useRoute()
+
+// URL dagi ?tab= qiymati bilan tab id lari o'rtasidagi moslik
+const APPLICATIONS_TAB = 4
 
 const tabList = [
   {
@@ -27,42 +31,49 @@ const tabList = [
     name:'profile.menu.myApplications',
     id:4,
     icon:ClipboardTaskListLtr24Regular,
-    link:'/applications',
   },
 ]
 
 const store = useUserInfoStore()
 
 const onTabClick = (item) => {
-  if (item.link) {
-    router.push(item.link)
-  } else {
-    store.onChangeTab(item.id)
-  }
+  store.onChangeTab(item.id)
+  const query = {...route.query}
+  if (item.id === APPLICATIONS_TAB) query.tab = 'applications'
+  else delete query.tab
+  router.replace({query})
 }
+
+// Header yoki boshqa sahifadan ?tab=applications bilan kelinganda
+watch(() => route.query.tab, (tab) => {
+  if (tab === 'applications') store.onChangeTab(APPLICATIONS_TAB)
+  else if (store.activeTab === APPLICATIONS_TAB) store.onChangeTab(store.tabList[0].id)
+}, {immediate: true})
 </script>
 
 <template>
-  <div class=" lg:flex pt-10">
-    <div class=" w-full lg:w-[400px]">
-        <div class="w-full px-6 py-4  bg-gradient-to-b from-primary/10 to-primary/40 rounded-xl">
+  <div class="lg:flex pt-6 sm:pt-10">
+    <div class="w-full lg:w-[400px] shrink-0">
+        <!-- Mobil: gorizontal suriladigan tablar; desktop: vertikal menyu -->
+        <div class="flex lg:block gap-2 overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 lg:p-4 lg:bg-surface-ground lg:rounded-xl lg:sticky lg:top-[112px]">
 
           <template v-for="item in tabList" :key="item.id">
             <div
                 @click="onTabClick(item)"
-                class="w-full group cursor-pointer flex items-center px-3 py-4 bg-surface-section rounded-lg mb-3 text-black-tertiary overflow-hidden"
+                class="shrink-0 lg:w-full group cursor-pointer flex items-center px-3 py-2.5 lg:px-4 lg:py-4 bg-surface-ground lg:bg-surface-section rounded-lg lg:mb-3 lg:last:mb-0 text-black-tertiary overflow-hidden border transition-colors whitespace-nowrap"
+                :class="[store.activeTab === item.id ? 'border-primary/40' : 'border-transparent hover:border-surface-line']"
             >
-              <n-icon size="24" :class="[store.activeTab === item.id && !item.link && 'text-primary']" >
-                <CheckmarkCircle20Filled v-if="store.activeTab === item.id && !item.link" />
+              <n-icon size="22" :class="[store.activeTab === item.id && 'text-primary']" >
+                <CheckmarkCircle20Filled v-if="store.activeTab === item.id" />
                 <component :is="item.icon" v-else/>
               </n-icon>
-              <span class="text-black-secondary font-semibold pl-4 ">{{$t(item.name)}}</span>
+              <span :class="[store.activeTab === item.id ? 'text-primary' : 'text-black-primary']" class="font-semibold pl-2 lg:pl-4 text-sm lg:text-base">{{$t(item.name)}}</span>
             </div>
           </template>
 
         </div>
       </div>
-    <div class="w-full lg:w-[calc(100%-400px)] lg:pl-[40px] min-h-[600px]">
+    <div class="w-full flex-1 min-w-0 mt-5 lg:mt-0 lg:pl-[40px] lg:min-h-[600px]">
       <n-tabs animated v-model:value="store.activeTab" class="hidden-tab-header" type="segment">
         <n-tab-pane :name="store.tabList[0].id">
          <Personal/>
@@ -72,6 +83,9 @@ const onTabClick = (item) => {
         </n-tab-pane>
         <n-tab-pane :name="store.tabList[2].id">
           <Career/>
+        </n-tab-pane>
+        <n-tab-pane :name="APPLICATIONS_TAB">
+          <UiApplicationList/>
         </n-tab-pane>
       </n-tabs>
     </div>

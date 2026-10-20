@@ -106,11 +106,8 @@ onMounted(()=>{
           :label="$t(`info.general.birthday`)"
           :rule-path="rules.names.requiredDateTimeField"
           path="birthday">
-        <n-date-picker
-            class="w-full"
+        <UiDateInput
             v-model:value="store.payload.birthday"
-            type="date"
-            :format="appSetting.datePicketFormat"
         />
       </n-form-item>
       <n-form-item

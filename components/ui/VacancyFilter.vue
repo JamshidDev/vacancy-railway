@@ -97,8 +97,8 @@ onMounted(()=>{
 
 <template>
 <div class="grid grid-cols-12">
-    <div class="col-span-12 border-b border-surface-line pb-4 mb-4">
-      <label class="text-black-secondary block mb-1">{{$t('vacancy.area')}}</label>
+    <div class="col-span-12 mb-5">
+      <label class="text-black-primary font-semibold text-[17px] block mb-2">{{$t('vacancy.area')}}</label>
       <n-select
           :value="regionValue"
           filterable
@@ -111,8 +111,8 @@ onMounted(()=>{
           size="large"
       />
     </div>
-  <div class="col-span-12 border-b border-surface-line pb-4 mb-4">
-    <label class="text-black-secondary block mb-1">{{$t('vacancy.city')}}</label>
+  <div class="col-span-12 mb-5">
+    <label class="text-black-primary font-semibold text-[17px] block mb-2">{{$t('vacancy.city')}}</label>
     <n-select
         :value="cityValue"
         filterable
@@ -126,8 +126,8 @@ onMounted(()=>{
         size="large"
     />
   </div>
-  <div class="col-span-12 border-b border-surface-line pb-4 mb-4">
-    <label class="text-black-secondary block mb-1">{{$t('mainSection.organizations')}}</label>
+  <div class="col-span-12 mb-5">
+    <label class="text-black-primary font-semibold text-[17px] block mb-2">{{$t('mainSection.organizations')}}</label>
     <n-select
         :value="organizationValue"
         filterable
@@ -142,11 +142,11 @@ onMounted(()=>{
         class="organization-select"
     />
   </div>
-  <div class="col-span-12 border-b border-surface-line pb-4 mb-4">
+  <div class="col-span-12 mb-5">
     <div
         @click="store.experience=!store.experience"
-        class="flex justify-between cursor-pointer mb-2">
-      <span class="text-black-secondary">{{$t('vacancy.minExperience')}}</span>
+        class="flex justify-between items-center cursor-pointer bg-surface-section border border-surface-line rounded-[10px] px-4 h-[48px]">
+      <span class="text-black-primary font-semibold text-[17px]">{{$t('vacancy.minExperience')}}</span>
       <n-icon
           size="18"
           class="text-black-tertiary transition-all rotate-[0deg]"
@@ -156,10 +156,10 @@ onMounted(()=>{
       </n-icon>
     </div>
     <n-collapse-transition :show="store.experience">
-      <n-radio-group :value="store.params.experience" @update:value="onExperienceChange">
+      <n-radio-group class="!pt-3 !px-1" :value="store.params.experience" @update:value="onExperienceChange">
         <div v-for="item in store.experienceOptions" :key="item" class="mb-2 flex items-center justify-between">
           <n-radio :value="item">
-            <span class="text-black-tertiary">{{item}} {{$t('content.year')}}</span>
+            <span class="text-black-secondary">{{item}} {{$t('content.year')}}</span>
           </n-radio>
           <n-button
               v-if="store.params.experience === item"
@@ -175,11 +175,11 @@ onMounted(()=>{
     </n-collapse-transition>
   </div>
 
-  <div class="col-span-12 border-b border-surface-line pb-4 mb-4">
+  <div class="col-span-12 mb-5">
     <div
         @click="store.salary=!store.salary"
-        class="flex justify-between cursor-pointer mb-2">
-      <span class="text-black-secondary">{{$t('vacancy.salary')}}</span>
+        class="flex justify-between items-center cursor-pointer bg-surface-section border border-surface-line rounded-[10px] px-4 h-[48px]">
+      <span class="text-black-primary font-semibold text-[17px]">{{$t('vacancy.salary')}}</span>
       <n-icon
           size="18"
           class="text-black-tertiary transition-all rotate-[0deg]"
@@ -189,10 +189,10 @@ onMounted(()=>{
       </n-icon>
     </div>
     <n-collapse-transition :show="store.salary">
-      <n-radio-group :value="store.params.salary" @update:value="onSalaryChange">
+      <n-radio-group class="!pt-3 !px-1" :value="store.params.salary" @update:value="onSalaryChange">
         <div v-for="item in store.salaryOptions" :key="item.value" class="mb-2 flex items-center justify-between">
           <n-radio :value="item.value">
-            <span class="text-black-tertiary">{{item.label}} {{$t('content.sum')}}</span>
+            <span class="text-black-secondary">{{item.label}} {{$t('content.sum')}}</span>
           </n-radio>
           <n-button
               v-if="store.params.salary === item.value"
@@ -208,7 +208,7 @@ onMounted(()=>{
     </n-collapse-transition>
   </div>
 
-  <div class="col-span-12 mb-6">
+  <div class="col-span-12">
     <n-checkbox
         class="rounded-lg"
         :checked="store.params.experience === 0"

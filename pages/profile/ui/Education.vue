@@ -43,7 +43,7 @@ const onEdit = (v)=>{
 }
 
 const onAdd = ()=>{
-  store.resetCareerPayload()
+  store.resetEducationPayload()
   store.educationVisibleType = true
   store.educationVisible = true
 }
@@ -78,8 +78,41 @@ onMounted(()=>{
       <n-spin :show="store.loading">
         <UiNoResult v-if="store.educationList.length===0 && !store.loading"
         />
+        <!-- Mobil: jadval o'rniga kartochkalar -->
+        <div v-if="store.educationList.length>0" class="md:hidden flex flex-col gap-3">
+          <div v-for="(item, index) in store.educationList" :key="item.id" class="bg-surface-soft border border-surface-line rounded-xl p-4">
+            <div class="flex items-start justify-between gap-3">
+              <div class="min-w-0">
+                <p class="text-xs text-black-tertiary">{{index+1}}. {{utils.timeToUI(item.from)}} — {{utils.timeToUI(item.to) || $t('info.education.untilNow')}}</p>
+                <p class="text-black-primary font-semibold mt-1 break-words">{{item.university}}</p>
+              </div>
+              <div class="flex gap-2 shrink-0">
+                <n-button @click="onEdit(item)" type="primary" size="small" secondary>
+                  <template #icon>
+                    <Edit20Filled/>
+                  </template>
+                </n-button>
+                <n-popconfirm
+                    :positive-text="$t('content.yes')"
+                    :negative-text="$t('content.no')"
+                    @positive-click="onDelete(item)"
+                >
+                  <template #trigger>
+                    <n-button :loading="store.deleteLoading" type="error" size="small" secondary>
+                      <template #icon>
+                        <Delete20Filled/>
+                      </template>
+                    </n-button>
+                  </template>
+                  {{$t('content.confirmDelete')}}
+                </n-popconfirm>
+              </div>
+            </div>
+          </div>
+        </div>
         <n-table
             striped
+            class="!hidden md:!table"
             v-if="store.educationList.length>0"
         >
           <thead>
@@ -156,12 +189,8 @@ onMounted(()=>{
               path="from"
               :rule-path="rules.names.requiredNumberField"
           >
-            <n-date-picker
-                clearable
-                class="w-full"
+            <UiDateInput
                 v-model:value="store.educationPayload.from"
-                type="date"
-                :format="appSetting.datePicketFormat"
             />
           </n-form-item>
           <n-form-item
@@ -171,13 +200,9 @@ onMounted(()=>{
               :rule-path="store.educationPayload.now? undefined : rules.names.requiredNumberField "
               :show-feedback="!store.educationPayload.now"
           >
-            <n-date-picker
+            <UiDateInput
                 :disabled="store.educationPayload.now"
-                class="w-full"
-                clearable
                 v-model:value="store.educationPayload.to"
-                type="date"
-                :format="appSetting.datePicketFormat"
             />
           </n-form-item>
           <div class="col-span-12 flex justify-end">
