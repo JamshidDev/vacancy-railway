@@ -13,7 +13,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="w-full bg-surface-ground min-h-screen">
+  <div class="w-full bg-surface-section min-h-screen">
     <UiPageContent>
       <Banner/>
       <Cards/>

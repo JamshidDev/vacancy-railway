@@ -45,18 +45,19 @@ const onTabClick = (item) => {
 <template>
   <div class=" lg:flex pt-10">
     <div class=" w-full lg:w-[400px]">
-        <div class="w-full px-6 py-4  bg-gradient-to-b from-primary/10 to-primary/40 rounded-xl">
+        <div class="w-full p-4 bg-surface-ground rounded-xl lg:sticky lg:top-[112px]">
 
           <template v-for="item in tabList" :key="item.id">
             <div
                 @click="onTabClick(item)"
-                class="w-full group cursor-pointer flex items-center px-3 py-4 bg-surface-section rounded-lg mb-3 text-black-tertiary overflow-hidden"
+                class="w-full group cursor-pointer flex items-center px-4 py-4 bg-surface-section rounded-lg mb-3 last:mb-0 text-black-tertiary overflow-hidden border transition-colors"
+                :class="[store.activeTab === item.id && !item.link ? 'border-primary/40' : 'border-transparent hover:border-surface-line']"
             >
               <n-icon size="24" :class="[store.activeTab === item.id && !item.link && 'text-primary']" >
                 <CheckmarkCircle20Filled v-if="store.activeTab === item.id && !item.link" />
                 <component :is="item.icon" v-else/>
               </n-icon>
-              <span class="text-black-secondary font-semibold pl-4 ">{{$t(item.name)}}</span>
+              <span :class="[store.activeTab === item.id && !item.link ? 'text-primary' : 'text-black-primary']" class="font-semibold pl-4">{{$t(item.name)}}</span>
             </div>
           </template>
 

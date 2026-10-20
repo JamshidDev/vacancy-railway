@@ -173,7 +173,7 @@ const onShowDetails = () => {
 
 <template>
 <div
-    class="px-3 sm:px-4 py-2.5 bg-surface-ground border border-surface-line rounded-lg mb-2">
+    class="px-4 sm:px-6 py-4 bg-surface-soft border border-surface-line rounded-xl mb-4 hover:shadow-card transition-shadow duration-300">
   <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1.5 sm:gap-0">
     <h2
         @click="onGoToVacancy"

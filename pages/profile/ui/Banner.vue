@@ -28,9 +28,9 @@ const onCropComplete = (croppedFile) => {
 </script>
 
 <template>
-<div class="w-full grid grid-cols-12 lg:pt-[160px] pt-[60px]">
+<div class="w-full grid grid-cols-12 lg:pt-[128px] pt-[104px]">
   <div class="col-span-12 lg:col-span-6 flex items-center">
-    <h3 class="font-semibold text-xl text-black-secondary uppercase">{{store.fullName}}</h3>
+    <h1 class="font-bold text-2xl md:text-[28px] text-black-primary uppercase">{{store.fullName}}</h1>
   </div>
   <div class="col-span-12 lg:col-span-6 mt-4 lg:mt-0">
     <div class="flex flex-wrap justify-end gap-4">
@@ -67,9 +67,9 @@ const onCropComplete = (croppedFile) => {
   </div>
 
 
-  <div class="col-span-12 md:flex mt-8 border border-dashed rounded-2xl border-surface-line p-4 ">
+  <div class="col-span-12 md:flex mt-6 bg-surface-soft border rounded-xl border-surface-line p-5">
     <img
-        class="w-[150px] min-h-[160px] rounded-md overflow-hidden"
+        class="w-[150px] min-h-[160px] rounded-lg overflow-hidden object-cover"
         :src="store.avatarUrl" alt="avatar picture">
     <div class="w-full md:w-[calc(100%-150px)] md:flex md:pl-6 pl-0 mt-6 md:mt-0">
       <div class="md:w-1/2 w-full">
