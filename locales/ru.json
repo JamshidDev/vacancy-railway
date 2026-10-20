@@ -140,7 +140,10 @@
     "reset": "Сбросить",
     "preview": "Предпросмотр",
     "datePlaceholder": "дд.мм.гггг",
-    "openCalendar": "Открыть календарь"
+    "openCalendar": "Открыть календарь",
+    "darkMode": "Тёмная тема",
+    "lightMode": "Светлая тема",
+    "theme": "Тема"
   },
   "rules": {
     "login": "Необходимо ввести email!",

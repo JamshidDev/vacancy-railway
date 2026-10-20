@@ -54,6 +54,8 @@ const onSelect = (key)=>{
           round
           size="medium"
           :src="store.avatarUrl"
+          object-fit="cover"
+          :img-props="{style:'object-position: center 20%'}"
       />
 
       <div class="w-[calc(100%-40px)]">

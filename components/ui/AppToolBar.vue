@@ -1,5 +1,5 @@
 <script setup>
-import {PersonAdd24Regular, DoorArrowLeft20Regular, Navigation20Filled, Dismiss12Filled, ChevronRight12Regular} from "@vicons/fluent"
+import {PersonAdd24Regular, DoorArrowLeft20Regular, Navigation20Filled, Dismiss12Filled, ChevronRight12Regular, WeatherMoon24Regular, WeatherSunny24Regular} from "@vicons/fluent"
 import {useAuthStore} from "~/store/index.js"
 import {useProfileStore} from "../../store/modules/profileStore.js"
 const localePath = useLocalePath()
@@ -10,6 +10,7 @@ const router = useRouter()
 
 const store = useProfileStore()
 const authStore = useAuthStore()
+const {isDark, toggleTheme} = useTheme()
 
 const loginSystem = (v)=>{
   authStore.activeTab = v
@@ -72,6 +73,16 @@ onMounted(()=>{
     </nav>
 
     <div class="flex items-center gap-3">
+      <button
+          @click="toggleTheme"
+          :aria-label="$t(isDark ? 'content.lightMode' : 'content.darkMode')"
+          :title="$t(isDark ? 'content.lightMode' : 'content.darkMode')"
+          class="w-[44px] h-[44px] flex items-center justify-center rounded-lg bg-surface-ground hover:bg-surface-line text-primary cursor-pointer transition-colors">
+        <n-icon size="22">
+          <WeatherSunny24Regular v-if="isDark"/>
+          <WeatherMoon24Regular v-else/>
+        </n-icon>
+      </button>
       <span class="hidden md:inline-block"><UiLanguageSelect/></span>
       <template v-if="!isLogin">
         <button
@@ -111,7 +122,7 @@ onMounted(()=>{
   <div
       v-if="store.sidebar"
       @click="store.sidebar = false"
-      class="lg:hidden fixed inset-0 bg-black-primary/30 z-[998]"
+      class="lg:hidden fixed inset-0 bg-dark/50 z-[998]"
   ></div>
   <div :class="[store.sidebar? 'left-0 ' : 'left-[-320px]']" class="h-screen shadow-2xl fixed top-0 w-[290px] bg-surface-section z-[999] transition-all duration-400 flex flex-col">
 
@@ -167,6 +178,8 @@ onMounted(()=>{
               round
               size="medium"
               :src="store.avatarUrl"
+              object-fit="cover"
+              :img-props="{style:'object-position: center 20%'}"
           />
 
           <div class="w-[calc(100%-48px)]">
@@ -204,6 +217,17 @@ onMounted(()=>{
 
     </div>
     <div class="px-4 py-4 border-t border-surface-line">
+      <div class="flex items-center justify-between mb-4">
+        <span class="font-semibold text-black-tertiary text-sm">{{$t('content.theme')}}</span>
+        <n-switch :value="isDark" @update:value="toggleTheme">
+          <template #checked-icon>
+            <n-icon><WeatherMoon24Regular/></n-icon>
+          </template>
+          <template #unchecked-icon>
+            <n-icon><WeatherSunny24Regular/></n-icon>
+          </template>
+        </n-switch>
+      </div>
       <p class="font-semibold text-black-tertiary pb-2 text-sm">{{$t('content.interface-language')}}</p>
       <UiLanguageSelect :mobile="true" />
     </div>

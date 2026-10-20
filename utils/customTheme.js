@@ -43,15 +43,16 @@ export const customTheme = ()=>({
         textColor3:getValueOfCssVariable('--black-tertiary'),   // Uchinchi darajali matn rangi (maslahatlar)
         textColorDisabled:getValueOfCssVariable('--black-tertiary'),  // Nogiron holatdagi matn rangi
 
+        bodyColor:getValueOfCssVariable('--surface-section'),
         cardColor:getValueOfCssVariable('--surface-section'), // Karta tipidagi komponentlar uchun fon rangi (masalan, <n-card>)
         modalColor:getValueOfCssVariable('--surface-section'), // Modal oynalar uchun fon rangi
         popoverColor:getValueOfCssVariable('--surface-section'), // Qalqib chiquvchi oynalar uchun fon rangi
         tableColor:getValueOfCssVariable('--surface-section'), // Jadvallar uchun fon rangi
-        tableColorHover: '#f5f5f5',
+        tableColorHover:getValueOfCssVariable('--surface-ground'),
         //
         // Joylashtiruvchi va kiritish ranglari
         placeholderColor:getValueOfCssVariable('--black-tertiary'),// Kiritish maydonlaridagi joylashtiruvchi matn rangi
-        inputColor:getValueOfCssVariable('--surface-section'), // Kiritish maydonlari uchun fon rangi
+        inputColor:getValueOfCssVariable('--input-bg'), // Kiritish maydonlari uchun fon rangi
         inputColorDisabled:getValueOfCssVariable('--surface-ground'), // Nogiron kiritish maydonlari uchun fon rangi
 
         borderRadius: '8px',
@@ -65,6 +66,11 @@ export const customTheme = ()=>({
     Button: {
         fontWeight:'600',
         heightLarge:'44px',
+        // Ikkala mavzuda ham asosiy tugma matni oq bo'lsin
+        textColorPrimary:'#fff',
+        textColorHoverPrimary:'#fff',
+        textColorPressedPrimary:'#fff',
+        textColorFocusPrimary:'#fff',
     },
     Input: {
         heightLarge:'48px',

@@ -69,7 +69,7 @@ const onCropComplete = (croppedFile) => {
 
   <div class="col-span-12 flex items-start gap-4 md:gap-6 mt-5 sm:mt-6 bg-surface-soft border rounded-xl border-surface-line p-4 sm:p-5">
     <img
-        class="w-[88px] h-[110px] sm:w-[150px] sm:h-[160px] shrink-0 rounded-lg overflow-hidden object-cover"
+        class="w-[90px] sm:w-[150px] aspect-[3/4] shrink-0 rounded-lg overflow-hidden object-cover object-top bg-surface-ground"
         :src="store.avatarUrl" alt="avatar picture">
     <div class="flex-1 min-w-0 md:flex text-sm sm:text-base">
       <div class="md:w-1/2 w-full mb-3 md:mb-0">

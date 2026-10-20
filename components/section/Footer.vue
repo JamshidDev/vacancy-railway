@@ -9,7 +9,7 @@ const navigations = [
 </script>
 
 <template>
-<footer class="w-full bg-gradient-to-b from-surface-ground to-[#E9EEF9]">
+<footer class="w-full bg-gradient-to-b from-surface-ground to-[var(--surface-footer)]">
   <UiPageContent>
     <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 py-8 border-b border-black-tertiary/20">
       <UiLogo/>

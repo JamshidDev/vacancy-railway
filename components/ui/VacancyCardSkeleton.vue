@@ -66,9 +66,9 @@ const props = defineProps({
 .skeleton-box {
   background: linear-gradient(
     90deg,
-    #e5e7eb 0%,
-    #f3f4f6 50%,
-    #e5e7eb 100%
+    var(--skeleton-base) 0%,
+    var(--skeleton-highlight) 50%,
+    var(--skeleton-base) 100%
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;

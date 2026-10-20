@@ -138,7 +138,10 @@
     "reset": "Qayta tiklash",
     "preview": "Ko'rinishi",
     "datePlaceholder": "kk.oo.yyyy",
-    "openCalendar": "Kalendarni ochish"
+    "openCalendar": "Kalendarni ochish",
+    "darkMode": "Tungi rejim",
+    "lightMode": "Kunduzgi rejim",
+    "theme": "Mavzu"
   },
   "rules": {
     "login": "Email kiritilishi shart!",

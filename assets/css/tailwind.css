@@ -3,6 +3,10 @@
 @import "./override.scss";
 
 @import "tailwindcss";
+
+/* dark: variant <html class="dark"> ga bog'lanadi (tizim sozlamasiga emas) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root{
     --primary:#3165CB;
     --success:#2DB346;
@@ -22,6 +26,54 @@
     --black-primary:#26292E;
     --black-secondary:#4A5059;
     --black-tertiary:#79838E;
+
+    --surface-footer:#E9EEF9;
+    --input-bg:#FFFFFF;
+    --navbar-shadow:0px 2px 16px rgba(38, 41, 46, 0.08);
+    --card-shadow:0px 8px 30px rgba(49, 101, 203, 0.10);
+    --skeleton-base:#f0f0f0;
+    --skeleton-highlight:#e0e0e0;
+
+    /* Hero'dagi temir yo'l manzarasi */
+    --scene-pole:#CFD9EE;
+    --scene-ballast:#E3E9F6;
+    --scene-sleeper:#D3DCEF;
+    --scene-rail:#BFCBE5;
+    --scene-body:#D6E0F3;
+    --scene-door:#C5D1EA;
+    --scene-wheel:#B9C6E2;
+    --scene-window:#F3F5FB;
+}
+
+.dark{
+    color-scheme: dark;
+
+    --primary:#4C7FE0;
+
+    --surface-section:#161A22;
+    --surface-ground:#0F1218;
+    --surface-soft:#1B2029;
+    --surface-line:#303746;
+
+    --black-primary:#E8EBF0;
+    --black-secondary:#B4BBC6;
+    --black-tertiary:#8A93A0;
+
+    --surface-footer:#0B0E13;
+    --input-bg:#1D222C;
+    --navbar-shadow:0px 2px 16px rgba(0, 0, 0, 0.45);
+    --card-shadow:0px 8px 30px rgba(0, 0, 0, 0.35);
+    --skeleton-base:#1E232D;
+    --skeleton-highlight:#2A303C;
+
+    --scene-pole:#2B3344;
+    --scene-ballast:#1A1F2A;
+    --scene-sleeper:#252C3A;
+    --scene-rail:#3A4459;
+    --scene-body:#232C3D;
+    --scene-door:#2F394C;
+    --scene-wheel:#3B4659;
+    --scene-window:#6F8FD1;
 }
 
 @theme {
@@ -53,8 +105,8 @@
     --color-black-tertiary:var(--black-tertiary);
 
 
-    --shadow-navbar:0px 2px 16px rgba(38, 41, 46, 0.08);
-    --shadow-card:0px 8px 30px rgba(49, 101, 203, 0.10);
+    --shadow-navbar:var(--navbar-shadow);
+    --shadow-card:var(--card-shadow);
 
     --animate-spin: spin 12s linear infinite;
     --animate-reverse-spin: reverse-spin 12s linear infinite;
@@ -137,7 +189,7 @@ body{
 }
 
 .shimmer {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background: linear-gradient(90deg, var(--skeleton-base) 25%, var(--skeleton-highlight) 50%, var(--skeleton-base) 75%);
     background-size: 200% 100%;
 }
 /* Backend'dan keladigan matn (vakansiya shartlari): tor ekranda ikki chetga tekislash so'zlar orasida katta bo'shliq qoldiradi */
@@ -161,4 +213,12 @@ body{
 }
 .no-scrollbar::-webkit-scrollbar {
     display: none;
+}
+
+/* Dark rejimda backend matnidagi qattiq ranglar o'qib bo'lmas holga kelmasligi uchun */
+.dark .rich-text [style*="color"] {
+    color: inherit !important;
+}
+.dark .rich-text [style*="background"] {
+    background: transparent !important;
 }

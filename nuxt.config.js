@@ -12,6 +12,14 @@ export default {
       title: 'HRM Business',
       link: [
         { rel: 'icon', type: 'image/png', href: '/logo-2.png' }
+      ],
+      script: [
+        {
+          // Mavzuni sahifa chizilishidan oldin qo'llash (oq ekran "lip" etmasligi uchun).
+          // Saqlangan tanlov bo'lmasa, qurilma sozlamasiga ergashadi.
+          innerHTML: "(function(){try{var t=localStorage.getItem('app-theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark')}}catch(e){}})()",
+          tagPosition: 'head',
+        }
       ]
     }
   },

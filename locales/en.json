@@ -138,7 +138,10 @@
     "reset": "Reset",
     "preview": "Preview",
     "datePlaceholder": "dd.mm.yyyy",
-    "openCalendar": "Open calendar"
+    "openCalendar": "Open calendar",
+    "darkMode": "Dark mode",
+    "lightMode": "Light mode",
+    "theme": "Theme"
   },
   "rules": {
     "login": "Email is required!",
