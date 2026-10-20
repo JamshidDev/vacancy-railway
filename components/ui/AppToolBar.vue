@@ -4,6 +4,7 @@ import {useAuthStore} from "~/store/index.js"
 import {useProfileStore} from "../../store/modules/profileStore.js"
 const localePath = useLocalePath()
 const route = useRoute()
+const router = useRouter()
 
 
 
@@ -27,21 +28,24 @@ const navigations = computed(()=>{
     {name:'vacancy.name', path:'/vacancy-list'},
   ]
   if(isLogin.value){
-    list.push({name:'profile.menu.myApplications', path:'/applications'})
+    list.push({name:'profile.menu.myApplications', path:'/profile', query:{tab:'applications'}})
   }
   return list
 })
 
 // Til prefiksini olib tashlab, joriy bo'limni aniqlash
-const isActive = (path)=>{
+const isActive = (item)=>{
   const current = route.path.replace(/^\/(ru|en)(?=\/|$)/, '') || '/'
-  if(path === '/') return current === '/'
-  return current.startsWith(path)
+  if(item.query?.tab) return current.startsWith(item.path) && route.query.tab === item.query.tab
+  if(item.path === '/') return current === '/'
+  return current.startsWith(item.path)
 }
 
-const onNavigate = (path)=>{
+const toRoute = (item)=> ({path:localePath(item.path), query:item.query})
+
+const onNavigate = (item)=>{
   store.sidebar = false
-  navigateTo(localePath(path))
+  navigateTo(toRoute(item))
 }
 
 
@@ -57,11 +61,11 @@ onMounted(()=>{
     <UiLogo/>
 
     <nav class="hidden lg:flex items-center gap-8">
-      <template v-for="item in navigations" :key="item.path">
+      <template v-for="item in navigations" :key="item.name">
         <a
-            :href="localePath(item.path)"
-            @click.prevent="onNavigate(item.path)"
-            :class="[isActive(item.path) ? 'text-primary' : 'text-black-primary hover:text-primary']"
+            :href="router.resolve(toRoute(item)).href"
+            @click.prevent="onNavigate(item)"
+            :class="[isActive(item) ? 'text-primary' : 'text-black-primary hover:text-primary']"
             class="uppercase font-semibold text-[17px] tracking-[0.01em] transition-colors duration-200"
         >{{$t(item.name)}}</a>
       </template>
@@ -123,10 +127,10 @@ onMounted(()=>{
     </div>
     <div class="w-full flex-1 overflow-y-auto p-4">
 
-      <template v-for="item in navigations" :key="item.path">
+      <template v-for="item in navigations" :key="item.name">
         <div
-            @click="onNavigate(item.path)"
-            :class="[isActive(item.path) ? 'text-primary bg-surface-ground' : 'text-black-primary']"
+            @click="onNavigate(item)"
+            :class="[isActive(item) ? 'text-primary bg-surface-ground' : 'text-black-primary']"
             class="flex items-center justify-between px-3 py-3 rounded-lg uppercase font-semibold cursor-pointer">
           <span>{{$t(item.name)}}</span>
           <n-icon size="16" class="text-black-tertiary">
@@ -182,7 +186,7 @@ onMounted(()=>{
             </h6>
           </div>
         </div>
-        <div @click="onNavigate('/profile')" class="flex items-center justify-between px-3 py-3 mt-2 font-semibold rounded-lg cursor-pointer text-black-primary">
+        <div @click="onNavigate({path:'/profile'})" class="flex items-center justify-between px-3 py-3 mt-2 font-semibold rounded-lg cursor-pointer text-black-primary">
           <span >{{$t('profile.menu.profile')}}</span>
           <n-icon size="16" class="text-black-tertiary">
             <ChevronRight12Regular/>

@@ -6,6 +6,10 @@ import Education from "./Education.vue"
 import Personal from "./Personal.vue"
 
 const router = useRouter()
+const route = useRoute()
+
+// URL dagi ?tab= qiymati bilan tab id lari o'rtasidagi moslik
+const APPLICATIONS_TAB = 4
 
 const tabList = [
   {
@@ -27,19 +31,24 @@ const tabList = [
     name:'profile.menu.myApplications',
     id:4,
     icon:ClipboardTaskListLtr24Regular,
-    link:'/applications',
   },
 ]
 
 const store = useUserInfoStore()
 
 const onTabClick = (item) => {
-  if (item.link) {
-    router.push(item.link)
-  } else {
-    store.onChangeTab(item.id)
-  }
+  store.onChangeTab(item.id)
+  const query = {...route.query}
+  if (item.id === APPLICATIONS_TAB) query.tab = 'applications'
+  else delete query.tab
+  router.replace({query})
 }
+
+// Header yoki boshqa sahifadan ?tab=applications bilan kelinganda
+watch(() => route.query.tab, (tab) => {
+  if (tab === 'applications') store.onChangeTab(APPLICATIONS_TAB)
+  else if (store.activeTab === APPLICATIONS_TAB) store.onChangeTab(store.tabList[0].id)
+}, {immediate: true})
 </script>
 
 <template>
@@ -51,13 +60,13 @@ const onTabClick = (item) => {
             <div
                 @click="onTabClick(item)"
                 class="w-full group cursor-pointer flex items-center px-4 py-4 bg-surface-section rounded-lg mb-3 last:mb-0 text-black-tertiary overflow-hidden border transition-colors"
-                :class="[store.activeTab === item.id && !item.link ? 'border-primary/40' : 'border-transparent hover:border-surface-line']"
+                :class="[store.activeTab === item.id ? 'border-primary/40' : 'border-transparent hover:border-surface-line']"
             >
-              <n-icon size="24" :class="[store.activeTab === item.id && !item.link && 'text-primary']" >
-                <CheckmarkCircle20Filled v-if="store.activeTab === item.id && !item.link" />
+              <n-icon size="24" :class="[store.activeTab === item.id && 'text-primary']" >
+                <CheckmarkCircle20Filled v-if="store.activeTab === item.id" />
                 <component :is="item.icon" v-else/>
               </n-icon>
-              <span :class="[store.activeTab === item.id && !item.link ? 'text-primary' : 'text-black-primary']" class="font-semibold pl-4">{{$t(item.name)}}</span>
+              <span :class="[store.activeTab === item.id ? 'text-primary' : 'text-black-primary']" class="font-semibold pl-4">{{$t(item.name)}}</span>
             </div>
           </template>
 
@@ -73,6 +82,9 @@ const onTabClick = (item) => {
         </n-tab-pane>
         <n-tab-pane :name="store.tabList[2].id">
           <Career/>
+        </n-tab-pane>
+        <n-tab-pane :name="APPLICATIONS_TAB">
+          <UiApplicationList/>
         </n-tab-pane>
       </n-tabs>
     </div>
