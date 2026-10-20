@@ -39,6 +39,8 @@
     "errorStarting": "Ошибка при запуске экзамена"
   },
   "applications": {
+    "stagesProgress": "Завершено этапов: {done} из {total}",
+    "stageNumber": "Этап {n}",
     "uploadedFiles": "Загруженные файлы",
     "document": "Документ",
     "open": "Открыть",

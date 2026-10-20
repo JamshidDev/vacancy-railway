@@ -37,6 +37,8 @@
     "errorStarting": "Imtihonni boshlashda xatolik yuz berdi"
   },
   "applications": {
+    "stagesProgress": "{done} / {total} bosqich yakunlandi",
+    "stageNumber": "{n}-bosqich",
     "uploadedFiles": "Yuklangan hujjatlar",
     "document": "Hujjat",
     "open": "Ochish",

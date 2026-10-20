@@ -37,6 +37,8 @@
     "errorStarting": "Failed to start the exam"
   },
   "applications": {
+    "stagesProgress": "{done} of {total} stages completed",
+    "stageNumber": "Stage {n}",
     "uploadedFiles": "Uploaded files",
     "document": "Document",
     "open": "Open",

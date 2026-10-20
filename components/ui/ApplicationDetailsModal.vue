@@ -77,6 +77,13 @@ const stageName = (typeId, fallback) => {
 
 const overallStatusType = computed(() => statusTagType(detail.value?.status?.id))
 
+// Bosqichlar progressi: qabul qilingan (status 2) bosqichlar soni
+const completedStages = computed(() => sortedStatuses.value.filter(s => s?.status?.id === 2).length)
+const progressPercent = computed(() => {
+  const total = sortedStatuses.value.length
+  return total ? Math.round(completedStages.value / total * 100) : 0
+})
+
 const onOpenFilePath = (filePath) => {
   if(!filePath) return
   const url = filePath.startsWith('http')
@@ -236,106 +243,104 @@ watch(visible, (v) => {
 </script>
 
 <template>
-<UiModal :width="680" v-model:visible="visible">
+<UiModal :width="720" v-model:visible="visible">
   <template #header-title>
-    <div class="flex items-center gap-2">
-      <span class="text-base sm:text-lg font-bold text-black-primary">{{ $t('applications.detailsTitle') }}</span>
-      <span v-if="detail?.number" class="text-xs text-black-tertiary font-medium bg-surface-ground px-2 py-0.5 rounded border border-surface-line">
-        {{ detail.number }}
+    <div class="flex items-center gap-2 flex-wrap">
+      <span class="text-lg sm:text-xl font-bold text-black-primary">{{ $t('applications.detailsTitle') }}</span>
+      <span v-if="detail?.number" class="text-sm text-black-secondary font-semibold bg-surface-ground px-2.5 py-0.5 rounded-md border border-surface-line">
+        № {{ detail.number }}
       </span>
     </div>
   </template>
 
-  <div class="w-full flex flex-col gap-3 max-h-[70vh] overflow-y-auto pr-1 details-scroll">
-    <!-- Loading -->
+  <div class="w-full flex flex-col gap-4 max-h-[70vh] overflow-y-auto pr-1 details-scroll">
+    <!-- Yuklanmoqda -->
     <template v-if="loading">
-      <div class="bg-surface-ground border border-surface-line rounded-lg p-3">
-        <div class="h-4 w-3/4 rounded animate-shimmer shimmer mb-2"></div>
-        <div class="h-3 w-1/2 rounded animate-shimmer shimmer mb-2"></div>
-        <div class="h-3 w-2/3 rounded animate-shimmer shimmer"></div>
+      <div class="bg-surface-soft border border-surface-line rounded-xl p-4">
+        <div class="h-5 w-3/4 rounded animate-shimmer shimmer mb-3"></div>
+        <div class="h-4 w-1/2 rounded animate-shimmer shimmer mb-2"></div>
+        <div class="h-4 w-2/3 rounded animate-shimmer shimmer"></div>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-        <div v-for="i in 4" :key="i" class="bg-surface-ground border border-surface-line rounded-lg p-2.5">
-          <div class="h-2.5 w-1/2 rounded animate-shimmer shimmer mb-2"></div>
-          <div class="h-3 w-2/3 rounded animate-shimmer shimmer"></div>
-        </div>
-      </div>
-      <div v-for="i in 3" :key="'stage-'+i" class="bg-surface-ground border border-surface-line rounded-lg p-3">
-        <div class="h-4 w-1/3 rounded animate-shimmer shimmer mb-2"></div>
+      <div class="h-14 rounded-xl animate-shimmer shimmer"></div>
+      <div v-for="i in 3" :key="'stage-'+i" class="bg-surface-soft border border-surface-line rounded-xl p-4">
+        <div class="h-5 w-1/3 rounded animate-shimmer shimmer mb-3"></div>
         <div class="h-12 w-full rounded animate-shimmer shimmer"></div>
       </div>
     </template>
 
     <template v-else-if="detail">
-      <!-- Position & Overall Status -->
-      <div class="bg-surface-ground border border-surface-line rounded-lg p-3">
-        <div class="flex items-start justify-between gap-2 mb-2">
-          <h3 class="text-sm sm:text-base font-bold text-black-primary line-clamp-2">
-            {{ detail?.vacancy_position?.position?.name }}
-          </h3>
-          <n-tag :type="overallStatusType" size="small" round class="shrink-0">
-            {{ detail?.status?.name }}
-          </n-tag>
+      <!-- Vakansiya va umumiy holat -->
+      <div class="bg-surface-soft border border-surface-line rounded-xl p-4 sm:p-5">
+        <div class="flex flex-col-reverse sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+          <div class="min-w-0">
+            <h3 class="text-lg sm:text-xl font-bold text-black-primary leading-[1.3]">
+              {{ detail?.vacancy_position?.position?.name }}
+            </h3>
+            <p class="text-sm sm:text-base text-primary font-semibold mt-1">
+              {{ detail?.vacancy_position?.department?.name }}
+            </p>
+          </div>
+          <UiStatusBadge :type="overallStatusType" :label="detail?.status?.name" class="self-start shrink-0"/>
         </div>
-        <p class="text-xs text-black-tertiary line-clamp-1 mb-1">
-          {{ detail?.vacancy_position?.department?.name }}
-        </p>
-        <p class="text-xs sm:text-sm text-black-secondary font-medium line-clamp-2">
+        <p class="text-sm text-black-secondary mt-3 pt-3 border-t border-surface-line">
           {{ detail?.vacancy_position?.organization?.name }}
         </p>
       </div>
 
-      <!-- Stages Timeline -->
+      <!-- Bosqichlar -->
       <div v-if="detail?.statuses?.length">
-        <p class="text-[10px] font-semibold text-black-tertiary uppercase tracking-wide mb-2 px-1">
-          {{ $t('applications.stages') }} ({{ detail.statuses.length }})
-        </p>
+        <div class="flex items-center justify-between gap-3 mb-2">
+          <p class="text-base font-bold text-black-primary">{{ $t('applications.stages') }}</p>
+          <p class="text-sm text-black-tertiary">{{ $t('applications.stagesProgress', {done: completedStages, total: sortedStatuses.length}) }}</p>
+        </div>
+        <div class="w-full h-2 bg-surface-line rounded-full overflow-hidden mb-5">
+          <div class="h-full bg-success rounded-full transition-all duration-500" :style="{width: `${progressPercent}%`}"></div>
+        </div>
 
-        <div class="relative pl-6">
-          <!-- Timeline line -->
-          <div class="absolute left-[10px] top-2 bottom-2 w-[2px] bg-surface-line"></div>
+        <div class="relative">
+          <!-- Vertikal chiziq -->
+          <div class="absolute left-[17px] top-4 bottom-4 w-[2px] bg-surface-line"></div>
 
-          <div v-for="(stage, index) in sortedStatuses" :key="stage.id" class="relative mb-3 last:mb-0">
-            <!-- Dot -->
+          <div v-for="(stage, index) in sortedStatuses" :key="stage.id" class="relative flex gap-3 sm:gap-4 mb-4 last:mb-0">
+            <!-- Bosqich belgisi -->
             <div
                 :class="[
-                  stage.status?.id === 2 ? 'bg-success text-white' :
-                  stage.status?.id === 3 ? 'bg-error text-white' :
-                  'bg-warning text-white'
+                  stage.status?.id === 2 ? 'bg-success text-white ring-success/20' :
+                  stage.status?.id === 3 ? 'bg-error text-white ring-error/20' :
+                  'bg-warning text-white ring-warning/25'
                 ]"
-                class="absolute -left-6 top-0 w-[22px] h-[22px] rounded-full flex items-center justify-center z-10 shadow-sm">
-              <n-icon size="14">
+                class="relative z-10 w-9 h-9 shrink-0 rounded-full flex items-center justify-center ring-4">
+              <n-icon size="20">
                 <component :is="statusIcon(stage.status?.id)"/>
               </n-icon>
             </div>
 
-            <div class="bg-surface-ground border border-surface-line rounded-lg overflow-hidden">
-              <div class="flex items-start justify-between gap-2 px-3 py-2 bg-surface-section border-b border-surface-line flex-wrap">
-                <div class="flex items-start gap-2 min-w-0 flex-1">
-                  <n-icon size="18" class="text-primary shrink-0 mt-0.5">
-                    <component :is="stageIcon(stage.type?.id)"/>
-                  </n-icon>
+            <div class="flex-1 min-w-0 bg-surface-section border border-surface-line rounded-xl overflow-hidden">
+              <div class="flex items-start justify-between gap-3 px-4 py-3 border-b border-surface-line flex-wrap">
+                <div class="flex items-start gap-3 min-w-0 flex-1">
+                  <div class="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <n-icon size="20">
+                      <component :is="stageIcon(stage.type?.id)"/>
+                    </n-icon>
+                  </div>
                   <div class="min-w-0 flex-1">
-                    <div class="flex items-center gap-1.5">
-                      <span class="text-[10px] font-bold text-black-tertiary">#{{ index + 1 }}</span>
-                      <h4 class="text-xs sm:text-sm font-bold text-black-primary line-clamp-1">
-                        {{ stageName(stage.type?.id, stage.type?.name) }}
-                      </h4>
-                    </div>
-                    <p v-if="stageDescription(stage.type?.id)" class="text-[10px] text-black-tertiary leading-tight mt-0.5 line-clamp-2">
-                      {{ stageDescription(stage.type?.id) }}
-                    </p>
+                    <p class="text-xs font-semibold text-black-tertiary">{{ $t('applications.stageNumber', {n: index + 1}) }}</p>
+                    <h4 class="text-base font-bold text-black-primary leading-tight">
+                      {{ stageName(stage.type?.id, stage.type?.name) }}
+                    </h4>
                   </div>
                 </div>
-                <n-tag :type="statusTagType(stage.status?.id)" size="tiny" round class="shrink-0">
-                  {{ stage.status?.name }}
-                </n-tag>
+                <UiStatusBadge :type="statusTagType(stage.status?.id)" :label="stage.status?.name" size="small" class="shrink-0"/>
               </div>
 
-              <div class="px-3 py-2">
-                <!-- Type 1: Ariza topshirish -->
+              <div class="px-4 py-3">
+                <p v-if="stageDescription(stage.type?.id)" class="text-sm text-black-tertiary leading-relaxed mb-2">
+                  {{ stageDescription(stage.type?.id) }}
+                </p>
+
+                <!-- 1: Ariza topshirish -->
                 <template v-if="stage.type?.id === 1">
-                  <table class="w-full text-xs details-table">
+                  <table class="w-full details-table">
                     <tbody>
                     <tr v-if="stage.details?.number">
                       <td>{{ $t('applications.applicationNumber') }}</td>
@@ -349,81 +354,74 @@ watch(visible, (v) => {
                   </table>
                 </template>
 
-                <!-- Type 2: Hujjatlarni baholash -->
+                <!-- 2: Hujjatlarni baholash -->
                 <template v-else-if="stage.type?.id === 2">
-                  <table v-if="getFileTypeStatuses(stage.details).length" class="w-full text-xs details-table">
+                  <table v-if="getFileTypeStatuses(stage.details).length" class="w-full details-table">
                     <tbody>
                     <tr v-for="(ft, i) in getFileTypeStatuses(stage.details)" :key="'ft-'+i">
                       <td>{{ getFileTypeName(ft.file_type) }}</td>
                       <td>
-                        <n-tag :type="fileTypeStatusType(ft.status)" size="tiny" round>
-                          {{ fileTypeStatusLabel(ft.status) }}
-                        </n-tag>
+                        <UiStatusBadge :type="fileTypeStatusType(ft.status)" :label="fileTypeStatusLabel(ft.status)" size="small"/>
                       </td>
                     </tr>
                     </tbody>
                   </table>
                 </template>
 
-                <!-- Type 3: Suhbat (Interview with Zoom) -->
+                <!-- 3: Suhbat (Zoom) -->
                 <template v-else-if="stage.type?.id === 3">
-                  <table v-if="stage.details?.zoom" class="w-full text-xs details-table">
-                    <tbody>
-                    <tr>
-                      <td>{{ $t('applications.meetingId') }}</td>
-                      <td>{{ stage.details.zoom.meet_id }}</td>
-                    </tr>
-                    <tr>
-                      <td>{{ $t('applications.zoomMeeting') }}</td>
-                      <td>
-                        <div class="flex gap-1 justify-end flex-wrap">
-                          <n-button
-                              @click="onJoinZoom(stage.details.zoom)"
-                              :loading="checkingZoomMeetId === stage.details.zoom.meet_id"
-                              type="primary" size="tiny" secondary>
-                            <template #icon>
-                              <n-icon><Video24Regular/></n-icon>
-                            </template>
-                            {{ $t('applications.joinMeeting') }}
-                          </n-button>
-                          <n-button @click="onCopy(stage.details.zoom.join_url)" size="tiny" tertiary>
-                            <template #icon>
-                              <n-icon><Copy24Regular/></n-icon>
-                            </template>
-                          </n-button>
-                        </div>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
+                  <div v-if="stage.details?.zoom" class="flex flex-col sm:flex-row sm:items-center gap-3 bg-primary/5 border border-primary/20 rounded-lg p-3">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                      <div class="w-9 h-9 rounded-lg bg-primary text-white flex items-center justify-center shrink-0">
+                        <n-icon size="20"><Video24Regular/></n-icon>
+                      </div>
+                      <div class="min-w-0">
+                        <p class="text-xs text-black-tertiary">{{ $t('applications.meetingId') }}</p>
+                        <p class="text-sm font-bold text-black-primary truncate">{{ stage.details.zoom.meet_id }}</p>
+                      </div>
+                    </div>
+                    <div class="flex gap-2">
+                      <n-button
+                          @click="onJoinZoom(stage.details.zoom)"
+                          :loading="checkingZoomMeetId === stage.details.zoom.meet_id"
+                          type="primary"
+                          class="flex-1 sm:flex-none">
+                        <template #icon>
+                          <n-icon><Video24Regular/></n-icon>
+                        </template>
+                        {{ $t('applications.joinMeeting') }}
+                      </n-button>
+                      <n-button
+                          @click="onCopy(stage.details.zoom.join_url)"
+                          :aria-label="$t('applications.copyLink')"
+                          :title="$t('applications.copyLink')"
+                          secondary>
+                        <template #icon>
+                          <n-icon><Copy24Regular/></n-icon>
+                        </template>
+                      </n-button>
+                    </div>
+                  </div>
                 </template>
 
-                <!-- Type 4: Tibbiy ko'rik (Medical) -->
-                <template v-else-if="stage.type?.id === 4">
-                </template>
-
-                <!-- Type 5: Onlayn test (Exam) -->
+                <!-- 5: Imtihon -->
                 <template v-else-if="stage.type?.id === 5">
-                  <table v-if="stage.details?.exams" class="w-full text-xs details-table">
-                    <tbody>
-                    <tr>
-                      <td>{{ $t('applications.examName') }}</td>
-                      <td>{{ stage.details.exams.exam_name }}</td>
-                    </tr>
-                    <tr>
-                      <td>{{ $t('applications.examType') }}</td>
-                      <td>{{ stage.details.exams.exam_type ? $t('applications.examOffline') : $t('applications.examOnline') }}</td>
-                    </tr>
-
-                    <!-- Online flow -->
-                    <template v-if="!stage.details.exams.exam_type">
-                      <tr v-if="!stage.details.exams.status">
-                        <td>{{ $t('applications.examStatus') }}</td>
-                        <td>
-                          <n-tag type="warning" size="tiny" round>{{ $t('applications.examNotActive') }}</n-tag>
-                        </td>
+                  <template v-if="stage.details?.exams">
+                    <table class="w-full details-table">
+                      <tbody>
+                      <tr>
+                        <td>{{ $t('applications.examName') }}</td>
+                        <td>{{ stage.details.exams.exam_name }}</td>
                       </tr>
-                      <template v-else>
+                      <tr>
+                        <td>{{ $t('applications.examType') }}</td>
+                        <td>{{ stage.details.exams.exam_type ? $t('applications.examOffline') : $t('applications.examOnline') }}</td>
+                      </tr>
+                      <tr v-if="!stage.details.exams.exam_type && !stage.details.exams.status">
+                        <td>{{ $t('applications.examStatus') }}</td>
+                        <td><UiStatusBadge type="warning" :label="$t('applications.examNotActive')" size="small"/></td>
+                      </tr>
+                      <template v-if="stage.details.exams.exam_type || stage.details.exams.status">
                         <tr v-if="stage.details.exams.created">
                           <td>{{ $t('applications.examStarted') }}</td>
                           <td>{{ formatDateTime(stage.details.exams.created) }}</td>
@@ -432,58 +430,54 @@ watch(visible, (v) => {
                           <td>{{ $t('applications.examEnded') }}</td>
                           <td>{{ formatDateTime(stage.details.exams.ended) }}</td>
                         </tr>
-                        <tr v-if="stage.details.exams.created && stage.details.exams.ended && stage.details.exams.result !== null && stage.details.exams.result !== undefined">
-                          <td>{{ $t('applications.examResult') }}</td>
-                          <td><span class="font-bold text-success">{{ stage.details.exams.result }}</span></td>
-                        </tr>
-                        <tr v-if="stage.details.exams.created && !stage.details.exams.ended">
-                          <td colspan="2" class="!pt-2">
-                            <n-button @click="onStartExam(stage.details.exams)" :loading="startingExam" type="warning" size="small" class="!w-full">
-                              <template #icon>
-                                <n-icon><ClipboardTaskListLtr24Regular/></n-icon>
-                              </template>
-                              {{ $t('applications.continueExam') }}
-                            </n-button>
-                          </td>
-                        </tr>
-                        <tr v-else-if="!stage.details.exams.created">
-                          <td colspan="2" class="!pt-2">
-                            <n-button @click="onStartExam(stage.details.exams)" :loading="startingExam" type="primary" size="small" class="!w-full">
-                              <template #icon>
-                                <n-icon><ClipboardTaskListLtr24Regular/></n-icon>
-                              </template>
-                              {{ $t('applications.startExam') }}
-                            </n-button>
-                          </td>
-                        </tr>
                       </template>
-                    </template>
+                      </tbody>
+                    </table>
 
-                    <!-- Offline flow -->
-                    <template v-else>
-                      <tr v-if="stage.details.exams.created">
-                        <td>{{ $t('applications.examStarted') }}</td>
-                        <td>{{ formatDateTime(stage.details.exams.created) }}</td>
-                      </tr>
-                      <tr v-if="stage.details.exams.ended">
-                        <td>{{ $t('applications.examEnded') }}</td>
-                        <td>{{ formatDateTime(stage.details.exams.ended) }}</td>
-                      </tr>
-                      <tr v-if="stage.details.exams.result !== null && stage.details.exams.result !== undefined">
-                        <td>{{ $t('applications.examResult') }}</td>
-                        <td><span class="font-bold text-success">{{ stage.details.exams.result }}</span></td>
-                      </tr>
+                    <!-- Natija -->
+                    <div
+                        v-if="stage.details.exams.result !== null && stage.details.exams.result !== undefined && (stage.details.exams.exam_type || (stage.details.exams.created && stage.details.exams.ended))"
+                        class="mt-3 flex items-center justify-between gap-3 bg-success/10 border border-success/25 rounded-lg px-4 py-3">
+                      <span class="text-sm font-semibold text-black-secondary">{{ $t('applications.examResult') }}</span>
+                      <span class="text-2xl font-bold text-success tabular-nums">{{ stage.details.exams.result }}</span>
+                    </div>
+
+                    <!-- Onlayn imtihon amallari -->
+                    <template v-if="!stage.details.exams.exam_type && stage.details.exams.status">
+                      <n-button
+                          v-if="stage.details.exams.created && !stage.details.exams.ended"
+                          @click="onStartExam(stage.details.exams)"
+                          :loading="startingExam"
+                          type="warning"
+                          size="large"
+                          class="!w-full !mt-3">
+                        <template #icon>
+                          <n-icon><ClipboardTaskListLtr24Regular/></n-icon>
+                        </template>
+                        {{ $t('applications.continueExam') }}
+                      </n-button>
+                      <n-button
+                          v-else-if="!stage.details.exams.created"
+                          @click="onStartExam(stage.details.exams)"
+                          :loading="startingExam"
+                          type="primary"
+                          size="large"
+                          class="!w-full !mt-3">
+                        <template #icon>
+                          <n-icon><ClipboardTaskListLtr24Regular/></n-icon>
+                        </template>
+                        {{ $t('applications.startExam') }}
+                      </n-button>
                     </template>
-                    </tbody>
-                  </table>
+                  </template>
                 </template>
 
-                <!-- Message -->
-                <div v-if="stage.message" class="mt-2 pt-2 border-t border-surface-line">
-                  <p class="text-[10px] font-semibold text-primary uppercase tracking-wide mb-1">
+                <!-- Xabar -->
+                <div v-if="stage.message" class="mt-3 bg-surface-ground border-l-4 border-primary rounded-r-lg px-3 py-2.5">
+                  <p class="text-xs font-bold text-primary uppercase tracking-wide mb-1">
                     {{ $t('content.viewMessage') }}
                   </p>
-                  <p class="text-xs text-black-secondary whitespace-pre-line leading-relaxed">{{ stage.message }}</p>
+                  <p class="text-sm text-black-secondary whitespace-pre-line leading-relaxed">{{ stage.message }}</p>
                 </div>
               </div>
             </div>
@@ -494,17 +488,15 @@ watch(visible, (v) => {
     </template>
 
     <template v-else>
-      <div class="py-10 text-center text-black-tertiary text-sm">
-        {{ $t('content.no-data') }}
-      </div>
+      <UiNoResult/>
     </template>
   </div>
 
   <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
-    <n-button @click="visible = false" type="error" secondary class="!w-full">
+    <n-button @click="visible = false" secondary class="!w-full">
       {{ $t('content.close') }}
     </n-button>
-    <n-button @click="onGoToVacancy" :disabled="!detail?.vacancy_position?.id" type="primary" secondary class="!w-full">
+    <n-button @click="onGoToVacancy" :disabled="!detail?.vacancy_position?.id" type="primary" class="!w-full">
       {{ $t('applications.viewVacancy') }}
     </n-button>
   </div>
@@ -534,18 +526,18 @@ watch(visible, (v) => {
   border-bottom: none;
 }
 .details-table td {
-  padding: 6px 0;
+  padding: 8px 0;
   vertical-align: middle;
+  font-size: 14px;
 }
 .details-table td:first-child {
   color: var(--black-tertiary);
   width: 45%;
-  padding-right: 10px;
-  font-size: 11px;
+  padding-right: 12px;
 }
 .details-table td:last-child {
   color: var(--black-primary);
-  font-weight: 500;
+  font-weight: 600;
   text-align: right;
 }
 </style>
