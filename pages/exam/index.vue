@@ -137,7 +137,7 @@ const examDuration = computed(() => {
 
     <!-- Result Screen -->
     <div v-else-if="showResult && store.finishResult" class="min-h-screen flex items-center justify-center px-4 py-8">
-      <div class="w-full max-w-[480px] bg-surface-section border border-surface-line rounded-2xl shadow-sm overflow-hidden">
+      <div class="w-full max-w-[480px] bg-surface-section border border-surface-line rounded-2xl shadow-card overflow-hidden">
         <!-- Header -->
         <div class="text-center px-6 py-8 bg-gradient-to-b from-success/10 to-transparent">
           <div class="w-16 h-16 mx-auto rounded-full bg-success/15 flex items-center justify-center mb-3">
@@ -157,10 +157,10 @@ const examDuration = computed(() => {
         <div class="px-6 pt-4 pb-2">
           <div class="bg-primary/5 border border-primary/20 rounded-xl px-4 py-5 flex items-center justify-between">
             <div>
-              <p class="text-[11px] font-semibold text-primary uppercase tracking-wide mb-1">
+              <p class="text-xs font-bold text-primary uppercase tracking-wide mb-1">
                 {{ $t('exam.yourResult') }}
               </p>
-              <p class="text-xs text-black-tertiary">
+              <p class="text-sm text-black-tertiary">
                 {{ $t('exam.correctAnswers') }}
               </p>
             </div>
@@ -175,25 +175,25 @@ const examDuration = computed(() => {
         <div class="px-6 pb-4">
           <div class="space-y-0.5">
             <div class="flex items-center justify-between gap-2 py-2.5 border-b border-surface-line">
-              <span class="flex items-center gap-2 text-xs text-black-tertiary">
+              <span class="flex items-center gap-2 text-sm text-black-tertiary">
                 <n-icon size="14"><CalendarLtr32Regular/></n-icon>
                 {{ $t('exam.examStarted') }}
               </span>
-              <span class="text-xs font-semibold text-black-primary">{{ formatResultDate(store.finishResult.created) }}</span>
+              <span class="text-sm font-semibold text-black-primary">{{ formatResultDate(store.finishResult.created) }}</span>
             </div>
             <div class="flex items-center justify-between gap-2 py-2.5 border-b border-surface-line">
-              <span class="flex items-center gap-2 text-xs text-black-tertiary">
+              <span class="flex items-center gap-2 text-sm text-black-tertiary">
                 <n-icon size="14"><CalendarLtr32Regular/></n-icon>
                 {{ $t('exam.examEnded') }}
               </span>
-              <span class="text-xs font-semibold text-black-primary">{{ formatResultDate(store.finishResult.ended) }}</span>
+              <span class="text-sm font-semibold text-black-primary">{{ formatResultDate(store.finishResult.ended) }}</span>
             </div>
             <div v-if="examDuration" class="flex items-center justify-between gap-2 py-2.5">
-              <span class="flex items-center gap-2 text-xs text-black-tertiary">
+              <span class="flex items-center gap-2 text-sm text-black-tertiary">
                 <n-icon size="14"><Clock20Filled/></n-icon>
                 {{ $t('exam.duration') }}
               </span>
-              <span class="text-xs font-semibold text-black-primary">{{ examDuration }}</span>
+              <span class="text-sm font-semibold text-black-primary">{{ examDuration }}</span>
             </div>
           </div>
         </div>
@@ -204,7 +204,7 @@ const examDuration = computed(() => {
             <div class="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold text-primary tabular-nums shrink-0">
               {{ redirectCountdown }}
             </div>
-            <p class="text-xs text-black-secondary leading-snug flex-1">
+            <p class="text-sm text-black-secondary leading-snug flex-1">
               {{ $t('exam.redirectMessage', {n: redirectCountdown}) }}
             </p>
           </div>
@@ -218,17 +218,17 @@ const examDuration = computed(() => {
     <!-- Exam content -->
     <template v-else-if="store.exam && !showResult">
       <!-- Header (sticky) -->
-      <header class="sticky top-0 z-30 bg-surface-section border-b border-surface-line shadow-sm">
-        <div class="max-w-[1400px] mx-auto px-3 sm:px-4 py-2.5 flex items-center justify-between gap-2 flex-wrap">
+      <header class="sticky top-0 z-30 bg-surface-section border-b border-surface-line shadow-navbar">
+        <div class="max-w-[1320px] mx-auto px-4 md:px-6 py-3 flex items-center justify-between gap-2 flex-wrap">
           <div class="flex items-center gap-2 min-w-0 flex-1">
-            <div class="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
               <n-icon size="18" class="text-primary">
                 <ClipboardTaskListLtr24Regular/>
               </n-icon>
             </div>
             <div class="min-w-0 flex-1">
-              <h1 class="text-sm sm:text-base font-bold text-black-primary line-clamp-1">{{ store.exam.name }}</h1>
-              <p class="text-[10px] sm:text-xs text-black-tertiary">
+              <h1 class="text-base sm:text-lg font-bold text-black-primary line-clamp-1">{{ store.exam.name }}</h1>
+              <p class="text-xs sm:text-sm text-black-tertiary">
                 {{ $t('exam.variantLabel') }} {{ store.exam.variant }} ·
                 {{ $t('exam.testsCount', {n: store.exam.tests_count}) }}
               </p>
@@ -239,7 +239,7 @@ const examDuration = computed(() => {
       </header>
 
       <!-- Body -->
-      <div class="max-w-[1400px] mx-auto px-3 sm:px-4 py-4">
+      <div class="max-w-[1320px] mx-auto px-4 md:px-6 py-5">
         <div class="lg:flex gap-4">
           <!-- Left: Questions -->
           <div class="flex-1 min-w-0 pb-20 lg:pb-4">
@@ -247,21 +247,21 @@ const examDuration = computed(() => {
                 v-for="(q, index) in store.questions"
                 :key="q.id"
                 :id="`question-${index}`"
-                class="mb-3 border border-surface-line bg-surface-section rounded-xl transition-all duration-200">
-              <div class="px-3 sm:px-4 py-2.5 border-b border-surface-line flex items-start justify-between gap-2">
+                class="mb-4 border border-surface-line bg-surface-section rounded-xl transition-all duration-200 scroll-mt-20">
+              <div class="px-3 sm:px-5 py-3 border-b border-surface-line flex items-start justify-between gap-2">
                 <div class="flex items-start gap-2 min-w-0 flex-1">
                   <div
                       :class="[store.isAnswered(q.id) ? 'bg-primary text-white border-primary' : 'bg-surface-ground text-black-secondary border-surface-line']"
-                      class="w-7 h-7 rounded-full border flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+                      class="w-8 h-8 rounded-full border flex items-center justify-center text-sm font-bold shrink-0">
                     {{ index + 1 }}
                   </div>
-                  <p class="text-sm font-bold text-black-primary leading-relaxed whitespace-pre-line flex-1">{{ q.question }}</p>
+                  <p class="text-base font-bold text-black-primary leading-relaxed whitespace-pre-line flex-1">{{ q.question }}</p>
                 </div>
                 <n-spin v-if="store.savingQuestionId === q.id" size="tiny" class="shrink-0 mt-1"/>
               </div>
 
-              <div class="px-3 sm:px-4 py-3">
-                <div class="space-y-1.5">
+              <div class="px-3 sm:px-5 py-3 sm:py-4">
+                <div class="space-y-2">
                   <label
                       v-for="ans in q.answers"
                       :key="ans.id"
@@ -270,7 +270,7 @@ const examDuration = computed(() => {
                           ? 'border-primary bg-primary/10'
                           : 'border-surface-line bg-surface-section hover:border-black-tertiary/40 hover:bg-surface-ground'
                       ]"
-                      class="flex items-start gap-2.5 px-3 py-2 border rounded-lg cursor-pointer transition-all">
+                      class="flex items-start gap-3 px-3 sm:px-4 py-2.5 sm:py-3 border rounded-lg cursor-pointer transition-all">
                     <input
                         type="radio"
                         :name="`q-${q.id}`"
@@ -280,7 +280,7 @@ const examDuration = computed(() => {
                         :disabled="store.savingQuestionId === q.id"
                         class="mt-0.5 shrink-0 accent-primary w-4 h-4"
                     />
-                    <span class="text-xs sm:text-sm text-black-primary font-semibold leading-relaxed flex-1">{{ ans.text }}</span>
+                    <span class="text-sm sm:text-base text-black-primary font-semibold leading-relaxed flex-1">{{ ans.text }}</span>
                   </label>
                 </div>
               </div>
@@ -307,7 +307,7 @@ const examDuration = computed(() => {
                         :style="{width: `${(store.answeredCount / store.totalQuestions * 100) || 0}%`}"
                     ></div>
                   </div>
-                  <p class="text-[10px] text-black-tertiary mt-1.5">
+                  <p class="text-xs text-black-tertiary mt-1.5">
                     {{ progressPercent }}% {{ $t('exam.completed') }}
                   </p>
                 </div>
@@ -336,13 +336,13 @@ const examDuration = computed(() => {
                 <div class="px-4 py-3 border-t border-surface-line bg-surface-ground grid grid-cols-2 gap-2">
                   <div class="flex items-center gap-1.5">
                     <span class="w-3 h-3 rounded border-2 border-primary bg-primary shrink-0"></span>
-                    <span class="text-[11px] text-black-secondary">
+                    <span class="text-xs text-black-secondary">
                       {{ $t('exam.answered') }} <span class="font-bold text-primary">{{ store.answeredCount }}</span>
                     </span>
                   </div>
                   <div class="flex items-center gap-1.5">
                     <span class="w-3 h-3 rounded border-2 border-surface-line bg-surface-section shrink-0"></span>
-                    <span class="text-[11px] text-black-secondary">
+                    <span class="text-xs text-black-secondary">
                       {{ $t('exam.remaining') }} <span class="font-bold text-black-primary">{{ store.remainingCount }}</span>
                     </span>
                   </div>
@@ -439,14 +439,14 @@ const examDuration = computed(() => {
             <div class="flex items-center gap-2 px-3 py-2 bg-primary/5 border border-primary/20 rounded-lg">
               <span class="w-3 h-3 rounded border-2 border-primary bg-primary shrink-0"></span>
               <div class="flex-1 min-w-0">
-                <p class="text-[10px] text-black-tertiary">{{ $t('exam.answered') }}</p>
+                <p class="text-xs text-black-tertiary">{{ $t('exam.answered') }}</p>
                 <p class="text-sm font-bold text-primary">{{ store.answeredCount }}</p>
               </div>
             </div>
             <div class="flex items-center gap-2 px-3 py-2 bg-surface-ground border border-surface-line rounded-lg">
               <span class="w-3 h-3 rounded border-2 border-surface-line bg-surface-section shrink-0"></span>
               <div class="flex-1 min-w-0">
-                <p class="text-[10px] text-black-tertiary">{{ $t('exam.remaining') }}</p>
+                <p class="text-xs text-black-tertiary">{{ $t('exam.remaining') }}</p>
                 <p class="text-sm font-bold text-black-primary">{{ store.remainingCount }}</p>
               </div>
             </div>
@@ -480,18 +480,18 @@ const examDuration = computed(() => {
       </template>
 
       <div class="w-full flex flex-col gap-3">
-        <p class="text-sm text-black-secondary leading-relaxed">
+        <p class="text-base text-black-secondary leading-relaxed">
           {{ $t('exam.confirmFinishSubtitle') }}
         </p>
 
         <!-- Stats -->
         <div class="bg-surface-ground border border-surface-line rounded-lg overflow-hidden">
           <div class="flex items-center justify-between gap-2 px-3 py-2.5 border-b border-surface-line">
-            <span class="text-xs text-black-tertiary">{{ $t('exam.totalQuestions') }}</span>
+            <span class="text-sm text-black-tertiary">{{ $t('exam.totalQuestions') }}</span>
             <span class="text-sm font-bold text-black-primary">{{ store.totalQuestions }}</span>
           </div>
           <div class="flex items-center justify-between gap-2 px-3 py-2.5 border-b border-surface-line bg-primary/5">
-            <span class="flex items-center gap-1.5 text-xs text-black-secondary">
+            <span class="flex items-center gap-1.5 text-sm text-black-secondary">
               <span class="w-2 h-2 rounded-full bg-primary"></span>
               {{ $t('exam.answered') }}
             </span>
@@ -500,7 +500,7 @@ const examDuration = computed(() => {
           <div
               v-if="store.remainingCount > 0"
               class="flex items-center justify-between gap-2 px-3 py-2.5 bg-warning/5">
-            <span class="flex items-center gap-1.5 text-xs text-black-secondary">
+            <span class="flex items-center gap-1.5 text-sm text-black-secondary">
               <span class="w-2 h-2 rounded-full bg-warning"></span>
               {{ $t('exam.unanswered') }}
             </span>
@@ -515,7 +515,7 @@ const examDuration = computed(() => {
           <n-icon size="16" class="text-warning shrink-0 mt-0.5">
             <Warning20Filled/>
           </n-icon>
-          <p class="text-xs text-black-secondary leading-relaxed">
+          <p class="text-sm text-black-secondary leading-relaxed">
             {{ $t('exam.unansweredWarning', {n: store.remainingCount}) }}
           </p>
         </div>
@@ -524,7 +524,7 @@ const examDuration = computed(() => {
           <n-icon size="16" class="text-error shrink-0 mt-0.5">
             <Warning20Filled/>
           </n-icon>
-          <p class="text-xs text-black-secondary leading-relaxed">
+          <p class="text-sm text-black-secondary leading-relaxed">
             {{ $t('exam.confirmFinish') }}
           </p>
         </div>
