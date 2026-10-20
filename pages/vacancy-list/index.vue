@@ -10,6 +10,12 @@ definePageMeta({
 const store = useVacancyStore()
 const route = useRoute()
 
+// Skeleton faqat ilk yuklanishda; keyingi so'rovlarda joriy natija joyida qoladi
+const initialLoading = ref(true)
+watch(() => store.listLoading, (loading) => {
+  if (!loading) initialLoading.value = false
+})
+
 // Mobil filtr paneli
 const filterVisible = ref(false)
 const activeFilterCount = computed(()=> [
@@ -122,15 +128,13 @@ onMounted(() => {
             <span v-if="activeFilterCount" class="min-w-[22px] h-[22px] px-1.5 rounded-full bg-primary text-white text-xs flex items-center justify-center">{{activeFilterCount}}</span>
           </button>
           <div class="min-h-[200px]">
-            <template v-if="store.listLoading">
-              <UiVacancyCardSkeleton :count="5" />
-            </template>
-            <template v-else>
+            <UiVacancyCardSkeleton v-if="initialLoading" :count="5" />
+            <n-spin v-else :show="store.listLoading" :delay="150">
               <template v-for="item in store.list" :key="item.id">
                 <UiVacancyCard :data="item" />
               </template>
               <UiNoResult v-if="store.list.length === 0" />
-            </template>
+            </n-spin>
           </div>
           <div v-if="store.pagination.total > store.params.per_page" class="flex justify-center mt-6 md:mt-8 pagination-wrapper">
             <n-pagination

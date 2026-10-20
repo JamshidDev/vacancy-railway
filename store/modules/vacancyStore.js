@@ -116,19 +116,24 @@ export const useVacancyStore = defineStore('vacancyStore',()=>{
             cityLoading.value = false
         })
     }
+    // Filtrlar tez almashtirilganda kechikib kelgan eski javob yangisini bosib ketmasligi uchun
+    let listRequestId = 0
     const onIndex = ()=>{
+        const requestId = ++listRequestId
         listLoading.value = true
         $ApiSerivce.vacancyService.index({params:params.value}).then(res=>{
+            if(requestId !== listRequestId) return
             if(res?.data?.data) {
                 list.value = res.data.data.data || []
                 pagination.value.current_page = res.data.data.current_page || 1
                 pagination.value.total = res.data.data.total || 0
             }
         }).catch(err=>{
+            if(requestId !== listRequestId) return
             console.error('onIndex error:', err)
             list.value = []
         }).finally(()=>{
-            listLoading.value = false
+            if(requestId === listRequestId) listLoading.value = false
         })
     }
 
