@@ -4,14 +4,14 @@ const localePath = useLocalePath()
 
 <template>
 <div
-    class="flex items-center w-[200px] cursor-pointer"
+    class="flex items-center gap-3 cursor-pointer shrink-0"
     @click="navigateTo(localePath('/'))"
 >
-  <img class="w-[50px]" src="/logo-2.png" alt="App logo">
-  <div class="flex flex-col text-[10px] text-[#b4a003] uppercase font-semibold">
-    <span class="text-nowrap text-center leading-1">O'zbekiston temir yo'llari</span>
-    <span class="text-nowrap text-left ">Aksiyadorlik jamiyati</span>
-    <span class="text-nowrap text-left leading-1">Bo'sh ish o'rinlari</span>
+  <img class="w-[46px] lg:w-[56px]" src="/logo-2.png" alt="App logo">
+  <div class="flex flex-col text-[10px] lg:text-[11px] leading-[1.35] text-black-primary uppercase font-bold">
+    <span class="text-nowrap">O'zbekiston temir yo'llari</span>
+    <span class="text-nowrap">Aksiyadorlik jamiyati</span>
+    <span class="text-nowrap">Bo'sh ish o'rinlari portali</span>
   </div>
 </div>
 </template>
