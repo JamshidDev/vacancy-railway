@@ -36,14 +36,18 @@ const onClickRegion = (item) => {
         </template>
       </UiSectionTitle>
 
-      <n-tabs animated v-model:value="store.activeTab" class="hidden-tab-header" type="segment">
+      <!-- animated yo'q: aks holda Naive panelni overflow:hidden ichiga oladi va hoverda kattalashgan karta soyasi kesiladi -->
+      <n-tabs v-model:value="store.activeTab" class="hidden-tab-header org-tabs" type="segment">
         <n-tab-pane :name="store.tabList[0].id">
           <n-spin :class="store.loading && 'min-h-[200px]'" :show="store.loading">
             <div class="grid grid-cols-12 gap-6">
               <template v-for="item in store.organizations" :key="item">
                 <div @click="onClickOrganization(item)" class="col-span-12 md:col-span-6 lg:col-span-4 p-4 sm:p-5 bg-surface-soft border border-surface-line
-               rounded-xl flex items-center cursor-pointer gap-4 sm:gap-5 hover:shadow-card hover:border-primary/30 transition-all duration-300">
-                  <div class="text-black-tertiary/60 shrink-0 w-[48px] sm:w-auto [&_svg]:w-full [&_svg]:h-auto"><IconBuild2/></div>
+               rounded-xl flex items-center cursor-pointer gap-4 sm:gap-5 hover:border-primary/30 transition-all duration-300
+               hover:scale-[1.03] motion-reduce:hover:scale-100">
+                  <div class="text-error bg-error/10 w-[52px] h-[52px] sm:w-[60px] sm:h-[60px] shrink-0 rounded-xl flex items-center justify-center">
+                    <n-icon size="34"><IconCorporation/></n-icon>
+                  </div>
                   <div class="flex flex-col justify-between self-stretch border-l border-surface-line pl-4 sm:pl-5 min-w-0">
                     <h3 class="text-black-primary font-bold text-base sm:text-lg leading-[1.3] line-clamp-2">{{item.organization_full_name}}</h3>
                     <p class="text-black-secondary text-sm mt-4">{{$t('mainSection.availableVacancy',{n:item.vacancies_count})}}</p>
@@ -61,8 +65,11 @@ const onClickRegion = (item) => {
             <div class="grid grid-cols-12 gap-6">
               <template v-for="item in store.regions" :key="item">
                 <div @click="onClickRegion(item)" class="col-span-12 md:col-span-6 lg:col-span-4 p-4 sm:p-5 bg-surface-soft border border-surface-line
-               rounded-xl flex items-center cursor-pointer gap-4 sm:gap-5 hover:shadow-card hover:border-primary/30 transition-all duration-300">
-                  <div class="text-black-tertiary/60 shrink-0 w-[48px] sm:w-auto [&_svg]:w-full [&_svg]:h-auto"><IconBuild/></div>
+               rounded-xl flex items-center cursor-pointer gap-4 sm:gap-5 hover:border-primary/30 transition-all duration-300
+               hover:scale-[1.03] motion-reduce:hover:scale-100">
+                  <div class="text-success bg-success/12 w-[52px] h-[52px] sm:w-[60px] sm:h-[60px] shrink-0 rounded-xl flex items-center justify-center">
+                    <n-icon size="34"><IconPlaces/></n-icon>
+                  </div>
                   <div class="flex flex-col justify-between self-stretch border-l border-surface-line pl-4 sm:pl-5 min-w-0">
                     <h3 class="text-black-primary font-bold text-base sm:text-lg leading-[1.3] line-clamp-2">{{item.region_name}}</h3>
                     <p class="text-black-secondary text-sm mt-4">{{$t('mainSection.availableVacancy',{n:item.vacancies_count})}}</p>
