@@ -2,6 +2,12 @@
 
 "O'zbekiston temir yo'llari" AJ bo'sh ish o'rinlari portali (frontend). Nuxt 3 (`ssr: false`), Naive UI, Tailwind v4, Pinia, `@nuxtjs/i18n` (uz/ru/en).
 
+## Claude uchun eslatmalar
+
+Before changing code, read `.claude/notes/README.md` and the end of `.claude/notes/log.md`. After every
+task that edits code, update the matching area file in `.claude/notes/` in place (one file per area,
+never one file per prompt) and add one line to `log.md`. The README there explains how.
+
 ## Ishga tushirish
 
 ```bash

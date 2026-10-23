@@ -73,22 +73,23 @@ onMounted(()=>{
     </nav>
 
     <div class="flex items-center gap-3">
+      <!-- lg dan kichikda mavzu, til va profil yon menyuda bor, shuning uchun headerda faqat lg dan ko'rinadi -->
       <button
           @click="toggleTheme"
           :aria-label="$t(isDark ? 'content.lightMode' : 'content.darkMode')"
           :title="$t(isDark ? 'content.lightMode' : 'content.darkMode')"
-          class="w-[44px] h-[44px] flex items-center justify-center rounded-lg bg-surface-ground hover:bg-surface-line text-primary cursor-pointer transition-colors">
+          class="w-[44px] h-[44px] hidden lg:flex items-center justify-center rounded-lg bg-surface-ground hover:bg-surface-line text-primary cursor-pointer transition-colors">
         <n-icon size="22">
           <WeatherSunny24Regular v-if="isDark"/>
           <WeatherMoon24Regular v-else/>
         </n-icon>
       </button>
-      <span class="hidden md:inline-block"><UiLanguageSelect/></span>
+      <span class="hidden lg:inline-block"><UiLanguageSelect/></span>
       <template v-if="!isLogin">
         <button
             @click="loginSystem(2)"
             class="h-[44px] bg-surface-ground hover:bg-surface-line px-4 rounded-lg items-center
-            gap-2 text-primary font-semibold cursor-pointer hidden md:flex transition-colors">
+            gap-2 text-primary font-semibold cursor-pointer hidden lg:flex transition-colors">
           <n-icon size="20">
             <PersonAdd24Regular/>
           </n-icon>
@@ -96,14 +97,14 @@ onMounted(()=>{
         </button>
         <button
             @click="loginSystem(1)"
-            class="h-[44px] bg-primary hover:bg-primary/90 px-5 font-semibold rounded-lg hidden md:flex items-center gap-2 text-white cursor-pointer transition-colors">
+            class="h-[44px] bg-primary hover:bg-primary/90 px-5 font-semibold rounded-lg hidden lg:flex items-center gap-2 text-white cursor-pointer transition-colors">
           <n-icon size="20">
             <DoorArrowLeft20Regular/>
           </n-icon>
           <span>{{$t('content.loginSystem')}}</span>
         </button>
       </template>
-      <span v-else class="hidden md:inline-block">
+      <span v-else class="hidden lg:inline-block">
         <UiUserMenu />
       </span>
 

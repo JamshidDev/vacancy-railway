@@ -199,8 +199,8 @@
   "mainSection": {
     "name": "Home",
     "subtitle": "We have {n} job vacancies",
-    "title": "Start your career journey with the {word}!",
-    "job": "railway",
+    "title": "Find your career {word}",
+    "job": "on the railway",
     "searchVacancy": "Search",
     "vacancy": "Vacancies",
     "registerAccount": "Create your account",

@@ -199,8 +199,8 @@
   "mainSection": {
     "name": "Asosiy",
     "subtitle":"Bizda {n} ta bosh ish o'rni",
-    "title":"Kasbiy yo'lingizni {word} bilan boshlang!",
-    "job":"temir yo'l",
+    "title":"{word} o'z kasbingizni toping",
+    "job":"Temir yo'lda",
     "searchVacancy":"Izlash",
     "vacancy":"Ish o'rinlari",
     "registerAccount":"Hisobingizni yarating",

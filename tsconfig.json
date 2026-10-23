@@ -8,12 +8,13 @@
     "strict": false,
     "allowJs": true,
     "checkJs": false,
+    "noEmit": true,
     "jsx": "preserve",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
     "types": ["@types/node"]
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", ".nuxt", ".output", "dist"]
 }
 
