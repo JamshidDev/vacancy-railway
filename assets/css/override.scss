@@ -6,6 +6,20 @@
     }
 }
 
+.hero-search-input{
+  /* Bosh sahifa qidiruvidagi uzun maslahat matni oddiy matndan kichikroq. Bu fayl tailwind.css orqali oddiy CSS sifatida o'qiladi, // izoh ishlamaydi */
+  .n-input__placeholder{
+    font-size: 13px;
+    /* Telefonda sig'masa oxiri "..." bilan tugaydi */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    @media (min-width: 768px){
+      font-size: 14px;
+    }
+  }
+}
+
 .hidden-tab-header{
   .n-tabs-nav--segment-type{
     display: none !important;
